@@ -9,4 +9,5 @@ import android.support.v7.app.AppCompatActivity;
  * email : ganxinvip@163.com <br/>
  */
 public class BaseListActivity extends AppCompatActivity {
+
 }

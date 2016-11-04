@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">DoingDaily</string>
+    <string name="app_name">多元日报</string>
+
+    <string name="tab_news">新闻频道</string>
+    <string name="tab_wechat">微信热门</string>
+    <string name="tab_about">关于</string>
+
 </resources>

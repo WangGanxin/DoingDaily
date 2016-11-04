@@ -1,13 +1,15 @@
 package com.ganxin.doingdaily.common.widgets.tab;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.framework.ITabFragment;
@@ -15,7 +17,7 @@ import com.ganxin.doingdaily.framework.ITabFragment;
 import java.util.ArrayList;
 
 /**
- * Description : TODO  <br/>
+ * Description : TabLayout：自定义底部Tab容器  <br/>
  * author : WangGanxin <br/>
  * date : 2016/11/2 <br/>
  * email : ganxinvip@163.com <br/>
@@ -44,7 +46,7 @@ public class TabLayout extends LinearLayout implements View.OnClickListener {
 
     private void setUpView() {
         setOrientation(HORIZONTAL);
-
+        setBackgroundColor(getResources().getColor(R.color.white));
     }
 
     public void setUpData(ArrayList<Tab> tabs, OnTabClickListener listener) {
@@ -54,7 +56,8 @@ public class TabLayout extends LinearLayout implements View.OnClickListener {
         if (tabs != null && tabs.size() > 0) {
             tabCount = tabs.size();
             TabView mTabView;
-            LayoutParams params = new LayoutParams(0, LayoutParams.WRAP_CONTENT);
+            float density = getContext().getResources().getDisplayMetrics().density;
+            LayoutParams params = new LayoutParams(0,(int) (50 * density));
             params.gravity = Gravity.CENTER;
             params.weight = 1;
             for (int i = 0; i < tabs.size(); i++) {
@@ -76,23 +79,44 @@ public class TabLayout extends LinearLayout implements View.OnClickListener {
         }
     }
 
-    public void onDataChanged(int i, int badgeCount) {
-        if (i < tabCount && i >= 0) {
-            TabView view = (TabView) getChildAt(i);
-            view.onDataChanged(badgeCount);
-        }
-    }
-
     @Override
     public void onClick(View v) {
         if (selectView != v) {
             listener.onTabClick((Tab) v.getTag());
-            v.setSelected(true);
+
+            int childCount=getChildCount();
+
+            for (int i = 0; i < childCount; i++) {
+                View child=getChildAt(i);
+                if(child==v){
+                    v.setSelected(true);
+                    setTintColor(child,R.color.basePrimary);
+                }
+                else{
+                    setTintColor(child,R.color.icon_tint_normal);
+                }
+            }
+
             if (selectView != null) {
                 selectView.setSelected(false);
             }
             selectView = v;
         }
+    }
+
+    private void setTintColor(View view,int colorId){
+        ImageView img= (ImageView) view.findViewById(R.id.mTabImg);
+        if(img!=null){
+            Drawable originalDrawable =img.getDrawable();
+            Drawable wrappedDrawable = tintDrawable(originalDrawable, ColorStateList.valueOf(getResources().getColor(colorId)));
+            img.setBackgroundDrawable(wrappedDrawable);
+        }
+    }
+
+    private Drawable tintDrawable(Drawable drawable, ColorStateList colors) {
+        final Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
+        DrawableCompat.setTintList(wrappedDrawable, colors);
+        return wrappedDrawable;
     }
 
     public interface OnTabClickListener {
@@ -101,7 +125,6 @@ public class TabLayout extends LinearLayout implements View.OnClickListener {
 
     public class TabView extends LinearLayout {
         private ImageView mTabImg;
-        private TextView mTabLabel;
 
         public TabView(Context context) {
             super(context);
@@ -118,54 +141,27 @@ public class TabLayout extends LinearLayout implements View.OnClickListener {
             setUpView();
         }
 
-
         private void setUpView() {
             LayoutInflater.from(getContext()).inflate(R.layout.widget_tab_view, this, true);
             setOrientation(VERTICAL);
             setGravity(Gravity.CENTER);
+            setBackgroundResource(R.drawable.md_selector_transparent);
             mTabImg = (ImageView) findViewById(R.id.mTabImg);
-            mTabLabel = (TextView) findViewById(R.id.mTabLabel);
         }
 
         public void setUpData(Tab tab) {
-            mTabImg.setBackgroundResource(tab.imgResId);
-            mTabLabel.setText(tab.labelResId);
-        }
-
-
-        public void onDataChanged(int badgeCount) {
-            //  TODO notify new message, change the badgeView
+            mTabImg.setImageResource(tab.imgResId);
         }
     }
 
     public static class Tab {
         public int imgResId;
         public int labelResId;
-        public int badgeCount;
-        public int menuResId;
         public Class<? extends ITabFragment> targetFragmentClz;
-
-        public Tab(int imgResId, int labelResId) {
-            this.imgResId = imgResId;
-            this.labelResId = labelResId;
-        }
-
-        public Tab(int imgResId, int labelResId, int badgeCount) {
-            this.imgResId = imgResId;
-            this.labelResId = labelResId;
-            this.badgeCount = badgeCount;
-        }
 
         public Tab(int imgResId, int labelResId, Class<? extends ITabFragment> targetFragmentClz) {
             this.imgResId = imgResId;
-            this.labelResId = labelResId;
-            this.targetFragmentClz = targetFragmentClz;
-        }
-
-        public Tab(int imgResId, int labelResId, int menuResId, Class<? extends ITabFragment> targetFragmentClz) {
-            this.imgResId = imgResId;
-            this.labelResId = labelResId;
-            this.menuResId = menuResId;
+            this.labelResId=labelResId;
             this.targetFragmentClz = targetFragmentClz;
         }
     }

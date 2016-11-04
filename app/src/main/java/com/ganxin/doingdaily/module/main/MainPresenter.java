@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.home;
+package com.ganxin.doingdaily.module.main;
 
 /**
  * Description : MainPresenter  <br/>

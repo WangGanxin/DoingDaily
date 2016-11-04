@@ -6,12 +6,7 @@
         android:id="@+id/mTabImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:duplicateParentState="true" />
-
-    <TextView
-        android:id="@+id/mTabLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:duplicateParentState="true"
-        android:textColor="@color/selector_tab_color" />
+        android:tint="@color/icon_tint_normal"
+        android:tintMode="src_atop"/>
 </merge>

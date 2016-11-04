@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.utils.AppStatusTracker;
-import com.ganxin.doingdaily.module.home.MainActivity;
+import com.ganxin.doingdaily.module.main.MainActivity;
 
 import butterknife.ButterKnife;
 
@@ -36,10 +36,9 @@ public abstract class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
             case ConstantValues.STATUS_ONLINE:
                 setUpContentView();
                 ButterKnife.bind(this); //添加View注解
-
-                initPresenter();
                 initView();
                 initData(savedInstanceState);
+                initPresenter();
                 break;
         }
     }

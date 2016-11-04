@@ -1,7 +1,7 @@
 package com.ganxin.doingdaily.module.loading;
 
 /**
- * Description : TODO  <br/>
+ * Description : LoadingPresenter  <br/>
  * author : WangGanxin <br/>
  * date : 2016/10/28 <br/>
  * email : ganxinvip@163.com <br/>

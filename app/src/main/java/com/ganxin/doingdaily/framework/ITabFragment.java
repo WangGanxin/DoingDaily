@@ -5,8 +5,5 @@ package com.ganxin.doingdaily.framework;
  * Powered by www.stay4it.com
  */
 public interface ITabFragment {
-
-    void onMenuItemClick();
-
     BaseFragment getFragment();
 }

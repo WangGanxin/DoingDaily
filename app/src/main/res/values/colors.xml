@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- App 统一颜色 -->
+    <color name="basePrimary">#FF5677FC</color>
+    <color name="basePrimaryDark">#FF455EDE</color>
+    <color name="baseAccent">#FFFF4081</color>
+    <color name="basePageBackground">#EEEEEE</color>
+
+    <color name="md_selected">#19000000</color>
+    <color name="icon_tint_normal">#bdbdbd</color>
+
+    <!-- 常用基本颜色 -->
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
 
     <color name="tab_gray">#ff999999</color>
     <color name="tab_green">#ff45c01a</color>
