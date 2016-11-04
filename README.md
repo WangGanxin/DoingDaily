@@ -5,7 +5,7 @@
 
 #TODO
 
-###V 1.0.0
+###V 1.0.0 （Update 2016.11.03）
 
 - [ ] 项目框架搭建（Material Design + MVP + ButterKnife + RxJava + Retrofit + Glide）
 - [ ] 主界面（新闻、微信热文） 
