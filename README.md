@@ -16,7 +16,7 @@
 # Contact Me
 
 - QQ：445253393（注明来自GitHub）
-- Email：ganxinvip@163.com
+- Email：mail@wangganxin.me
 
 # License
    		Copyright 2016 DoingDaily of copyright 守望君
