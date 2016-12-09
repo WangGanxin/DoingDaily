@@ -13,7 +13,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:fadingEdge">none</item>
-        <item name="android:scrollbars">none</item>
+        <item name="android:scrollbars">vertical</item>
     </style>
 
     <style name="RecyclerItemViewStyle">

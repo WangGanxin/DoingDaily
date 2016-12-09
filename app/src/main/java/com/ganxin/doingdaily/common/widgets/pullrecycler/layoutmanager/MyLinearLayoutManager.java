@@ -7,10 +7,11 @@ import android.util.AttributeSet;
 
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseListAdapter;
 
-
 /**
- * Created by Stay on 5/3/16.
- * Powered by www.stay4it.com
+ * Description : 线性布局管理器  <br/>
+ * author : WangGanxin <br/>
+ * date : 2016/12/8 <br/>
+ * email : mail@wangganxin.me <br/>
  */
 public class MyLinearLayoutManager extends LinearLayoutManager implements ILayoutManager {
     public MyLinearLayoutManager(Context context) {

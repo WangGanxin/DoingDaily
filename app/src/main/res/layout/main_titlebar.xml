@@ -1,18 +1,32 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:app="http://schemas.android.com/apk/res-auto"
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="wrap_content">
 
     <android.support.design.widget.AppBarLayout
         android:id="@id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="6dp"
+        android:fitsSystemWindows="true"
+        app:elevation="5dp"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.v7.widget.Toolbar
             android:id="@id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+
+        <android.support.design.widget.TabLayout
+            android:id="@id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#30469b"
+            android:visibility="gone"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#ff0000"
+            app:tabTextColor="#ffffff"/>
+
     </android.support.design.widget.AppBarLayout>
 </merge>

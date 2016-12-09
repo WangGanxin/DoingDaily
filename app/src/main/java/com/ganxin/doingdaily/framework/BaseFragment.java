@@ -18,6 +18,8 @@ import butterknife.ButterKnife;
  * author : WangGanxin <br/>
  * date : 2016/10/9 <br/>
  * email : ganxinvip@163.com <br/>
+ * @param <V> View
+ * @param <T> Presenter
  */
 public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragment {
 
@@ -103,8 +105,10 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
     }
 
     private void initPresenter() {
-        mPresenter=setPresenter();
-        mPresenter.attatchView((V)this);
+        if(mPresenter==null){
+            mPresenter=setPresenter();
+            mPresenter.attatchView((V)this);
+        }
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -128,7 +132,9 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
     public void onDestroyView() {
         super.onDestroyView();
         isViewInitialized = false;
-        mPresenter.detachView();
+        if(mPresenter!=null){
+            mPresenter.detachView();
+        }
         LogUtil.logI("BaseFragment",toString() + ":onDestroyView");
     }
 

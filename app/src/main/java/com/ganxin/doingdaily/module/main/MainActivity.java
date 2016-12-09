@@ -22,7 +22,6 @@ import com.ganxin.doingdaily.module.main.wechat.WechatFragment;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -57,10 +56,10 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
 
     @Override
     protected void initView() {
-        //toolbar
+        //toolbar设置
         setSupportActionBar(toolbar);
 
-        //添加tab
+        //添加tab（因为tab里的Fragment的添加方式不是预先加入Layout容器内，无需开启Fragment的懒加载）
         ArrayList<TabLayout.Tab> tabs = new ArrayList<>();
         tabs.add(new TabLayout.Tab(R.drawable.ic_bottomtabbar_news, R.string.tab_news, NewsFragment.class));
         tabs.add(new TabLayout.Tab(R.drawable.ic_bottomtabbar_wechat, R.string.tab_wechat, WechatFragment.class));
@@ -100,7 +99,6 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     @Override
     public void onTabClick(TabLayout.Tab tab) {
         try {
-
             setTitle(tab.labelResId);
 
             ITabFragment tmpFragment = (ITabFragment) getSupportFragmentManager().findFragmentByTag(tab.targetFragmentClz.getSimpleName());
@@ -117,10 +115,17 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
                             .commit();
                 }
             } else {
-                getSupportFragmentManager().beginTransaction()
-                        .hide(currentFragment.getFragment())
-                        .show(tmpFragment.getFragment())
-                        .commit();
+                if(currentFragment ==null){
+                    getSupportFragmentManager().beginTransaction()
+                            .show(tmpFragment.getFragment())
+                            .commit();
+                }
+                else{
+                    getSupportFragmentManager().beginTransaction()
+                            .hide(currentFragment.getFragment())
+                            .show(tmpFragment.getFragment())
+                            .commit();
+                }
             }
             currentFragment = tmpFragment;
 
@@ -153,12 +158,5 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
                     }
                 });
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

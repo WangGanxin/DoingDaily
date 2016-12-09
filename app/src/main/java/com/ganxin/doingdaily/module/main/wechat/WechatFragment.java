@@ -18,7 +18,6 @@ public class WechatFragment  extends BaseFragment<WechatContract.View,WechatCont
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        enableLazyLoad();
     }
 
     @Override

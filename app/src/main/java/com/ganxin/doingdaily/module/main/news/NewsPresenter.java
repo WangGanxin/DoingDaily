@@ -1,5 +1,7 @@
 package com.ganxin.doingdaily.module.main.news;
 
+import com.ganxin.doingdaily.common.utils.LogUtil;
+
 /**
  * Description : NewsPresenter  <br/>
  * author : WangGanxin <br/>
@@ -10,6 +12,6 @@ public class NewsPresenter extends NewsContract.Presenter{
 
     @Override
     public void onStart() {
-
+        LogUtil.i("----------------111---start");
     }
 }

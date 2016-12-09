@@ -2,6 +2,8 @@
 <resources>
     <item name="appBarLayout" type="id"/>
     <item name="toolbar" type="id"/>
+    <item name="tabLayout" type="id"/>
+    <item name="coordinatorLayout" type="id"/>
     <item name="swipeRefreshLayout" type="id"/>
     <item name="recyclerView" type="id"/>
     <item name="pullRecycler" type="id"/>
