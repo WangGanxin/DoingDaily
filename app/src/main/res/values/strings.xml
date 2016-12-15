@@ -5,4 +5,5 @@
     <string name="tab_wechat">微信热门</string>
     <string name="tab_about">关于</string>
 
+    <string name="tab_behavior">com.ganxin.doingdaily.common.widgets.tab.TabBehavior</string>
 </resources>

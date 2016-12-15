@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.utils.AppStatusTracker;
-import com.ganxin.doingdaily.common.utils.LogUtil;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -35,7 +34,6 @@ public class DoingDailyApp extends Application {
     }
 
     private void initLog() {
-        LogUtil.setDebug(true);
         Logger.init(ConstantValues.DEBUG_TAG);
     }
 

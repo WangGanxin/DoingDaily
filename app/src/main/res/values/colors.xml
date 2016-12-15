@@ -13,7 +13,5 @@
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
 
-
     <color name="tab_gray">#ff999999</color>
-    <color name="tab_green">#ff45c01a</color>
 </resources>

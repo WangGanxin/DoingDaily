@@ -8,9 +8,6 @@ import android.widget.FrameLayout;
 
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
-import com.ganxin.doingdaily.common.data.model.News;
-import com.ganxin.doingdaily.common.network.NetworkManager;
-import com.ganxin.doingdaily.common.utils.LogUtil;
 import com.ganxin.doingdaily.common.widgets.tab.TabLayout;
 import com.ganxin.doingdaily.framework.BaseActivity;
 import com.ganxin.doingdaily.framework.ITabFragment;
@@ -22,9 +19,6 @@ import com.ganxin.doingdaily.module.main.wechat.WechatFragment;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * Description : MainActivity  <br/>
@@ -40,7 +34,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     AppBarLayout appBarLayout;
     @BindView(R.id.mFragmentContainerLayout)
     FrameLayout mFragmentContainerLayout;
-    @BindView(R.id.mTabLayout)
+    @BindView(R.id.mBottomTabLayout)
     TabLayout mTabLayout;
     private ITabFragment currentFragment;
 
@@ -67,6 +61,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         mTabLayout.setUpData(tabs, this);
         mTabLayout.setCurrentTab(0);
     }
+
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -115,12 +110,11 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
                             .commit();
                 }
             } else {
-                if(currentFragment ==null){
+                if (currentFragment == null) {
                     getSupportFragmentManager().beginTransaction()
                             .show(tmpFragment.getFragment())
                             .commit();
-                }
-                else{
+                } else {
                     getSupportFragmentManager().beginTransaction()
                             .hide(currentFragment.getFragment())
                             .show(tmpFragment.getFragment())
@@ -134,29 +128,5 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-    }
-
-    protected void setUpTitle(int titleResId) {
-        if (titleResId > 0 && toolbar != null) {
-            toolbar.setTitle(titleResId);
-        }
-    }
-
-    private void getNewsForRx() {
-
-        NetworkManager.getAPI().getNews().subscribeOn(Schedulers.newThread())//子线程访问网络
-                .observeOn(AndroidSchedulers.mainThread())//回调到主线程
-                .subscribe(new Action1<News>() {
-                    @Override
-                    public void call(News news) {
-                        LogUtil.i("222--total----" + news.getShowapi_res_body().getTotalNum());
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        LogUtil.i("----on error--" + throwable.getMessage());
-                    }
-                });
-
     }
 }

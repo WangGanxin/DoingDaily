@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/basePrimary</item>
         <item name="colorPrimaryDark">@color/basePrimaryDark</item>
         <item name="colorAccent">@color/baseAccent</item>
+        <item name="android:windowBackground">@null</item>
     </style>
 
     <style name="RecyclerViewStyle">

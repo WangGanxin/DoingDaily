@@ -3,6 +3,9 @@ apply plugin: 'com.android.application'
 //ButterKnife Config
 apply plugin: 'android-apt'
 
+//Freeline Config
+apply plugin: 'com.antfortune.freeline'
+
 android {
     compileSdkVersion 23
     buildToolsVersion "24.0.2"
