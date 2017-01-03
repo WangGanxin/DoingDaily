@@ -9,9 +9,9 @@ package com.ganxin.doingdaily.common.constants;
 public class ConstantValues {
     public static final String DEBUG_TAG = "DoingDaily";
 
-    public static final String BASE_URL = "http://apis.baidu.com/"; // HOST地址
-    public static final String REQUEST_HEADER = "apikey"; // 统一请求头
-    public static final String API_KEY = "354167e6ab7f306c915587f54adda734"; // 开发者Key
+    public static final String BASE_URL = "http://route.showapi.com/"; // HOST地址:易源接口
+    public static final String APP_ID = "29706"; // 应用ID
+    public static final String APP_SECRET = "5d9f976ed7ba4ba78310ed6f4a717ee7"; // 应用密钥
     public static final boolean HTTP_CACHE_ENABLE = false; // 是否开启OkHTTP缓存
     public static final String HTTP_CACHE_DIR = "httpcache"; // OkHTTP请求缓存目录名称
     public static final int HTTP_CACHE_TIME = 60 * 60 * 72; // OkHTTP请求缓存时间：72小时

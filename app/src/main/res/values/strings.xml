@@ -6,4 +6,7 @@
     <string name="tab_about">关于</string>
 
     <string name="tab_behavior">com.ganxin.doingdaily.common.widgets.tab.TabBehavior</string>
+
+    <string name="split_txt">&#160;·&#160;</string>
+    <string name="news_item_source">来自%1$s</string>
 </resources>

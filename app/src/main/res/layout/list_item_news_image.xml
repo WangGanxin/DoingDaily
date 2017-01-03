@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:padding="@dimen/common_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/news_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="title"
+            android:ellipsize="end"
+            android:textColor="@color/text_level_1"
+            android:textSize="@dimen/text_f1"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/news_item_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="4"
+                android:text="content"
+                android:textColor="@color/text_level_3"
+                android:textSize="@dimen/text_f3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/split_txt"
+                android:textColor="@color/text_level_3"
+                android:textSize="@dimen/text_f3"/>
+
+            <TextView
+                android:id="@+id/news_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="4"
+                android:text="time"
+                android:textColor="@color/text_level_3"
+                android:textSize="@dimen/text_f3"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/news_item_img"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"/>
+</LinearLayout>

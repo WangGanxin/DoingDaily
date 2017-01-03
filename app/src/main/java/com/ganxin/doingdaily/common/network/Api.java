@@ -1,8 +1,12 @@
 package com.ganxin.doingdaily.common.network;
 
-import com.ganxin.doingdaily.common.data.model.News;
+import com.ganxin.doingdaily.common.data.model.NewsChannel;
+import com.ganxin.doingdaily.common.data.model.NewsContent;
+
+import java.util.Map;
 
 import retrofit2.http.GET;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -12,6 +16,18 @@ import rx.Observable;
  * email : ganxinvip@163.com <br/>
  */
 public interface Api {
-    @GET("showapi_open_bus/channel_news/channel_news")
-    Observable<News> getNews();
+    /**
+     * 获取新闻频道
+     * @return
+     */
+    @GET("109-34")
+    Observable<NewsChannel> getNewsChannel();
+
+    /**
+     * 获取新闻内容
+     * @param options
+     * @return
+     */
+    @GET("109-35")
+    Observable<NewsContent> getNewsContent(@QueryMap Map<String,String> options);
 }

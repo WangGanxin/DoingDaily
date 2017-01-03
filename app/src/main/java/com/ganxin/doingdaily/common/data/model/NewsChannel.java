@@ -3,12 +3,12 @@ package com.ganxin.doingdaily.common.data.model;
 import java.util.List;
 
 /**
- * Description : News  <br/>
+ * Description : 新闻频道实体  <br/>
  * author : WangGanxin <br/>
  * date : 2016/11/1 <br/>
  * email : ganxinvip@163.com <br/>
  */
-public class News {
+public class NewsChannel {
 
     private int showapi_res_code;
     private String showapi_res_error;

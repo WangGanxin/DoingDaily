@@ -2,18 +2,14 @@ package com.ganxin.doingdaily.common.network;
 
 import com.ganxin.doingdaily.application.DoingDailyApp;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
+import com.ganxin.doingdaily.common.network.Interceptor.HttpCacheInterceptor;
+import com.ganxin.doingdaily.common.network.Interceptor.HttpEncryptInterceptor;
 import com.ganxin.doingdaily.common.utils.LogUtil;
-import com.ganxin.doingdaily.common.utils.NetworkUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import okhttp3.Cache;
-import okhttp3.CacheControl;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -49,73 +45,35 @@ public class NetworkManager {
         OkHttpClient okHttpClient;
         if (cacheable) {
             okHttpClient = new OkHttpClient.Builder()
-                    .cache(getCache()) //设置缓存
+                    .cache(createCache()) //设置缓存
+                    .addInterceptor(new HttpEncryptInterceptor()) //统一加密请求
                     .addInterceptor(new HttpCacheInterceptor()) //本地拦截缓存
-                    .addInterceptor(getLogInterceptor()) //请求日志拦截
-                    .addNetworkInterceptor(new HttpRequestInterceptor()) //统一请求header
+                    .addInterceptor(createLogInterceptor()) //请求日志拦截
                     .build();
         } else {
             okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(getLogInterceptor()) //请求日志拦截
-                    .addNetworkInterceptor(new HttpRequestInterceptor()) //统一请求header
+                    .addInterceptor(new HttpEncryptInterceptor()) //统一加密请求
+                    .addInterceptor(createLogInterceptor()) //请求日志拦截
                     .build();
         }
         return okHttpClient;
     }
 
-    private static HttpLoggingInterceptor getLogInterceptor() {
-        HttpLoggingInterceptor.Logger logger = new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                LogUtil.i(message);
-            }
-        };
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(logger);
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        return loggingInterceptor;
-    }
-
-    private static class HttpRequestInterceptor implements Interceptor {
-
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request().newBuilder()
-                    .addHeader(ConstantValues.REQUEST_HEADER, ConstantValues.API_KEY) //设置全局的Header
-                    .build();
-            return chain.proceed(request);
-        }
-    }
-
-    private static Cache getCache() {
+    private static Cache createCache() {
         File cacheFile = new File(DoingDailyApp.getInstance().getExternalCacheDir(), ConstantValues.HTTP_CACHE_DIR);
         Cache cache = new Cache(cacheFile, ConstantValues.HTTP_CACHE_MAXSIZE);
         return cache;
     }
 
-    private static class HttpCacheInterceptor implements Interceptor {
-
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request();
-
-            //无网络状态下,手动拦截请求，使其使用本地缓存
-            if (!NetworkUtil.isNetworkConnectivity(DoingDailyApp.getInstance())) {
-                request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
+    private static HttpLoggingInterceptor createLogInterceptor() {
+        HttpLoggingInterceptor.Logger logger = new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                LogUtil.logI("http",message);
             }
-
-            //拦截响应
-            Response response = chain.proceed(request);
-            if (NetworkUtil.isNetworkConnectivity(DoingDailyApp.getInstance())) {
-                // 有网络时 默认缓存超时为0
-                int maxAge = 0;
-                response.newBuilder().header("Cache-Control", "public, max-age=" + maxAge).build();
-            } else {
-                // 无网络时，设置超时时间
-                int maxStale = ConstantValues.HTTP_CACHE_TIME;
-                response.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale).build();
-            }
-
-            return response;
-        }
+        };
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(logger);
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return loggingInterceptor;
     }
 }

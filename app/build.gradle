@@ -42,4 +42,6 @@ dependencies {
     // Logger
     compile 'com.orhanobut:logger:1.15'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    // glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

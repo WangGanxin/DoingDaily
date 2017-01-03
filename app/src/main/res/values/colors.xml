@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App 统一颜色 -->
-    <color name="basePrimary">#FF5677FC</color>
-    <color name="basePrimaryDark">#FF455EDE</color>
-    <color name="baseAccent">#FFFF4081</color>
-    <color name="basePageBackground">#EEEEEE</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorPrimaryLight">#BBDEFB</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="text_level_1">#212121</color>
+    <color name="text_level_2">#3D3D3D</color>
+    <color name="text_level_3">#94A1A7</color>
+    <color name="background_page">#EEEEEE</color>
+    <color name="divider">#BDBDBD</color>
 
     <color name="md_selected">#19000000</color>
-    <color name="icon_tint_normal">#bdbdbd</color>
+    <color name="icons_tint_normal">#BDBDBD</color>
 
     <!-- 常用基本颜色 -->
     <color name="white">#FFFFFF</color>

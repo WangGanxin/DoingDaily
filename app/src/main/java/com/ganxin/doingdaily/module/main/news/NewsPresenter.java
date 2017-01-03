@@ -1,8 +1,9 @@
 package com.ganxin.doingdaily.module.main.news;
 
-import com.ganxin.doingdaily.common.data.model.News;
+import com.ganxin.doingdaily.common.data.model.NewsChannel;
 import com.ganxin.doingdaily.common.network.NetworkManager;
-import com.ganxin.doingdaily.common.utils.LogUtil;
+
+import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -18,23 +19,27 @@ public class NewsPresenter extends NewsContract.Presenter{
 
     @Override
     public void onStart() {
-        LogUtil.i("----------------111---start");
+        getTabs();
     }
 
     @Override
     protected void getTabs() {
-        NetworkManager.getAPI().getNews().subscribeOn(Schedulers.newThread())//子线程访问网络
+        NetworkManager.getAPI().getNewsChannel().subscribeOn(Schedulers.newThread())//子线程访问网络
                 .observeOn(AndroidSchedulers.mainThread())//回调到主线程
-                .subscribe(new Action1<News>() {
+                .subscribe(new Action1<NewsChannel>() {
                     @Override
-                    public void call(News news) {
-                        LogUtil.i("222--total----" + news.getShowapi_res_body().getTotalNum());
-                        // getView().
+                    public void call(NewsChannel newsChannel) {
+                        if(newsChannel !=null){
+                            List<NewsChannel.ShowapiResBodyBean.ChannelListBean> channelList= newsChannel.getShowapi_res_body().getChannelList();
+                            if(channelList!=null&&channelList.size()>0){
+                                getView().addTabs(channelList);
+                            }
+                        }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        LogUtil.i("----on error--" + throwable.getMessage());
+
                     }
                 });
     }

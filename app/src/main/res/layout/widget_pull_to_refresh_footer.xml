@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:textColor="@color/basePrimary"
+        android:textColor="@color/colorPrimary"
         android:ellipsize="end"
         android:singleLine="true"
         android:text="正在加载中..." />

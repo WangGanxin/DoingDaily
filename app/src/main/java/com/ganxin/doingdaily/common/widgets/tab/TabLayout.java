@@ -90,10 +90,10 @@ public class TabLayout extends LinearLayout implements View.OnClickListener {
                 View child=getChildAt(i);
                 if(child==v){
                     v.setSelected(true);
-                    setTintColor(child,R.color.basePrimary);
+                    setTintColor(child,R.color.colorPrimary);
                 }
                 else{
-                    setTintColor(child,R.color.icon_tint_normal);
+                    setTintColor(child,R.color.icons_tint_normal);
                 }
             }
 

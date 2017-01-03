@@ -7,6 +7,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:duplicateParentState="true"
-        android:tint="@color/icon_tint_normal"
+        android:tint="@color/icons_tint_normal"
         android:tintMode="src_atop"/>
 </merge>

@@ -48,7 +48,7 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
         LayoutInflater.from(getContext()).inflate(R.layout.widget_pull_to_refresh, this, true);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setColorSchemeResources(
-                R.color.basePrimary,
+                R.color.colorPrimary,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
