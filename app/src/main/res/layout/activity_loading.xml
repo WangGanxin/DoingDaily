@@ -2,11 +2,22 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_page">
+    android:layout_height="match_parent">
 
-    <TextView
+    <ImageView
+        android:id="@+id/background_iv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_loading_activity"/>
+
+    <ImageView
+        android:id="@+id/logo_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!----loading"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/logo_loading"/>
+
 </RelativeLayout>

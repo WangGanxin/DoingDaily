@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="@dimen/common_padding">
-
-    <TextView
-        android:id="@+id/news_item_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="title"
-        android:textColor="@color/text_level_1"
-        android:textSize="@dimen/text_f1"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/news_item_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:maxLines="4"
-        android:text="content"
-        android:ellipsize="end"
-        android:textColor="@color/text_level_2"
-        android:textSize="@dimen/text_f2"/>
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/common_padding">
 
         <TextView
-            android:id="@+id/news_item_source"
-            android:layout_width="wrap_content"
+            android:id="@+id/news_item_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="title"
+            android:textColor="@color/text_level_1"
+            android:textSize="@dimen/text_f1"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/news_item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
             android:maxLines="4"
             android:text="content"
-            android:textColor="@color/text_level_3"
-            android:textSize="@dimen/text_f3"/>
+            android:textColor="@color/text_level_2"
+            android:textSize="@dimen/text_f2"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/split_txt"
-            android:textColor="@color/text_level_3"
-            android:textSize="@dimen/text_f3"/>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/news_item_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="4"
-            android:text="time"
-            android:textColor="@color/text_level_3"
-            android:textSize="@dimen/text_f3"/>
+            <TextView
+                android:id="@+id/news_item_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="4"
+                android:text="content"
+                android:textColor="@color/text_level_3"
+                android:textSize="@dimen/text_f3"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/split_txt"
+                android:textColor="@color/text_level_3"
+                android:textSize="@dimen/text_f3"/>
+
+            <TextView
+                android:id="@+id/news_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="4"
+                android:text="time"
+                android:textColor="@color/text_level_3"
+                android:textSize="@dimen/text_f3"/>
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</android.support.v7.widget.CardView>

@@ -1,5 +1,7 @@
 package com.ganxin.doingdaily.module.loading;
 
+import android.view.animation.Animation;
+
 import com.ganxin.doingdaily.framework.BasePresenter;
 import com.ganxin.doingdaily.framework.BaseView;
 
@@ -11,11 +13,12 @@ import com.ganxin.doingdaily.framework.BaseView;
  */
 interface LoadingContract {
     interface View extends BaseView {
-        void showToast();
-        void hideLoading();
+        Animation createBackgroundAnimation();
+        Animation createLogoAnimation();
+        void jumpToMain();
     }
 
     abstract class Presenter extends BasePresenter<View> {
-        public abstract void getData(String content);
+        //public abstract void getData(String content);
     }
 }

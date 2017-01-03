@@ -7,10 +7,6 @@ package com.ganxin.doingdaily.module.loading;
  * email : ganxinvip@163.com <br/>
  */
 public class LoadingPresenter extends LoadingContract.Presenter {
-    @Override
-    public void getData(String content) {
-
-    }
 
     @Override
     public void onStart() {

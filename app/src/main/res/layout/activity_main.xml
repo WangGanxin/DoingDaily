@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:background="@color/white"
         app:layout_behavior="@string/tab_behavior"/>
 
 
