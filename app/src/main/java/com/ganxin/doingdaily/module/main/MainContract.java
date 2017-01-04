@@ -11,10 +11,11 @@ import com.ganxin.doingdaily.framework.BaseView;
  */
 interface MainContract {
     interface View extends BaseView {
-
+        void showSnackBar(int resId);
+        void finishView();
     }
 
     abstract class Presenter extends BasePresenter<View> {
-        public abstract void getData(String content);
+        public abstract void exitApp();
     }
 }

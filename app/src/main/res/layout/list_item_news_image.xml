@@ -10,17 +10,16 @@
         android:orientation="horizontal"
         android:padding="@dimen/common_padding">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/news_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginBottom="10dp"
                 android:ellipsize="end"
                 android:text="title"
                 android:textColor="@color/text_level_1"
@@ -30,7 +29,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_alignParentBottom="true"
                 android:orientation="horizontal">
 
                 <TextView
@@ -58,7 +57,7 @@
                     android:textColor="@color/text_level_3"
                     android:textSize="@dimen/text_f3"/>
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/news_item_img"

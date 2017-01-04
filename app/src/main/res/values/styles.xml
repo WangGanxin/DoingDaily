@@ -9,11 +9,16 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-<!--        <item name="android:windowIsTranslucent">true</item>-->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme.NoActionBar"></style>
+
+    <!-- 消除app启动黑屏-->
+    <style name="AppTheme_Translucent" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
     <style name="RecyclerViewStyle">
         <item name="android:layout_width">match_parent</item>

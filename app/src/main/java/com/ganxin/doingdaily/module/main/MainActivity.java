@@ -3,6 +3,8 @@ package com.ganxin.doingdaily.module.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
@@ -28,6 +30,8 @@ import butterknife.BindView;
  */
 public class MainActivity extends BaseActivity<MainContract.View, MainContract.Presenter> implements MainContract.View, TabLayout.OnTabClickListener {
 
+    @BindView(R.id.mCoordinatorLayout)
+    CoordinatorLayout mCoordinatorLayout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.appBarLayout)
@@ -128,5 +132,20 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        mPresenter.exitApp();
+    }
+
+    @Override
+    public void showSnackBar(int resId) {
+        Snackbar.make(mCoordinatorLayout,getString(resId), Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void finishView() {
+        finish();
     }
 }
