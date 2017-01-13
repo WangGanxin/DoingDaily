@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
+import com.ganxin.doingdaily.common.utils.SnackbarUtil;
 import com.ganxin.doingdaily.common.widgets.tab.TabLayout;
 import com.ganxin.doingdaily.framework.BaseActivity;
 import com.ganxin.doingdaily.framework.ITabFragment;
@@ -141,7 +141,8 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
 
     @Override
     public void showSnackBar(int resId) {
-        Snackbar.make(mCoordinatorLayout,getString(resId), Snackbar.LENGTH_SHORT).show();
+        //Snackbar.make(mCoordinatorLayout,getString(resId), Snackbar.LENGTH_SHORT).show();
+        SnackbarUtil.ShortSnackbar(mCoordinatorLayout,getString(resId),SnackbarUtil.Info).show();
     }
 
     @Override
