@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.main.wechat;
+package com.ganxin.doingdaily.module.wechat;
 
 import com.ganxin.doingdaily.framework.BasePresenter;
 import com.ganxin.doingdaily.framework.BaseView;

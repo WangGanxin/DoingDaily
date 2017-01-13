@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.main.news;
+package com.ganxin.doingdaily.module.news;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

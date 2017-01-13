@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.main.news;
+package com.ganxin.doingdaily.module.news;
 
 import com.ganxin.doingdaily.common.data.model.ContentlistBean;
 import com.ganxin.doingdaily.framework.BasePresenter;

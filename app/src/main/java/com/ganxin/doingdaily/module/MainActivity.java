@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.main;
+package com.ganxin.doingdaily.module;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,10 @@ import com.ganxin.doingdaily.common.utils.SnackbarUtil;
 import com.ganxin.doingdaily.common.widgets.tab.TabLayout;
 import com.ganxin.doingdaily.framework.BaseActivity;
 import com.ganxin.doingdaily.framework.ITabFragment;
+import com.ganxin.doingdaily.module.about.AboutFragment;
 import com.ganxin.doingdaily.module.loading.LoadingActivity;
-import com.ganxin.doingdaily.module.main.about.AboutFragment;
-import com.ganxin.doingdaily.module.main.news.NewsFragment;
-import com.ganxin.doingdaily.module.main.wechat.WechatFragment;
+import com.ganxin.doingdaily.module.news.NewsFragment;
+import com.ganxin.doingdaily.module.wechat.WechatFragment;
 
 import java.util.ArrayList;
 

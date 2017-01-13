@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.main.about;
+package com.ganxin.doingdaily.module.about;
 
 import android.view.View;
 

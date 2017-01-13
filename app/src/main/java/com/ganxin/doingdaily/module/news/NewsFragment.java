@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.main.news;
+package com.ganxin.doingdaily.module.news;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;

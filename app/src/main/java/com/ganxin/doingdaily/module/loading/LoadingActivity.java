@@ -12,7 +12,7 @@ import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.utils.AppStatusTracker;
 import com.ganxin.doingdaily.framework.BaseActivity;
-import com.ganxin.doingdaily.module.main.MainActivity;
+import com.ganxin.doingdaily.module.MainActivity;
 
 import butterknife.BindView;
 

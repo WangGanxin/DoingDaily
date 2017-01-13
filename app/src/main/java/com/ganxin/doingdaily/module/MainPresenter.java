@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.main;
+package com.ganxin.doingdaily.module;
 
 import com.ganxin.doingdaily.R;
 

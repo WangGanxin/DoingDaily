@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.main.wechat;
+package com.ganxin.doingdaily.module.wechat;
 
 import android.content.Context;
 import android.view.View;
