@@ -1,6 +1,11 @@
 package com.ganxin.doingdaily.module.wechat;
 
-import com.ganxin.doingdaily.common.utils.LogUtil;
+import com.ganxin.doingdaily.common.data.model.WechatCategory;
+import com.ganxin.doingdaily.common.data.source.WechatDataSource;
+import com.ganxin.doingdaily.common.data.source.WechatRepository;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Description : WechatPresenter  <br/>
@@ -10,9 +15,27 @@ import com.ganxin.doingdaily.common.utils.LogUtil;
  */
 public class WechatPresenter extends WechatContract.Presenter{
 
-
     @Override
     public void onStart() {
-        LogUtil.i("onstart------------wechat");
+        getCategory();
+    }
+
+    @Override
+    protected void getCategory() {
+        WechatRepository.getInstance().getCategory(new WechatDataSource.GetCategoryCallback() {
+            @Override
+            public void onCategoryLoaded(WechatCategory wechatCategory) {
+                if(wechatCategory!=null){
+                    List<WechatCategory.ShowapiResBodyBean.TypeListBean> list=wechatCategory.getShowapi_res_body().getTypeList();
+                    Collections.reverse(list);
+                    getView().addTabs(list);
+                }
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+
+            }
+        });
     }
 }

@@ -8,7 +8,7 @@ import android.os.Bundle;
  * date : 2016/10/9 <br/>
  * email : ganxinvip@163.com <br/>
  */
-public class ContainerActivity extends BaseActivity {
+public class BaseContainerActivity extends BaseActivity {
 
     @Override
     protected void setUpContentView() {

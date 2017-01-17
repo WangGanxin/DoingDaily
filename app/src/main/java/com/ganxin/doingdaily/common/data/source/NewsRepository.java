@@ -2,6 +2,8 @@ package com.ganxin.doingdaily.common.data.source;
 
 import android.support.annotation.NonNull;
 
+import java.util.Map;
+
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 /**
@@ -23,15 +25,30 @@ public class NewsRepository implements NewsDataSource{
         mNewsLocalDataSource = checkNotNull(newsLocalDataSource);
     }
 
-    public static NewsRepository getInstance(NewsDataSource newsRemoteDataSource,
-                                             NewsDataSource newsLocalDataSource) {
+    public static void initialize(NewsDataSource newsRemoteDataSource,
+                            NewsDataSource newsLocalDataSource){
+        INSTANCE=null;
+        INSTANCE = new NewsRepository(newsRemoteDataSource, newsLocalDataSource);
+    }
+
+    public static NewsRepository getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new NewsRepository(newsRemoteDataSource, newsLocalDataSource);
+            throw new NullPointerException("the repository must be init !");
         }
         return INSTANCE;
     }
 
     public static void destroyInstance() {
         INSTANCE = null;
+    }
+
+    @Override
+    public void getChannel(@NonNull final GetChannelCallback callback) {
+        mNewsRemoteDataSource.getChannel(callback);
+    }
+
+    @Override
+    public void getChannelContent(@NonNull Map<String, String> params, @NonNull GetNewsContentCallback callback) {
+        mNewsRemoteDataSource.getChannelContent(params,callback);
     }
 }

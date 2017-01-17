@@ -1,9 +1,16 @@
 package com.ganxin.doingdaily.application;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 
 import com.ganxin.doingdaily.common.constants.ConstantValues;
+import com.ganxin.doingdaily.common.data.source.NewsRepository;
+import com.ganxin.doingdaily.common.data.source.WechatRepository;
+import com.ganxin.doingdaily.common.data.source.local.NewsLocalDataSource;
+import com.ganxin.doingdaily.common.data.source.local.WechatLocalDataSource;
+import com.ganxin.doingdaily.common.data.source.remote.NewsRemoteDataSource;
+import com.ganxin.doingdaily.common.data.source.remote.WechatRemoteDataSource;
 import com.ganxin.doingdaily.common.utils.AppStatusTracker;
 import com.orhanobut.logger.Logger;
 
@@ -14,19 +21,25 @@ import com.orhanobut.logger.Logger;
  * email : ganxinvip@163.com <br/>
  */
 public class DoingDailyApp extends Application {
-    private static DoingDailyApp INSTANCE;
+    private static Context appContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        INSTANCE=this;
+        appContext=getApplicationContext();
         initAppTracker();
         initLog();
+        initRepository();
 
     }
 
-    public static DoingDailyApp getInstance() {
-        return INSTANCE;
+    private void initRepository() {
+        NewsRepository.initialize(NewsRemoteDataSource.getInstance(),NewsLocalDataSource.getInstance(this));
+        WechatRepository.initialize(WechatRemoteDataSource.getInstance(),WechatLocalDataSource.getInstance(this));
+    }
+
+    public static Context getAppContext() {
+        return appContext;
     }
 
     private void initAppTracker() {

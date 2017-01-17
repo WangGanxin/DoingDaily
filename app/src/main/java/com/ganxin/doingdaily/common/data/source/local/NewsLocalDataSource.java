@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 
 import com.ganxin.doingdaily.common.data.source.NewsDataSource;
 
+import java.util.Map;
+
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 /**
@@ -25,5 +27,15 @@ public class NewsLocalDataSource implements NewsDataSource{
             INSTANCE = new NewsLocalDataSource(context);
         }
         return INSTANCE;
+    }
+
+    @Override
+    public void getChannel(GetChannelCallback callback) {
+
+    }
+
+    @Override
+    public void getChannelContent(@NonNull Map<String, String> params, @NonNull GetNewsContentCallback callback) {
+
     }
 }

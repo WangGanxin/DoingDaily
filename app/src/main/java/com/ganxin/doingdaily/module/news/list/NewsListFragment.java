@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.news;
+package com.ganxin.doingdaily.module.news.list;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ganxin.doingdaily.R;
-import com.ganxin.doingdaily.common.data.model.ContentlistBean;
+import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
 import com.ganxin.doingdaily.common.utils.DateUtils;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseViewHolder;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.PullRecycler;
@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
  * date : 2016/11/3 <br/>
  * email : ganxinvip@163.com <br/>
  */
-public class NewsListFragment extends BaseListFragment<ContentlistBean, NewsListContract.Presenter> implements NewsListContract.View {
+public class NewsListFragment extends BaseListFragment<NewsContentlistBean, NewsListContract.Presenter> implements NewsListContract.View {
 
     private static final String CHANNEL_ID = "channelId";
 
@@ -91,13 +91,25 @@ public class NewsListFragment extends BaseListFragment<ContentlistBean, NewsList
         } else {
             pageIndex++;
         }
-        mPresenter.getContents(channelId, pageIndex);
+        mPresenter.getListContent(channelId, pageIndex);
     }
 
     @Override
-    public void addContentlist(List<ContentlistBean> contentlistBeanList) {
+    public void refreshContentList(List<NewsContentlistBean> contentlistBeanList) {
+        mDataList.clear();
         mDataList.addAll(contentlistBeanList);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addContentList(List<NewsContentlistBean> contentlistBeanList) {
+        mDataList.addAll(contentlistBeanList);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void loadComplete() {
+        pullRecycler.onRefreshCompleted();
     }
 
     class TxtViewHolder extends BaseViewHolder {
@@ -118,7 +130,7 @@ public class NewsListFragment extends BaseListFragment<ContentlistBean, NewsList
 
         @Override
         public void onBindViewHolder(int position) {
-            ContentlistBean bean = mDataList.get(position);
+            NewsContentlistBean bean = mDataList.get(position);
             if (bean != null) {
                 newsItemTitle.setText(bean.getTitle());
                 newsItemContent.setText(bean.getDesc());
@@ -151,7 +163,7 @@ public class NewsListFragment extends BaseListFragment<ContentlistBean, NewsList
 
         @Override
         public void onBindViewHolder(int position) {
-            ContentlistBean bean = mDataList.get(position);
+            NewsContentlistBean bean = mDataList.get(position);
             if (bean != null) {
                 newsItemTitle.setText(bean.getTitle());
                 newsItemSource.setText(getString(R.string.news_item_source, bean.getSource()));

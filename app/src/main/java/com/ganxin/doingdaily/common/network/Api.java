@@ -2,6 +2,8 @@ package com.ganxin.doingdaily.common.network;
 
 import com.ganxin.doingdaily.common.data.model.NewsChannel;
 import com.ganxin.doingdaily.common.data.model.NewsContent;
+import com.ganxin.doingdaily.common.data.model.WechatCategory;
+import com.ganxin.doingdaily.common.data.model.WechatContent;
 
 import java.util.Map;
 
@@ -30,4 +32,18 @@ public interface Api {
      */
     @GET("109-35")
     Observable<NewsContent> getNewsContent(@QueryMap Map<String,String> options);
+
+    /**
+     * 获取微信精选文章类别
+     * @return
+     */
+    @GET("582-1")
+    Observable<WechatCategory> getWechatCategory();
+
+    /**
+     * 获取微信精选文章列表
+     * @return
+     */
+    @GET("582-2")
+    Observable<WechatContent> getWechatCategoryContent(@QueryMap Map<String,String> options);
 }

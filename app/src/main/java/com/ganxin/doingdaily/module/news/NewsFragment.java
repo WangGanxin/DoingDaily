@@ -10,6 +10,7 @@ import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.data.model.NewsChannel;
 import com.ganxin.doingdaily.framework.BaseFragment;
 import com.ganxin.doingdaily.framework.ITabFragment;
+import com.ganxin.doingdaily.module.news.list.NewsListFragment;
 
 import java.util.List;
 

@@ -1,16 +1,15 @@
 package com.ganxin.doingdaily.common.data.model;
 
 /**
- * Description : 新闻内容实体  <br/>
+ * Description : 微信列表内容实体  <br/>
  * author : WangGanxin <br/>
- * date : 2016/12/29 <br/>
- * email : ganxinvip@163.com <br/>
+ * date : 2017/1/16 <br/>
+ * email : mail@wangganxin.me <br/>
  */
-public class NewsContent {
+public class WechatContent {
 
     private int showapi_res_code;
     private String showapi_res_error;
-
     private ShowapiResBodyBean showapi_res_body;
 
     public int getShowapi_res_code() {
@@ -40,7 +39,7 @@ public class NewsContent {
     public static class ShowapiResBodyBean {
         private int ret_code;
 
-        private NewsPageBean pagebean;
+        private WechatPageBean pagebean;
 
         public int getRet_code() {
             return ret_code;
@@ -50,11 +49,11 @@ public class NewsContent {
             this.ret_code = ret_code;
         }
 
-        public NewsPageBean getPagebean() {
+        public WechatPageBean getPagebean() {
             return pagebean;
         }
 
-        public void setPagebean(NewsPageBean pagebean) {
+        public void setPagebean(WechatPageBean pagebean) {
             this.pagebean = pagebean;
         }
     }

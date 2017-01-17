@@ -18,6 +18,6 @@ interface NewsContract {
     }
 
     abstract class Presenter extends BasePresenter<View> {
-        protected abstract void getTabs();
+        protected abstract void getChannel();
     }
 }

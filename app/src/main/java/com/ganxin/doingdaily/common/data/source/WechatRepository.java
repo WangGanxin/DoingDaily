@@ -2,6 +2,8 @@ package com.ganxin.doingdaily.common.data.source;
 
 import android.support.annotation.NonNull;
 
+import java.util.Map;
+
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 /**
@@ -24,15 +26,30 @@ public class WechatRepository implements WechatDataSource {
         mWechatLocalDataSource = checkNotNull(wechatLocalDataSource);
     }
 
-    public static WechatRepository getInstance(WechatDataSource wechatRemoteDataSource,
-                                               WechatDataSource wechatLocalDataSource) {
+    public static void initialize(WechatDataSource wechatRemoteDataSource,
+                            WechatDataSource wechatLocalDataSource){
+        INSTANCE=null;
+        INSTANCE = new WechatRepository(wechatRemoteDataSource, wechatLocalDataSource);
+    }
+
+    public static WechatRepository getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new WechatRepository(wechatRemoteDataSource, wechatLocalDataSource);
+            throw new NullPointerException("the repository must be init !");
         }
         return INSTANCE;
     }
 
     public static void destroyInstance() {
         INSTANCE = null;
+    }
+
+    @Override
+    public void getCategory(@NonNull GetCategoryCallback callback) {
+        mWechatRemoteDataSource.getCategory(callback);
+    }
+
+    @Override
+    public void getCategoryContent(@NonNull Map<String, String> params, @NonNull GetCategoryContentCallback callback) {
+        mWechatRemoteDataSource.getCategoryContent(params,callback);
     }
 }

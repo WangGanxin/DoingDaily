@@ -1,5 +1,12 @@
 package com.ganxin.doingdaily.common.data.source;
 
+import android.support.annotation.NonNull;
+
+import com.ganxin.doingdaily.common.data.model.WechatCategory;
+import com.ganxin.doingdaily.common.data.model.WechatContent;
+
+import java.util.Map;
+
 /**
  * Description : 微信热文数据源接口  <br/>
  * author : WangGanxin <br/>
@@ -8,4 +15,21 @@ package com.ganxin.doingdaily.common.data.source;
  */
 public interface WechatDataSource {
 
+    interface GetCategoryCallback {
+
+        void onCategoryLoaded(WechatCategory wechatCategory);
+
+        void onDataNotAvailable();
+    }
+
+    interface GetCategoryContentCallback {
+
+        void onCategoryContentLoaded(WechatContent wechatContent);
+
+        void onDataNotAvailable();
+    }
+
+    void getCategory(@NonNull GetCategoryCallback callback);
+
+    void getCategoryContent(@NonNull Map<String, String> params, @NonNull GetCategoryContentCallback callback);
 }

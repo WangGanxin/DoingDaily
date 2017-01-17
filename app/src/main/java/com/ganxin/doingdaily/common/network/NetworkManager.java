@@ -60,7 +60,7 @@ public class NetworkManager {
     }
 
     private static Cache createCache() {
-        File cacheFile = new File(DoingDailyApp.getInstance().getExternalCacheDir(), ConstantValues.HTTP_CACHE_DIR);
+        File cacheFile = new File(DoingDailyApp.getAppContext().getExternalCacheDir(), ConstantValues.HTTP_CACHE_DIR);
         Cache cache = new Cache(cacheFile, ConstantValues.HTTP_CACHE_MAXSIZE);
         return cache;
     }

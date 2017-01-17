@@ -1,12 +1,14 @@
 package com.ganxin.doingdaily.common.data.model;
 
+import java.util.List;
+
 /**
- * Description : 新闻内容实体  <br/>
+ * Description : 微信文章类别实体  <br/>
  * author : WangGanxin <br/>
- * date : 2016/12/29 <br/>
- * email : ganxinvip@163.com <br/>
+ * date : 2017/1/16 <br/>
+ * email : mail@wangganxin.me <br/>
  */
-public class NewsContent {
+public class WechatCategory {
 
     private int showapi_res_code;
     private String showapi_res_error;
@@ -39,8 +41,7 @@ public class NewsContent {
 
     public static class ShowapiResBodyBean {
         private int ret_code;
-
-        private NewsPageBean pagebean;
+        private List<TypeListBean> typeList;
 
         public int getRet_code() {
             return ret_code;
@@ -50,12 +51,33 @@ public class NewsContent {
             this.ret_code = ret_code;
         }
 
-        public NewsPageBean getPagebean() {
-            return pagebean;
+        public List<TypeListBean> getTypeList() {
+            return typeList;
         }
 
-        public void setPagebean(NewsPageBean pagebean) {
-            this.pagebean = pagebean;
+        public void setTypeList(List<TypeListBean> typeList) {
+            this.typeList = typeList;
+        }
+
+        public static class TypeListBean {
+            private String id;
+            private String name;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
         }
     }
 }

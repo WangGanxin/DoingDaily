@@ -3,19 +3,19 @@ package com.ganxin.doingdaily.common.data.model;
 import java.util.List;
 
 /**
- * Description : PagebeanBean  <br/>
+ * Description : NewsPageBean  <br/>
  * author : WangGanxin <br/>
  * date : 2016/12/29 <br/>
  * email : ganxinvip@163.com <br/>
  */
-public class PagebeanBean {
+public class NewsPageBean {
 
     private int allPages;
     private int currentPage;
     private int allNum;
     private int maxResult;
 
-    private List<ContentlistBean> contentlist;
+    private List<NewsContentlistBean> contentlist;
 
     public int getAllPages() {
         return allPages;
@@ -49,11 +49,11 @@ public class PagebeanBean {
         this.maxResult = maxResult;
     }
 
-    public List<ContentlistBean> getContentlist() {
+    public List<NewsContentlistBean> getContentlist() {
         return contentlist;
     }
 
-    public void setContentlist(List<ContentlistBean> contentlist) {
+    public void setContentlist(List<NewsContentlistBean> contentlist) {
         this.contentlist = contentlist;
     }
 }

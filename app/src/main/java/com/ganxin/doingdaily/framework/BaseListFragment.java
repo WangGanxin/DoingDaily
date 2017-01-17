@@ -64,6 +64,8 @@ public abstract class BaseListFragment<D,T extends BasePresenter> extends Fragme
     public void setUpView() {
         setUpAdapter();
         pullRecycler.setOnRefreshListener(this);
+        pullRecycler.enablePullToRefresh(true);
+        pullRecycler.enableLoadMore(true);
         pullRecycler.setLayoutManager(getLayoutManager());
         pullRecycler.addItemDecoration(getItemDecoration());
         pullRecycler.setAdapter(adapter);
@@ -235,7 +237,6 @@ public abstract class BaseListFragment<D,T extends BasePresenter> extends Fragme
 
         @Override
         protected BaseViewHolder onCreateNormalViewHolder(ViewGroup parent, int viewType) {
-            LogUtil.i("adapter---------");
             return getViewHolder(parent, viewType);
         }
 

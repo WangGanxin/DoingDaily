@@ -23,13 +23,13 @@ public class HttpCacheInterceptor implements Interceptor{
         Request request = chain.request();
 
         //无网络状态下,手动拦截请求，使其使用本地缓存
-        if (!NetworkUtil.isNetworkConnectivity(DoingDailyApp.getInstance())) {
+        if (!NetworkUtil.isNetworkConnectivity(DoingDailyApp.getAppContext())) {
             request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
         }
 
         //拦截响应
         Response response = chain.proceed(request);
-        if (NetworkUtil.isNetworkConnectivity(DoingDailyApp.getInstance())) {
+        if (NetworkUtil.isNetworkConnectivity(DoingDailyApp.getAppContext())) {
             // 有网络时 默认缓存超时为0
             int maxAge = 0;
             response.newBuilder().header("Cache-Control", "public, max-age=" + maxAge).build();

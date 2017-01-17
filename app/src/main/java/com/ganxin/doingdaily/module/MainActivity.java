@@ -40,6 +40,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     FrameLayout mFragmentContainerLayout;
     @BindView(R.id.mBottomTabLayout)
     TabLayout mTabLayout;
+
     private ITabFragment currentFragment;
 
     @Override

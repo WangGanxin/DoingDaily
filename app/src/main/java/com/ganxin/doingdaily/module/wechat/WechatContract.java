@@ -1,7 +1,10 @@
 package com.ganxin.doingdaily.module.wechat;
 
+import com.ganxin.doingdaily.common.data.model.WechatCategory;
 import com.ganxin.doingdaily.framework.BasePresenter;
 import com.ganxin.doingdaily.framework.BaseView;
+
+import java.util.List;
 
 /**
  * Description : 契约类  <br/>
@@ -11,10 +14,10 @@ import com.ganxin.doingdaily.framework.BaseView;
  */
 interface WechatContract {
     interface View extends BaseView {
-
+        void addTabs(List<WechatCategory.ShowapiResBodyBean.TypeListBean> typeList);
     }
 
     abstract class Presenter extends BasePresenter<View> {
-
+        protected abstract void getCategory();
     }
 }

@@ -3,12 +3,12 @@ package com.ganxin.doingdaily.common.data.model;
 import java.util.List;
 
 /**
- * Description : ContentlistBean  <br/>
+ * Description : NewsContentlistBean  <br/>
  * author : WangGanxin <br/>
  * date : 2016/12/29 <br/>
  * email : ganxinvip@163.com <br/>
  */
-public class ContentlistBean {
+public class NewsContentlistBean {
 
     private String content;
     private String pubDate;

@@ -1,6 +1,6 @@
-package com.ganxin.doingdaily.module.news;
+package com.ganxin.doingdaily.module.news.list;
 
-import com.ganxin.doingdaily.common.data.model.ContentlistBean;
+import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
 import com.ganxin.doingdaily.framework.BasePresenter;
 import com.ganxin.doingdaily.framework.BaseView;
 
@@ -14,10 +14,12 @@ import java.util.List;
  */
 interface NewsListContract {
     interface View extends BaseView {
-        void addContentlist(List<ContentlistBean> contentlistBeanList);
+        void refreshContentList(List<NewsContentlistBean> contentlistBeanList);
+        void addContentList(List<NewsContentlistBean> contentlistBeanList);
+        void loadComplete();
     }
 
     abstract class Presenter extends BasePresenter<View> {
-        protected abstract void getContents(String channelId,int pageIndex);
+        protected abstract void getListContent(String channelId, int pageIndex);
     }
 }
