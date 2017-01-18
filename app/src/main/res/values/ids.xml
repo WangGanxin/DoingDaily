@@ -6,8 +6,10 @@
     <item name="mBottomTabLayout" type="id"/>
     <item name="coordinatorLayout" type="id"/>
     <item name="swipeRefreshLayout" type="id"/>
+    <item name="collapsingToolbarLayout" type="id"/>
     <item name="recyclerView" type="id"/>
     <item name="pullRecycler" type="id"/>
     <item name="viewPager" type="id"/>
+    <item name="webView" type="id"/>
 
 </resources>

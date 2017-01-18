@@ -45,7 +45,9 @@ public abstract class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
 
     private void initPresenter() {
         mPresenter=createPresenter();
-        mPresenter.attatchView((V)this);
+        if(mPresenter!=null){
+            mPresenter.attatchView((V)this);
+        }
     }
 
     protected void protectApp() {
@@ -100,5 +102,11 @@ public abstract class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
         if(mPresenter!=null){
             mPresenter.detachView();
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
     }
 }

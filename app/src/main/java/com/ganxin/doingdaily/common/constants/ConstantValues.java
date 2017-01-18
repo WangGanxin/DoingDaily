@@ -29,4 +29,14 @@ public class ConstantValues {
     public static final int ACTION_KICK_OUT = 3;
 
     public static final String KEY_HOME_ACTION = "key_home_action";
+    public static final String KEY_CHANNEL_ID = "key_channel_id";
+    public static final String KEY_CATEGORY_ID = "key_category_id";
+    public static final String KEY_VIEW_TYPE = "key_view_type";
+    public static final String KEY_BEAN = "key_bean";
+
+    public static final int VIEW_TYPE_TXT = 10;
+    public static final int VIEW_TYPE_IMAGE = 11;
+
+    public static final String SHARE_IMAGE="share_image";
+    public static final String SHARE_TXT="share_txt";
 }

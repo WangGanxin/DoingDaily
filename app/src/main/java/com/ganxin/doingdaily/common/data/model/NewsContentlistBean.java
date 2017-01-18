@@ -1,5 +1,6 @@
 package com.ganxin.doingdaily.common.data.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * date : 2016/12/29 <br/>
  * email : ganxinvip@163.com <br/>
  */
-public class NewsContentlistBean {
+public class NewsContentlistBean implements Serializable{
 
     private String content;
     private String pubDate;

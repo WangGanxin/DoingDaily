@@ -22,6 +22,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".framework.BaseContainerActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>

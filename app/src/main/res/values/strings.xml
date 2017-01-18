@@ -7,9 +7,13 @@
 
     <string name="tab_behavior">com.ganxin.doingdaily.common.widgets.tab.TabBehavior</string>
 
+    <string name="menu_browser">在浏览器打开</string>
+    <string name="menu_copy">复制公众号</string>
+
     <string name="split_txt">&#160;·&#160;</string>
     <string name="news_item_source">来自%1$s</string>
     <string name="wechat_item_readNum">%1$s阅读</string>
     <string name="wechat_item_likeNum">%1$s点赞</string>
     <string name="main_exit_app">再按一次退出</string>
+    <string name="loading_tips">正在加载中...</string>
 </resources>

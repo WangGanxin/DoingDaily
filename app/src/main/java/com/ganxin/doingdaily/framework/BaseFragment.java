@@ -1,5 +1,6 @@
 package com.ganxin.doingdaily.framework;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
  * @param <V> View
  * @param <T> Presenter
  */
-public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragment {
+public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>> extends Fragment{
 
     protected T mPresenter;
 
@@ -29,6 +30,8 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
     private boolean isViewInitialized;
     private boolean isDataInitialized;
     private boolean isLazyLoadEnabled;
+
+    protected Activity mActivity;
 
     /**
      * 执行于OnCreateView方法
@@ -46,6 +49,10 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
      */
     protected abstract T setPresenter();
 
+    public T getmPresenter() {
+        return mPresenter;
+    }
+
     /**
      * 是否开启懒加载
      */
@@ -57,6 +64,7 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
     public void onAttach(Context context) {
         super.onAttach(context);
         LogUtil.logI("BaseFragment",toString() + ":onAttach");
+        this.mActivity= (Activity) context;
     }
 
     @Override
@@ -104,7 +112,7 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
         }
     }
 
-    private void initPresenter() {
+    protected void initPresenter() {
         if(mPresenter==null){
             mPresenter=setPresenter();
             mPresenter.attatchView((V)this);
@@ -155,6 +163,10 @@ public abstract class BaseFragment<V,T extends BasePresenter<V>> extends Fragmen
     public void onResume() {
         super.onResume();
         LogUtil.logI("BaseFragment",toString() + ":onResume");
+    }
+
+    protected void onBack(){
+        getActivity().onBackPressed();
     }
 
     @Override

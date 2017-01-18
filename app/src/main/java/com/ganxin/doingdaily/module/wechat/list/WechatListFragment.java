@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ganxin.doingdaily.R;
+import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.WechatContentlistBean;
 import com.ganxin.doingdaily.common.utils.DateUtils;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseViewHolder;
@@ -25,9 +26,7 @@ import butterknife.ButterKnife;
  * date : 2017/1/16 <br/>
  * email : mail@wangganxin.me <br/>
  */
-public class WechatListFragment extends BaseListFragment<WechatContentlistBean, WechatListContract.Presenter> implements WechatListContract.View {
-
-    private static final String CATEGORY_ID = "id";
+public class WechatListFragment extends BaseListFragment<WechatListContract.View, WechatListContract.Presenter,WechatContentlistBean> implements WechatListContract.View {
 
     private int pageIndex = 1;
     private String id;
@@ -35,7 +34,7 @@ public class WechatListFragment extends BaseListFragment<WechatContentlistBean, 
     public static WechatListFragment newInstance(String categoryId) {
         WechatListFragment fragment = new WechatListFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(CATEGORY_ID, categoryId);
+        bundle.putString(ConstantValues.KEY_CATEGORY_ID, categoryId);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -49,7 +48,7 @@ public class WechatListFragment extends BaseListFragment<WechatContentlistBean, 
     protected void setUpData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            id = bundle.getString(CATEGORY_ID);
+            id = bundle.getString(ConstantValues.KEY_CATEGORY_ID);
             pullRecycler.setRefreshing();
         }
     }

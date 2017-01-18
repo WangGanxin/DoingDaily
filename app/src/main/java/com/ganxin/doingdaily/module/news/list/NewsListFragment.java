@@ -1,6 +1,8 @@
 package com.ganxin.doingdaily.module.news.list;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ganxin.doingdaily.R;
+import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
+import com.ganxin.doingdaily.common.utils.ActivityUtils;
 import com.ganxin.doingdaily.common.utils.DateUtils;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseViewHolder;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.PullRecycler;
 import com.ganxin.doingdaily.framework.BaseListFragment;
+import com.ganxin.doingdaily.module.news.article.NewsArticleFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +33,7 @@ import butterknife.ButterKnife;
  * date : 2016/11/3 <br/>
  * email : ganxinvip@163.com <br/>
  */
-public class NewsListFragment extends BaseListFragment<NewsContentlistBean, NewsListContract.Presenter> implements NewsListContract.View {
-
-    private static final String CHANNEL_ID = "channelId";
-
-    private static final int VIEW_TYPE_TXT = 0;
-    private static final int VIEW_TYPE_IMAGE = 1;
+public class NewsListFragment extends BaseListFragment<NewsListContract.View, NewsListContract.Presenter,NewsContentlistBean> implements NewsListContract.View {
 
     private int pageIndex = 1;
     private String channelId;
@@ -40,7 +41,7 @@ public class NewsListFragment extends BaseListFragment<NewsContentlistBean, News
     public static NewsListFragment newInstance(String channelId) {
         NewsListFragment fragment = new NewsListFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(CHANNEL_ID, channelId);
+        bundle.putString(ConstantValues.KEY_CHANNEL_ID, channelId);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -54,7 +55,7 @@ public class NewsListFragment extends BaseListFragment<NewsContentlistBean, News
     protected void setUpData() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            channelId = bundle.getString(CHANNEL_ID);
+            channelId = bundle.getString(ConstantValues.KEY_CHANNEL_ID);
             pullRecycler.setRefreshing();
         }
     }
@@ -62,18 +63,18 @@ public class NewsListFragment extends BaseListFragment<NewsContentlistBean, News
     @Override
     protected int getItemType(int position) {
         if (mDataList.get(position).isHavePic()) {
-            return VIEW_TYPE_IMAGE;
+            return ConstantValues.VIEW_TYPE_IMAGE;
         } else {
-            return VIEW_TYPE_TXT;
+            return ConstantValues.VIEW_TYPE_TXT;
         }
     }
 
     @Override
     protected BaseViewHolder getViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == VIEW_TYPE_IMAGE) {
+        if (viewType == ConstantValues.VIEW_TYPE_IMAGE) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_news_image, parent, false);
             return new ImageViewHolder(itemView);
-        } else if (viewType == VIEW_TYPE_TXT) {
+        } else if (viewType == ConstantValues.VIEW_TYPE_TXT) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_news_txt, parent, false);
             return new TxtViewHolder(itemView);
         }
@@ -141,7 +142,8 @@ public class NewsListFragment extends BaseListFragment<NewsContentlistBean, News
 
         @Override
         public void onItemClick(View view, int position) {
-
+            NewsContentlistBean bean = mDataList.get(position);
+            ActivityUtils.startActivity(mActivity,NewsArticleFragment.newInstance(ConstantValues.VIEW_TYPE_TXT,bean));
         }
     }
 
@@ -169,18 +171,38 @@ public class NewsListFragment extends BaseListFragment<NewsContentlistBean, News
                 newsItemSource.setText(getString(R.string.news_item_source, bean.getSource()));
                 newsItemTime.setText(DateUtils.getOnTime(bean.getPubDate()));
 
-                Glide.with(getContext())
-                        .load(bean.getImageurls().get(0).getUrl())
-                        .placeholder(R.drawable.placeholder_img_loading)
-                        .crossFade()
-                        .centerCrop()
-                        .into(newsItemImg);
+                if(bean.getImageurls().get(0).getUrl().endsWith(".gif")){
+                    Glide.with(getContext())
+                            .load(bean.getImageurls().get(0).getUrl())
+                            .asGif()
+                            .placeholder(R.drawable.placeholder_img_loading)
+                            .dontAnimate()
+                            .centerCrop()
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                            .into(newsItemImg);
+                }
+                else{
+                    Glide.with(getContext())
+                            .load(bean.getImageurls().get(0).getUrl())
+                            .placeholder(R.drawable.placeholder_img_loading)
+                            .crossFade()
+                            .centerCrop()
+                            .into(newsItemImg);
+                }
             }
         }
 
         @Override
         public void onItemClick(View view, int position) {
+            NewsContentlistBean bean = mDataList.get(position);
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Bundle bundle=ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), newsItemImg,ConstantValues.SHARE_IMAGE).toBundle();
+                ActivityUtils.startActivityByAnimation(getActivity(),NewsArticleFragment.newInstance(ConstantValues.VIEW_TYPE_IMAGE,bean),bundle);
+            }
+            else{
+                ActivityUtils.startActivity(mActivity,NewsArticleFragment.newInstance(ConstantValues.VIEW_TYPE_IMAGE,bean));
+            }
         }
     }
 }
