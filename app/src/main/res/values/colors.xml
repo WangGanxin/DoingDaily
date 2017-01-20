@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- 统一常见颜色 -->
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="green">#4dc433</color>
+    <color name="red">#FF2626</color>
+    <color name="blue">#4056AB</color>
+    <color name="black">#000000</color>
+    <color name="gray">#888888</color>
+
+    <!-- 统一带透明度颜色 -->
+    <color name="white_10">#1affffff</color>
+    <color name="white_20">#33ffffff</color>
+    <color name="white_30">#4dffffff</color>
+    <color name="white_40">#66ffffff</color>
+    <color name="white_50">#80ffffff</color>
+    <color name="white_60">#99ffffff</color>
+    <color name="white_70">#b3ffffff</color>
+    <color name="white_80">#ccffffff</color>
+    <color name="white_90">#e6ffffff</color>
+
     <!-- App 统一颜色 -->
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#1976D2</color>
@@ -7,16 +28,13 @@
     <color name="colorAccent">#FF4081</color>
     <color name="text_level_1">#212121</color>
     <color name="text_level_2">#3D3D3D</color>
-    <color name="text_level_3">#94A1A7</color>
+    <color name="text_level_3">#757575</color>
+    <color name="text_level_4">#94A1A7</color>
     <color name="background_page">#EEEEEE</color>
-    <color name="divider">#BDBDBD</color>
+    <color name="divider">#E6E6E6</color>
 
     <color name="md_selected">#19000000</color>
     <color name="icons_tint_normal">#BDBDBD</color>
-
-    <!-- 常用基本颜色 -->
-    <color name="white">#FFFFFF</color>
-    <color name="transparent">#00000000</color>
 
     <color name="tab_gray">#ff999999</color>
 </resources>

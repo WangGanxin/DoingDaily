@@ -1,7 +1,5 @@
 package com.ganxin.doingdaily.module.about;
 
-import com.ganxin.doingdaily.common.utils.LogUtil;
-
 /**
  * Description : AboutPresenter  <br/>
  * author : WangGanxin <br/>
@@ -12,6 +10,6 @@ public class AboutPresenter extends AboutContract.Presenter {
 
     @Override
     public void onStart() {
-        LogUtil.i("onstart------------about");
+
     }
 }

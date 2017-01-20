@@ -99,6 +99,12 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
         }
     }
 
+    public void setItemAnimator(RecyclerView.ItemAnimator itemAnimator) {
+        if (itemAnimator != null) {
+            mRecyclerView.setItemAnimator(itemAnimator);
+        }
+    }
+
     public void setAdapter(BaseListAdapter adapter) {
         this.adapter = adapter;
         mRecyclerView.setAdapter(adapter);

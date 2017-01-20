@@ -13,8 +13,8 @@ android {
     defaultConfig {
         applicationId "com.ganxin.doingdaily"
         minSdkVersion 14
-        targetSdkVersion 23
-        versionCode 1
+        targetSdkVersion 22
+        versionCode 100
         versionName "1.0.0"
     }
     buildTypes {

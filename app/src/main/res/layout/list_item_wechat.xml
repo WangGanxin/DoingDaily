@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/md_selector_transparent"
         android:orientation="vertical"
         android:padding="@dimen/common_padding">
 
@@ -15,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="source"
-            android:textColor="@color/text_level_3"
+            android:textColor="@color/text_level_4"
             android:textSize="@dimen/text_f3"/>
 
         <TextView
@@ -41,14 +42,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="read"
-                android:textColor="@color/text_level_3"
+                android:textColor="@color/text_level_4"
                 android:textSize="@dimen/text_f3"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/split_txt"
-                android:textColor="@color/text_level_3"
+                android:textColor="@color/text_level_4"
                 android:textSize="@dimen/text_f3"/>
 
             <TextView
@@ -56,14 +57,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="like"
-                android:textColor="@color/text_level_3"
+                android:textColor="@color/text_level_4"
                 android:textSize="@dimen/text_f3"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/split_txt"
-                android:textColor="@color/text_level_3"
+                android:textColor="@color/text_level_4"
                 android:textSize="@dimen/text_f3"/>
 
             <TextView
@@ -71,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="time"
-                android:textColor="@color/text_level_3"
+                android:textColor="@color/text_level_4"
                 android:textSize="@dimen/text_f3"/>
         </LinearLayout>
     </LinearLayout>

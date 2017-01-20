@@ -142,7 +142,6 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             switch (labelResId){
                 case R.string.tab_about:
-                    getSupportActionBar().collapseActionView();
                     appBarLayout.setElevation((float) DensityUtil.getInstance(this).getDip2Px(5));
                     break;
                 default:

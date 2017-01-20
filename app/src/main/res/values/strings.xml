@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">多元日报</string>
+    <string name="app_version">当前版本: %1$s</string>
 
     <string name="tab_news">新闻频道</string>
     <string name="tab_wechat">微信热门</string>
     <string name="tab_about">关于</string>
+
+    <string name="row_header_something">一些话</string>
+    <string name="row_header_other">其他的</string>
+    <string name="row_somthing">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;深度阅读+多元化阅读，这是多元日报的定位和理念，产品从0到1的过程，学习了很多，收获了很多，如无意外地将会持续维护下去，未来的日子会增加一些有意思的功能，敬请期待。</string>
+    <string name="row_share">分享好友</string>
+    <string name="row_feedback">意见反馈</string>
+    <string name="row_update">检查更新</string>
+    <string name="row_github">项目源码</string>
 
     <string name="tab_behavior">com.ganxin.doingdaily.common.widgets.tab.TabBehavior</string>
 
