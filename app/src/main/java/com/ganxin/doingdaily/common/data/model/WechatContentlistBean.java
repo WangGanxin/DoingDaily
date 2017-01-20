@@ -1,12 +1,14 @@
 package com.ganxin.doingdaily.common.data.model;
 
+import java.io.Serializable;
+
 /**
  * Description : WechatContentlistBean  <br/>
  * author : WangGanxin <br/>
  * date : 2017/1/16 <br/>
  * email : mail@wangganxin.me <br/>
  */
-public class WechatContentlistBean {
+public class WechatContentlistBean implements Serializable{
 
     private String date;
     private String weixinNum;

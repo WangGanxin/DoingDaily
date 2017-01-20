@@ -1,6 +1,7 @@
 package com.ganxin.doingdaily.module;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -9,6 +10,7 @@ import android.widget.FrameLayout;
 
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
+import com.ganxin.doingdaily.common.utils.DensityUtil;
 import com.ganxin.doingdaily.common.utils.SnackbarUtil;
 import com.ganxin.doingdaily.common.widgets.tab.TabLayout;
 import com.ganxin.doingdaily.framework.BaseActivity;
@@ -100,6 +102,7 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     public void onTabClick(TabLayout.Tab tab) {
         try {
             setTitle(tab.labelResId);
+            setElevation(tab.labelResId);
 
             ITabFragment tmpFragment = (ITabFragment) getSupportFragmentManager().findFragmentByTag(tab.targetFragmentClz.getSimpleName());
             if (tmpFragment == null) {
@@ -132,6 +135,20 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setElevation(int labelResId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            switch (labelResId){
+                case R.string.tab_about:
+                    getSupportActionBar().collapseActionView();
+                    appBarLayout.setElevation((float) DensityUtil.getInstance(this).getDip2Px(5));
+                    break;
+                default:
+                    appBarLayout.setElevation(0);
+                    break;
+            }
         }
     }
 

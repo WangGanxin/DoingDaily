@@ -9,10 +9,12 @@ import android.widget.TextView;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.WechatContentlistBean;
+import com.ganxin.doingdaily.common.utils.ActivityUtils;
 import com.ganxin.doingdaily.common.utils.DateUtils;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseViewHolder;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.PullRecycler;
 import com.ganxin.doingdaily.framework.BaseListFragment;
+import com.ganxin.doingdaily.module.wechat.article.WechatArticleFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ import butterknife.ButterKnife;
  * date : 2017/1/16 <br/>
  * email : mail@wangganxin.me <br/>
  */
-public class WechatListFragment extends BaseListFragment<WechatListContract.View, WechatListContract.Presenter,WechatContentlistBean> implements WechatListContract.View {
+public class WechatListFragment extends BaseListFragment<WechatListContract.View, WechatListContract.Presenter, WechatContentlistBean> implements WechatListContract.View {
 
     private int pageIndex = 1;
     private String id;
@@ -122,7 +124,8 @@ public class WechatListFragment extends BaseListFragment<WechatListContract.View
 
         @Override
         public void onItemClick(View view, int position) {
-
+            WechatContentlistBean bean = mDataList.get(position);
+            ActivityUtils.startActivity(mActivity, WechatArticleFragment.newInstance(bean));
         }
     }
 }
