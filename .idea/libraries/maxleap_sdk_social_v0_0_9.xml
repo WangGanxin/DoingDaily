@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="maxleap-sdk-social-v0.0.9">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/maxleap-sdk-social-v0.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -36,6 +36,12 @@ captures/
 *.iml
 .idea/workspace.xml
 
+# Freeline
+freeline/
+freeline_core/
+freeline.py
+freeline_project_description.json
+
 # Keystore files
 *.jks
 
