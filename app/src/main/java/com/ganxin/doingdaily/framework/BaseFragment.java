@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ganxin.doingdaily.common.utils.LogUtil;
+import com.maxleap.MLAnalytics;
 
 import butterknife.ButterKnife;
 
@@ -33,33 +34,6 @@ public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>
 
     protected Activity mActivity;
 
-    /**
-     * 执行于OnCreateView方法
-     * @return layoutId 返回布局Id
-     */
-    public abstract int setContentLayout();
-    /**
-     * 执行于onCreateView之后
-     * @param view onCreateView创建的视图
-     */
-    public abstract void setUpView(View view);
-    /**
-     * 执行于setUpView之后
-     * @return
-     */
-    protected abstract T setPresenter();
-
-    public T getmPresenter() {
-        return mPresenter;
-    }
-
-    /**
-     * 是否开启懒加载
-     */
-    public void enableLazyLoad(){
-        isLazyLoadEnabled = true;
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -72,15 +46,6 @@ public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>
         super.onCreate(savedInstanceState);
         LogUtil.logI("BaseFragment",toString() + ":onCreate");
     }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        this.isVisibleToUser = isVisibleToUser;
-        LogUtil.logI("BaseFragment",toString() + ":setUserVisibleHint:" + isVisibleToUser);
-        checkIfLoadData();
-    }
-
 
     @Nullable
     @Override
@@ -112,17 +77,6 @@ public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>
         }
     }
 
-    protected void initPresenter() {
-        if(mPresenter==null){
-            mPresenter=setPresenter();
-            mPresenter.attatchView((V)this);
-        }
-    }
-
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        isDataInitialized = true;
-    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -137,23 +91,6 @@ public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        isViewInitialized = false;
-        if(mPresenter!=null){
-            mPresenter.detachView();
-        }
-        LogUtil.logI("BaseFragment",toString() + ":onDestroyView");
-    }
-
-    private void checkIfLoadData() {
-        if (isVisibleToUser && isViewInitialized && !isDataInitialized) {
-            isDataInitialized = true;
-            initPresenter();
-        }
-    }
-
-    @Override
     public void onStart() {
         super.onStart();
         LogUtil.logI("BaseFragment",toString() + ":onStart");
@@ -163,28 +100,30 @@ public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>
     public void onResume() {
         super.onResume();
         LogUtil.logI("BaseFragment",toString() + ":onResume");
-    }
-
-    protected void onBack(){
-        getActivity().onBackPressed();
+        MLAnalytics.onPageStart(toString());
     }
 
     @Override
     public void onPause() {
         super.onPause();
         LogUtil.logI("BaseFragment",toString() + ":onPause");
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        LogUtil.logI("BaseFragment",toString() + ":onSaveInstanceState");
+        MLAnalytics.onPageEnd(toString());
     }
 
     @Override
     public void onStop() {
         super.onStop();
         LogUtil.logI("BaseFragment",toString() + ":onStop");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        isViewInitialized = false;
+        if(mPresenter!=null){
+            mPresenter.detachView();
+        }
+        LogUtil.logI("BaseFragment",toString() + ":onDestroyView");
     }
 
     @Override
@@ -197,6 +136,70 @@ public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>
     public void onDetach() {
         super.onDetach();
         LogUtil.logI("BaseFragment",toString() + ":onDetach");
+    }
+
+    /**
+     * 执行于OnCreateView方法
+     * @return layoutId 返回布局Id
+     */
+    public abstract int setContentLayout();
+    /**
+     * 执行于onCreateView之后
+     * @param view onCreateView创建的视图
+     */
+    public abstract void setUpView(View view);
+    /**
+     * 执行于setUpView之后
+     * @return
+     */
+    protected abstract T setPresenter();
+
+    public T getmPresenter() {
+        return mPresenter;
+    }
+
+    /**
+     * 是否开启懒加载
+     */
+    public void enableLazyLoad(){
+        isLazyLoadEnabled = true;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        LogUtil.logI("BaseFragment",toString() + ":setUserVisibleHint:" + isVisibleToUser);
+        checkIfLoadData();
+    }
+
+
+    protected void initPresenter() {
+        if(mPresenter==null){
+            mPresenter=setPresenter();
+            mPresenter.attatchView((V)this);
+        }
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        isDataInitialized = true;
+    }
+
+    private void checkIfLoadData() {
+        if (isVisibleToUser && isViewInitialized && !isDataInitialized) {
+            isDataInitialized = true;
+            initPresenter();
+        }
+    }
+
+    protected void onBack(){
+        getActivity().onBackPressed();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        LogUtil.logI("BaseFragment",toString() + ":onSaveInstanceState");
     }
 
 

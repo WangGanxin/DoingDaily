@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text -->
+    <string name="ml_hc_btnName">Name</string>
+    <string name="ml_hc_email">Email (optional)</string>
+    <string name="ml_hc_album">Album</string>
+    <string name="ml_hc_drawing">Album</string>
+    <string name="ml_hc_conversation">Conversation</string>
+    <string name="ml_hc_faq">FAQ</string>
+    <string name="ml_hc_allQuestions">All Questions</string>
+    <string name="ml_hc_question">Question</string>
+    <string name="ml_hc_search">Search</string>
+    <string name="ml_hc_search_hint">Search</string>
+    <string name="ml_hc_send">Send</string>
+    <string name="ml_hc_resolved">Resolved</string>
+    <string name="ml_hc_notYet">Not yet</string>
+    <string name="ml_hc_reopen">Reopen</string>
+    <string name="ml_hc_later">Later</string>
+    <string name="ml_hc_score">Score</string>
+    <string name="ml_hc_contactUs">Contact us</string>
+    <string name="ml_hc_addAttachment">Choose Attachment</string>
+    <string name="ml_hc_create">Create</string>
+    <string name="ml_hc_close">Close</string>
+    <string name="ml_hc_ok">OK</string>
+
+    <!-- Message -->
+    <string name="ml_hc_hint_new_message">How can we help you?</string>
+    <string name="ml_hc_hint_faq">Please refer to FAQ:&#160;</string>
+
+    <string name="ml_hc_msg_isResolved">The issue has been resolved?</string>
+    <string name="ml_hc_msg_isReopened">Continue to reopen it?</string>
+    <string name="ml_hc_msg_requestScore">Are you satisfied with the problem?\nplease give us a score.</string>
+    <string name="ml_hc_msg_createNewIssue">Create new issue?</string>
+    <string name="ml_hc_msg_notifyHasNewMessage">New message received.</string>
+    <string name="ml_hc_msg_notFound">No result found</string>
+
+    <!-- Error Message -->
+    <string name="ml_hc_errMsg_empty_name">Enter your name</string>
+    <string name="ml_hc_errMsg_empty_title">Enter your title</string>
+    <string name="ml_hc_errMsg_empty_msg">Enter your message</string>
+    <string name="ml_hc_errMsg_faq_not_exist">This FAQ does not exist</string>
+</resources>

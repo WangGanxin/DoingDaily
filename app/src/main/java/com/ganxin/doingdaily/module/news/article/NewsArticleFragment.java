@@ -44,16 +44,15 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
     WebView webView;
 
     /**
-     *
      * @param type
      * @param bean
      * @return
      */
-    public static NewsArticleFragment newInstance(int type,NewsContentlistBean bean){
+    public static NewsArticleFragment newInstance(int type, NewsContentlistBean bean) {
         NewsArticleFragment fragment = new NewsArticleFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(ConstantValues.KEY_VIEW_TYPE,type);
-        bundle.putSerializable(ConstantValues.KEY_BEAN,bean);
+        bundle.putInt(ConstantValues.KEY_VIEW_TYPE, type);
+        bundle.putSerializable(ConstantValues.KEY_BEAN, bean);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -76,16 +75,16 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
 
         setHasOptionsMenu(true); //处理 onOptionsItemSelected方法不被调用
 
-        NewsContentlistBean bean= (NewsContentlistBean)getArguments().getSerializable(ConstantValues.KEY_BEAN);
-        int type=getArguments().getInt(ConstantValues.KEY_VIEW_TYPE);
+        NewsContentlistBean bean = (NewsContentlistBean) getArguments().getSerializable(ConstantValues.KEY_BEAN);
+        int type = getArguments().getInt(ConstantValues.KEY_VIEW_TYPE);
 
-        if(bean!=null){
-            switch (type){
+        if (bean != null) {
+            switch (type) {
                 case ConstantValues.VIEW_TYPE_TXT:
                     headImage.setVisibility(View.GONE);
                     break;
                 case ConstantValues.VIEW_TYPE_IMAGE:
-                    if(bean.getImageurls().get(0).getUrl().endsWith(".gif")){
+                    if (bean.getImageurls().get(0).getUrl().endsWith(".gif")) {
                         Glide.with(getContext())
                                 .load(bean.getImageurls().get(0).getUrl())
                                 .asGif()
@@ -94,8 +93,7 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
                                 .centerCrop()
                                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                                 .into(headImage);
-                    }
-                    else{
+                    } else {
                         Glide.with(getContext())
                                 .load(bean.getImageurls().get(0).getUrl())
                                 .placeholder(R.drawable.placeholder_img_loading)
@@ -105,7 +103,7 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
                     }
 
                     headImage.setVisibility(View.VISIBLE);
-                    ViewCompat.setTransitionName(headImage,ConstantValues.SHARE_IMAGE);
+                    ViewCompat.setTransitionName(headImage, ConstantValues.SHARE_IMAGE);
                     break;
             }
 
@@ -118,14 +116,14 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
             webView.getSettings().setDatabaseEnabled(true);// 开启database storage API功能
             webView.getSettings().setAppCacheEnabled(true); // 开启Application Cache功能
 
-            String html=bean.getHtml().replaceFirst("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>",""); //去除第一张IMG标签图片
-            webView.loadDataWithBaseURL("x-data://base",html, "text/html", "UTF-8", null);
+            String html = bean.getHtml().replaceFirst("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>", ""); //去除第一张IMG标签图片
+            webView.loadDataWithBaseURL("x-data://base", html, "text/html", "UTF-8", null);
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBack();
             return false;
         }
@@ -134,7 +132,7 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_news_article,menu);
+        inflater.inflate(R.menu.menu_news_article, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

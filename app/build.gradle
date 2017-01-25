@@ -10,12 +10,20 @@ android {
     compileSdkVersion 23
     buildToolsVersion "24.0.2"
 
+    sourceSets {
+        main {
+            //assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
     defaultConfig {
         applicationId "com.ganxin.doingdaily"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 100
         versionName "1.0.0"
+        manifestPlaceholders = [ML_CHANNEL_VALUE: "maxleap"] // 默认是maxleap的渠道
     }
     buildTypes {
         release {

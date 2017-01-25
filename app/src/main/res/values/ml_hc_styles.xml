@@ -1,0 +1,118 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- LC theme Start-->
+    <declare-styleable name="Theme.MLHelpCenterCompat">
+        <attr name="ml_hc_searchActionButtonIcon" format="reference"/>
+        <attr name="ml_hc_leftChatBubbleBackground" format="reference"/>
+        <attr name="ml_hc_rightChatBubbleBackground" format="reference"/>
+        <attr name="ml_hc_leftChatBubbleTextColor" format="color"/>
+        <attr name="ml_hc_rightChatBubbleTextColor" format="color"/>
+        <attr name="ml_hc_leftChatBubbleTextSize" format="dimension"/>
+        <attr name="ml_hc_rightChatBubbleTextSize" format="dimension"/>
+        <attr name="ml_hc_contactUsButtonIcon" format="reference"/>
+        <attr name="ml_hc_sendButtonIcon" format="reference"/>
+        <attr name="ml_hc_chooseImageIcon" format="reference"/>
+        <attr name="ml_hc_searchHintTextColor" format="color"/>
+        <attr name="ml_hc_messageCountBackground" format="reference"/>
+        <attr name="ml_hc_messageCountTextColor" format="color"/>
+        <attr name="ml_hc_messageCountTextSize" format="dimension"/>
+    </declare-styleable>
+
+    <style name="MLHelpCenter.Theme.Base" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionBarStyle">@style/MLHelpCenter.Theme.ActionBar</item>
+        <item name="android:textSize">@dimen/ml_hc_default_text_size</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="searchViewStyle">@style/MLHelpCenter.Style.SearchView</item>
+    </style>
+
+    <style name="MLHelpCenter"/>
+
+    <style name="MLHelpCenter.Style"/>
+
+    <style name="MLHelpCenter.Style.ListViewItem">
+        <item name="android:paddingLeft">@dimen/ml_hc_vertical_margin</item>
+        <item name="android:paddingRight">@dimen/ml_hc_vertical_margin</item>
+        <item name="android:paddingTop">@dimen/ml_hc_horizontal_half_margin</item>
+        <item name="android:paddingBottom">@dimen/ml_hc_horizontal_half_margin</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/ml_hc_text_size_larger</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="MLHelpCenter.Style.EditText">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/ml_hc_default_text_size</item>
+    </style>
+
+    <style name="MLHelpCenter.Style.MultilineEditText">
+        <item name="android:singleLine">false</item>
+        <item name="android:textSize">@dimen/ml_hc_default_text_size</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:maxLines">3</item>
+    </style>
+
+
+    <!-- Customization Start -->
+    <style name="MLHelpCenter.Theme" parent="MLHelpCenter.Theme.Base">
+        <!-- used to indicate color accent -->
+        <item name="colorAccent">@color/accent_material_light</item>
+
+        <!-- used to indicate drawable icon for up button -->
+        <item name="homeAsUpIndicator">@drawable/ml_hc_btn_navigation_up_normal</item>
+
+        <!-- used to indicate drawable icon for search action view -->
+        <item name="ml_hc_searchActionButtonIcon">@drawable/ml_hc_btn_navigation_search_normal</item>
+
+        <!-- used to indicate left chat bubble background,text color and text size -->
+        <item name="ml_hc_leftChatBubbleBackground">@drawable/ml_hc_icon_right_dialog_gray</item>
+        <item name="ml_hc_leftChatBubbleTextColor">#000000</item>
+        <item name="ml_hc_leftChatBubbleTextSize">16sp</item>
+
+        <!-- used to indicate right chat bubble background,text color and text size -->
+        <item name="ml_hc_rightChatBubbleBackground">@drawable/ml_hc_icon_dialog_blue</item>
+        <item name="ml_hc_rightChatBubbleTextColor">#FFFFFF</item>
+        <item name="ml_hc_rightChatBubbleTextSize">16sp</item>
+
+        <!-- used to indicate drawable icon for contact us button -->
+        <item name="ml_hc_contactUsButtonIcon">@drawable/ml_hc_btn_actionbar_contactus_normal</item>
+
+        <!-- used to indicate background, textColor, textSize for new message count -->
+        <item name="ml_hc_messageCountBackground">@drawable/ml_hc_icon_redpoint</item>
+        <item name="ml_hc_messageCountTextColor">#FFFFFF</item>
+        <item name="ml_hc_messageCountTextSize">@dimen/ml_hc_text_size_minimum</item>
+
+        <!-- used to indicate drawable icon for send button -->
+        <item name="ml_hc_sendButtonIcon">@drawable/ml_hc_btn_sendpic_normal</item>
+
+        <!-- used to indicate drawable icon for choose image button -->
+        <item name="ml_hc_chooseImageIcon">@drawable/ml_hc_btn_actionbar_chooseapic_normal</item>
+
+        <!-- used to indicate search hint text color -->
+        <item name="ml_hc_searchHintTextColor">#FFFFFF</item>
+    </style>
+
+    <style name="MLHelpCenter.Theme.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="titleTextStyle">@style/MLHelpCenter.Theme.ActionBar.Title</item>
+
+        <!-- used to indicate action bar background color -->
+        <item name="background">@color/ml_hc_base_color</item>
+    </style>
+
+    <style name="MLHelpCenter.Theme.ActionBar.Title" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <!-- used to indicate action bar title text color -->
+        <item name="android:textColor">#FFFFFF</item>
+
+        <!-- used to indicate action bar title text size -->
+        <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
+    </style>
+
+    <style name="MLHelpCenter.Style.SearchView" parent="Widget.AppCompat.SearchView">
+        <!-- used to indicate drawable icon for search hint -->
+        <item name="searchIcon">@drawable/ml_hc_btn_navigation_search_normal</item>
+    </style>
+    <!-- Customization End -->
+
+    <!-- LC theme End-->
+
+</resources>

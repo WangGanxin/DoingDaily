@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <LinearLayout
+        android:id="@+id/ml_input_msgContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ml_hc_grey_100"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" >
+
+        <ImageButton
+            android:id="@+id/ml_input_ibAlbum"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ml_hc_input_tools_addpic"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_weight="1" >
+
+            <EditText
+                android:id="@+id/ml_input_edContent"
+                style="@style/MLHelpCenter.Style.MultilineEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ml_hc_bg_input_msg_box"
+                android:cursorVisible="true"
+                android:padding="8dp"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_marginLeft="8dp"
+            android:id="@+id/ml_input_btnSend"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ml_hc_input_tools_send"
+            android:gravity="center_vertical"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+</merge>

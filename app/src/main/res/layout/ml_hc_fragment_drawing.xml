@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ml_hc_grey_300"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <FrameLayout
+            android:id="@+id/ml_drawing_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:background="@color/ml_hc_grey_400"
+            android:gravity="center"
+            android:orientation="horizontal" >
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/ml_hc_grey_200"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:drawable/divider_horizontal_dark" >
+            </View>
+
+            <LinearLayout
+                android:gravity="center"
+                android:id="@+id/ml_pallet_scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" >
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ml_hc_grey_200" >
+
+                    <LinearLayout
+                        android:id="@+id/ml_pallet_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ml_brush_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ml_hc_grey_200"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp" >
+
+        <ImageButton
+            android:id="@+id/ml_btnPen"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/ml_hc_bg_btn_brush"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <ImageButton
+            android:id="@+id/ml_btnRubber"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/ml_btnPen"
+            android:background="@drawable/ml_hc_bg_btn_undo"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <ImageButton
+            android:id="@+id/ml_btnColorSelector"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="4dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:scaleType="matrix"
+            android:src="@color/ml_hc_base_color"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+    </RelativeLayout>
+
+</LinearLayout>

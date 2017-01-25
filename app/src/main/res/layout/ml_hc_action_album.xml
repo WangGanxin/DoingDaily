@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Widget.AppCompat.ActionButton"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+    <ImageButton
+        android:id="@+id/ml_action_icAlbum"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ml_hc_btn_actionbar_chooseapic_normal"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

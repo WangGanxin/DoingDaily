@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/ml_action_search"
+        android:icon="?attr/ml_hc_searchActionButtonIcon"
+        android:orderInCategory="100"
+        android:title="@string/ml_hc_search"
+        android:visible="false"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="collapseActionView|always"
+        tools:ignore="AppCompatResource,AlwaysShowAction"/>
+    <item
+        android:orderInCategory="200"
+        android:title="@string/ml_hc_contactUs"
+        android:visible="false"
+        app:showAsAction="always"
+        app:actionLayout="@layout/ml_hc_contact_us"
+        tools:ignore="AppCompatResource"/>
+    <item
+        android:id="@+id/ml_hc_action_album"
+        android:icon="?attr/ml_hc_chooseImageIcon"
+        android:orderInCategory="300"
+        android:title="@string/ml_hc_addAttachment"
+        android:visible="false"
+        app:showAsAction="always"
+        tools:ignore="AppCompatResource"/>
+    <item
+        android:id="@+id/ml_action_send"
+        android:icon="?attr/ml_hc_sendButtonIcon"
+        android:orderInCategory="400"
+        android:title="@string/ml_hc_send"
+        android:visible="false"
+        app:showAsAction="always"
+        tools:ignore="AppCompatResource"/>
+
+    <item
+        android:id="@+id/ml_action_close"
+        android:icon="@drawable/ml_hc_btn_deletepic_normal"
+        android:orderInCategory="500"
+        android:title="@string/ml_hc_close"
+        android:visible="false"
+        app:showAsAction="always"
+        tools:ignore="AppCompatResource"/>
+
+</menu>

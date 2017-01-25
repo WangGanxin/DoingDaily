@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="ml_hc_default_brush_size">8dp</dimen>
+    <dimen name="ml_hc_listview_divider_height">1dp</dimen>
+    <dimen name="ml_hc_pallet_item_size">40dp</dimen>
+    <dimen name="ml_hc_horizontal_margin">16dp</dimen>
+    <dimen name="ml_hc_vertical_margin">16dp</dimen>
+    <dimen name="ml_hc_horizontal_half_margin">8dp</dimen>
+    <dimen name="ml_hc_vertical_half_margin">8dp</dimen>
+    <dimen name="ml_hc_album_item_size">120dp</dimen>
+    <dimen name="ml_hc_default_text_size">16sp</dimen>
+    <dimen name="ml_hc_text_size_larger">18sp</dimen>
+    <dimen name="ml_hc_text_size_largest">20sp</dimen>
+    <dimen name="ml_hc_text_size_minimum">12sp</dimen>
+    <dimen name="ml_hc_text_view_height">64dp</dimen>
+
+</resources>

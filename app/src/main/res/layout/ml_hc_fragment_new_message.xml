@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="16dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+        <EditText
+            android:id="@+id/ml_edTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="@string/ml_hc_hint_new_message"
+            android:inputType="none" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ml_imageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" >
+
+        <ImageView
+            android:id="@+id/ml_ivImage"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/ml_ivDelete"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignRight="@id/ml_ivImage"
+            android:layout_alignTop="@id/ml_ivImage"
+            android:scaleType="center"
+            android:src="@android:drawable/ic_delete" />
+    </RelativeLayout>
+
+    <include layout="@layout/ml_hc_input_tools_register" />
+
+</LinearLayout>

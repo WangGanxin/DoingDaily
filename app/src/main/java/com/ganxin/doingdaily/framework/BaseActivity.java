@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.utils.AppStatusTracker;
 import com.ganxin.doingdaily.module.MainActivity;
+import com.maxleap.MLAnalytics;
 
 import butterknife.ButterKnife;
 
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
  * date : 2016/10/9 <br/>
  * email : ganxinvip@163.com <br/>
  */
-public abstract class BaseActivity<V,T extends BasePresenter<V>> extends AppCompatActivity {
+public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCompatActivity {
 
     protected T mPresenter;
 
@@ -44,9 +45,9 @@ public abstract class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
     }
 
     private void initPresenter() {
-        mPresenter=createPresenter();
-        if(mPresenter!=null){
-            mPresenter.attatchView((V)this);
+        mPresenter = createPresenter();
+        if (mPresenter != null) {
+            mPresenter.attatchView((V) this);
         }
     }
 
@@ -84,11 +85,13 @@ public abstract class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
     @Override
     protected void onResume() {
         super.onResume();
+        MLAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        MLAnalytics.onPause(this);
     }
 
     @Override
@@ -99,7 +102,7 @@ public abstract class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(mPresenter!=null){
+        if (mPresenter != null) {
             mPresenter.detachView();
         }
     }
@@ -107,6 +110,6 @@ public abstract class BaseActivity<V,T extends BasePresenter<V>> extends AppComp
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

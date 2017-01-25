@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/ml_hc_horizontal_margin"
+    android:paddingTop="@dimen/ml_hc_horizontal_margin" >
+
+    <ImageView
+        android:id="@+id/ml_dialog_ivImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/ml_ivDelete"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignRight="@id/ml_dialog_ivImage"
+        android:layout_alignTop="@id/ml_dialog_ivImage"
+        android:scaleType="center"
+        android:src="@android:drawable/ic_delete"
+        android:visibility="gone"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+
+</RelativeLayout>

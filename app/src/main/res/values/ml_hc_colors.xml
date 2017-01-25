@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="ml_hc_base_color">#64a7eb</color>
+    <color name="ml_hc_middle_gray">#D5D5D5</color>
+    <color name="ml_hc_deep_gray">#444444</color>
+    <color name="ml_hc_bg_color">#FFFFFF</color>
+    <color name="ml_hc_bg_input_tools">#6AAAE9</color>
+    <color name="ml_hc_grey_400">#BDBDBD</color>
+    <color name="ml_hc_grey_300">#E0E0E0</color>
+    <color name="ml_hc_grey_200">#EEEEEE</color>
+    <color name="ml_hc_grey_100">#F5F5F5</color>
+    <color name="ml_hc_divider_color">#7fd8d8d8</color>
+
+    <string-array name="ml_hc_palette">
+
+        <item>#E24050</item>
+        <item>#F75A29</item>
+        <item>#EAD243</item>
+        <item>#94BF14</item>
+        <item>#A0D4FF</item>
+        <item>#8F7C84</item>
+        <item>#223740</item>
+    </string-array>
+
+</resources>

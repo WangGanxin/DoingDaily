@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:id="@+id/ml_input_registerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/ml_input_edName"
+            style="@style/MLHelpCenter.Style.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ml_hc_text_view_height"
+            android:hint="@string/ml_hc_btnName"
+            android:imeOptions="actionNext" />
+
+        <EditText
+            android:id="@+id/ml_input_edEmail"
+            style="@style/MLHelpCenter.Style.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ml_hc_text_view_height"
+            android:hint="@string/ml_hc_email"
+            android:inputType="textEmailAddress" />
+    </LinearLayout>
+
+</merge>
