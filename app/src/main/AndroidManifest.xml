@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".application.DoingDailyApp"
@@ -31,9 +34,18 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:theme="@android:style/Theme.Translucent" />
+
         <!-- MaxLeap 渠道配置 -->
         <meta-data
-        android:name="ml_channel"
-        android:value="${ML_CHANNEL_VALUE}"/>
+            android:name="ml_channel"
+            android:value="${CHANNEL_VALUE}"/>
+
+        <!-- Bugly 渠道配置 -->
+        <meta-data
+            android:name="BUGLY_APP_CHANNEL"
+            android:value="${CHANNEL_VALUE}"/>
     </application>
 </manifest>

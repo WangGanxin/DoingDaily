@@ -6,6 +6,10 @@ apply plugin: 'android-apt'
 //Freeline Config
 apply plugin: 'com.antfortune.freeline'
 
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "24.0.2"
@@ -23,13 +27,63 @@ android {
         targetSdkVersion 22
         versionCode 100
         versionName "1.0.0"
-        manifestPlaceholders = [ML_CHANNEL_VALUE: "maxleap"] // 默认是maxleap的渠道
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        manifestPlaceholders = [CHANNEL_VALUE: "Official"] // 默认是官方渠道
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("/app/DoingDaily_20170209.jks")
+            storePassword "20170209"
+            keyAlias "DoingDaily"
+            keyPassword "20170209"
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+        }
+
+        release {
+            minifyEnabled true   // 开启混淆
+            zipAlignEnabled true // 开启zipalign优化
+            shrinkResources true // 移除无用的resource文件
+
+            signingConfig signingConfigs.release //签名配置
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            //自定义输出文件名
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为DoingDaily_v1.0_2015-01-15_wandoujia.apk
+                        def fileName = "DoingDaily_V${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+        }
+    }
+
+    productFlavors {
+        official{}
+        baidu {}
+        _360mobile {}
+        wandoujia {}
+        xiaomi {}
+        tencent {}
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [CHANNEL_VALUE: name]
     }
 }
 
@@ -53,4 +107,6 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     // glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    // Bugly Upgrade SDK
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
 }

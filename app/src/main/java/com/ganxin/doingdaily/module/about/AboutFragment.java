@@ -14,6 +14,7 @@ import com.ganxin.doingdaily.common.widgets.rowview.normal.NormalRowDescriptor;
 import com.ganxin.doingdaily.common.widgets.rowview.text.TextRowDescriptor;
 import com.ganxin.doingdaily.framework.BaseFragment;
 import com.ganxin.doingdaily.framework.ITabFragment;
+import com.tencent.bugly.beta.Beta;
 
 import java.util.ArrayList;
 
@@ -100,7 +101,7 @@ public class AboutFragment extends BaseFragment<AboutContract.View, AboutContrac
 
                 break;
             case R.string.row_update:
-
+                Beta.checkUpgrade();
                 break;
             case R.string.row_github:
 
