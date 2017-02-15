@@ -38,7 +38,7 @@ public class SnackbarUtil {
      * @param backgroundColor
      * @return
      */
-    public static Snackbar ShortSnackbar(View view, String message, int messageColor, int backgroundColor) {
+    public static Snackbar shortSnackbar(View view, String message, int messageColor, int backgroundColor) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
         setSnackbarColor(snackbar, messageColor, backgroundColor);
 
@@ -54,7 +54,7 @@ public class SnackbarUtil {
      * @param backgroundColor
      * @return
      */
-    public static Snackbar LongSnackbar(View view, String message, int messageColor, int backgroundColor) {
+    public static Snackbar longSnackbar(View view, String message, int messageColor, int backgroundColor) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
         setSnackbarColor(snackbar, messageColor, backgroundColor);
         return snackbar;
@@ -83,10 +83,10 @@ public class SnackbarUtil {
      * @param type
      * @return
      */
-    public static Snackbar ShortSnackbar(View view, String message, int type) {
+    public static void shortSnackbar(View view, String message, int type) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
         switchType(snackbar, type);
-        return snackbar;
+        snackbar.show();
     }
 
     /**
@@ -97,10 +97,10 @@ public class SnackbarUtil {
      * @param type
      * @return
      */
-    public static Snackbar LongSnackbar(View view, String message, int type) {
+    public static void longSnackbar(View view, String message, int type) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
         switchType(snackbar, type);
-        return snackbar;
+        snackbar.show();
     }
 
     /**

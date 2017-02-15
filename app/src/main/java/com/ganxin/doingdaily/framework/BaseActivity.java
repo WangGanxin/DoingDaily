@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.avos.avoscloud.AVAnalytics;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.utils.AppStatusTracker;
 import com.ganxin.doingdaily.module.MainActivity;
-import com.maxleap.MLAnalytics;
 
 import butterknife.ButterKnife;
 
@@ -85,13 +85,13 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCom
     @Override
     protected void onResume() {
         super.onResume();
-        MLAnalytics.onResume(this);
+        AVAnalytics.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MLAnalytics.onPause(this);
+        AVAnalytics.onPause(this);
     }
 
     @Override

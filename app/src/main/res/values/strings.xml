@@ -26,4 +26,6 @@
     <string name="wechat_item_likeNum">%1$s点赞</string>
     <string name="main_exit_app">再按一次退出</string>
     <string name="loading_tips">正在加载中...</string>
+    <string name="tips_select_browser">请选择浏览器</string>
+    <string name="tips_copy_success">已复制公众号至剪贴板</string>
 </resources>

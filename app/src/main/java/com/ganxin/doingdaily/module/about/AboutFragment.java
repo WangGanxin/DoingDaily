@@ -5,8 +5,11 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.view.View;
 import android.widget.TextView;
 
+import com.avos.avoscloud.feedback.FeedbackAgent;
 import com.ganxin.doingdaily.R;
+import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.utils.DeviceUtil;
+import com.ganxin.doingdaily.common.utils.SystemHelper;
 import com.ganxin.doingdaily.common.widgets.rowview.ContainerView;
 import com.ganxin.doingdaily.common.widgets.rowview.base.OnRowChangedListener;
 import com.ganxin.doingdaily.common.widgets.rowview.group.GroupDescriptor;
@@ -98,13 +101,14 @@ public class AboutFragment extends BaseFragment<AboutContract.View, AboutContrac
 
                 break;
             case R.string.row_feedback:
-
+                FeedbackAgent agent = new FeedbackAgent(getActivity());
+                agent.startDefaultThreadActivity();
                 break;
             case R.string.row_update:
                 Beta.checkUpgrade();
                 break;
             case R.string.row_github:
-
+                SystemHelper.SystemBrowser(getContext(), ConstantValues.GITHUB_URL);
                 break;
         }
     }

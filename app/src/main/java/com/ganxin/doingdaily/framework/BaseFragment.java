@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.avos.avoscloud.AVAnalytics;
 import com.ganxin.doingdaily.common.utils.LogUtil;
-import com.maxleap.MLAnalytics;
 
 import butterknife.ButterKnife;
 
@@ -100,14 +100,14 @@ public abstract class BaseFragment<V extends BaseView,T extends BasePresenter<V>
     public void onResume() {
         super.onResume();
         LogUtil.logI("BaseFragment",toString() + ":onResume");
-        MLAnalytics.onPageStart(toString());
+        AVAnalytics.onFragmentStart(toString());
     }
 
     @Override
     public void onPause() {
         super.onPause();
         LogUtil.logI("BaseFragment",toString() + ":onPause");
-        MLAnalytics.onPageEnd(toString());
+        AVAnalytics.onFragmentEnd(toString());
     }
 
     @Override

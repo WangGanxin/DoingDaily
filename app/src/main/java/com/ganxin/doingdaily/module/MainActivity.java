@@ -1,5 +1,6 @@
 package com.ganxin.doingdaily.module;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -157,9 +158,14 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
     }
 
     @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
     public void showSnackBar(int resId) {
         //Snackbar.make(mCoordinatorLayout,getString(resId), Snackbar.LENGTH_SHORT).show();
-        SnackbarUtil.ShortSnackbar(mCoordinatorLayout,getString(resId),SnackbarUtil.Info).show();
+        SnackbarUtil.shortSnackbar(mCoordinatorLayout,getString(resId),SnackbarUtil.Info);
     }
 
     @Override

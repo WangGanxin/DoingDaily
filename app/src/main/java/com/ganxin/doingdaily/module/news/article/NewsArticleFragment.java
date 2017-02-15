@@ -20,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
+import com.ganxin.doingdaily.common.utils.SystemHelper;
 import com.ganxin.doingdaily.framework.BaseFragment;
 
 import butterknife.BindView;
@@ -42,6 +43,8 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
     AppBarLayout appBarLayout;
     @BindView(R.id.webView)
     WebView webView;
+
+    private NewsContentlistBean bean;
 
     /**
      * @param type
@@ -75,7 +78,7 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
 
         setHasOptionsMenu(true); //处理 onOptionsItemSelected方法不被调用
 
-        NewsContentlistBean bean = (NewsContentlistBean) getArguments().getSerializable(ConstantValues.KEY_BEAN);
+        bean = (NewsContentlistBean) getArguments().getSerializable(ConstantValues.KEY_BEAN);
         int type = getArguments().getInt(ConstantValues.KEY_VIEW_TYPE);
 
         if (bean != null) {
@@ -123,9 +126,17 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBack();
-            return false;
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBack();
+                return false;
+            case R.id.action_share:
+                break;
+            case R.id.action_browser:
+                SystemHelper.SystemBrowser(getActivity(),bean.getLink());
+                break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -135,6 +146,8 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
         inflater.inflate(R.menu.menu_news_article, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
+
+
 
     @Override
     protected NewsArticleContract.Presenter setPresenter() {

@@ -34,13 +34,21 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
+        <!-- LeacCloud反馈组件 START -->
+        <activity
+            android:name="com.avos.avoscloud.feedback.ThreadActivity">
+        </activity>
+        <!-- LeacCloud反馈组件 END -->
+
+        <!-- bugly 升级更新 START-->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
-            android:theme="@android:style/Theme.Translucent" />
+            android:theme="@android:style/Theme.Translucent"/>
+        <!-- bugly 升级更新 END-->
 
-        <!-- MaxLeap 渠道配置 -->
+        <!-- LeanCloud 渠道配置 -->
         <meta-data
-            android:name="ml_channel"
+            android:name="leancloud"
             android:value="${CHANNEL_VALUE}"/>
 
         <!-- Bugly 渠道配置 -->

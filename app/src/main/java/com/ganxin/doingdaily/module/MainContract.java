@@ -1,5 +1,7 @@
 package com.ganxin.doingdaily.module;
 
+import android.content.Context;
+
 import com.ganxin.doingdaily.framework.BasePresenter;
 import com.ganxin.doingdaily.framework.BaseView;
 
@@ -11,6 +13,7 @@ import com.ganxin.doingdaily.framework.BaseView;
  */
 interface MainContract {
     interface View extends BaseView {
+        Context getContext();
         void showSnackBar(int resId);
         void finishView();
     }

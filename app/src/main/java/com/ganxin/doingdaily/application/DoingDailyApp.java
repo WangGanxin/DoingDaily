@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 
+import com.avos.avoscloud.AVAnalytics;
+import com.avos.avoscloud.AVOSCloud;
 import com.ganxin.doingdaily.BuildConfig;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
@@ -15,7 +17,6 @@ import com.ganxin.doingdaily.common.data.source.remote.NewsRemoteDataSource;
 import com.ganxin.doingdaily.common.data.source.remote.WechatRemoteDataSource;
 import com.ganxin.doingdaily.common.utils.AppStatusTracker;
 import com.ganxin.doingdaily.module.MainActivity;
-import com.maxleap.MaxLeap;
 import com.orhanobut.logger.Logger;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
@@ -36,7 +37,7 @@ public class DoingDailyApp extends Application {
         initAppTracker();
         initLog();
         initRepository();
-        initMaxLeap();
+        initLeanCloud();
         initBugly();
     }
 
@@ -57,18 +58,10 @@ public class DoingDailyApp extends Application {
         WechatRepository.initialize(WechatRemoteDataSource.getInstance(),WechatLocalDataSource.getInstance(this));
     }
 
-    private void initMaxLeap() {
-
-        MaxLeap.Options options = new MaxLeap.Options();
-        options.applicationID ="58807fe20d55f900076a4d27";
-        options.restAPIKey = "TFJqaGJkNFdQcWxsX2VWM3RQWEVXQQ";
-        options.serverRegion = MaxLeap.REGION_CN;
-        options.analyticsEnable=true; //开启数据统计
-        options.sessionContinueTime = 30 * 1000; //追踪会话时长
-
-        MaxLeap.initialize(this, options);
-
-        //MaxLeap.checkSDKConnection(); 测试当前sdk的appid和restapikey配置是否正确。正式环境可移除。
+    private void initLeanCloud() {
+        AVOSCloud.initialize(appContext,"lBIrjjfV0Q0xor6nzCOj7rAF-gzGzoHsz","0y6q2YwSQQxFex28L0u6pkhh");
+        AVAnalytics.enableCrashReport(appContext, true);
+        AVOSCloud.setDebugLogEnabled(BuildConfig.DEBUG);
     }
 
     private void initBugly() {

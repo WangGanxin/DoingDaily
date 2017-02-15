@@ -7,16 +7,22 @@ package com.ganxin.doingdaily.common.constants;
  * email : ganxinvip@163.com <br/>
  */
 public class ConstantValues {
+
+    //全局配置
     public static final String DEBUG_TAG = "DoingDaily";
 
-    public static final String BASE_URL = "http://route.showapi.com/"; // HOST地址:易源接口
     public static final String APP_ID = "29706"; // 应用ID
     public static final String APP_SECRET = "5d9f976ed7ba4ba78310ed6f4a717ee7"; // 应用密钥
+    public static final String BASE_URL = "http://route.showapi.com/"; // HOST地址:易源接口
+    public static final String GITHUB_URL = "https://github.com/WangGanxin/DoingDaily"; // GitHub项目地址
+
+    //http请求配置
     public static final boolean HTTP_CACHE_ENABLE = false; // 是否开启OkHTTP缓存
     public static final String HTTP_CACHE_DIR = "httpcache"; // OkHTTP请求缓存目录名称
     public static final int HTTP_CACHE_TIME = 60 * 60 * 72; // OkHTTP请求缓存时间：72小时
     public static final int HTTP_CACHE_MAXSIZE = 1024 * 1024 * 10; // OkHTTP请求缓存大小：10MB
 
+    //app状态
     public static final int STATUS_FORCE_KILLED = -1;
     public static final int STATUS_LOGOUT = 0;
     public static final int STATUS_OFFLINE = 1;
@@ -28,6 +34,7 @@ public class ConstantValues {
     public static final int ACTION_LOGOUT = 2;
     public static final int ACTION_KICK_OUT = 3;
 
+    //参数key
     public static final String KEY_HOME_ACTION = "key_home_action";
     public static final String KEY_CHANNEL_ID = "key_channel_id";
     public static final String KEY_CATEGORY_ID = "key_category_id";
@@ -38,5 +45,4 @@ public class ConstantValues {
     public static final int VIEW_TYPE_IMAGE = 11;
 
     public static final String SHARE_IMAGE="share_image";
-    public static final String SHARE_TXT="share_txt";
 }

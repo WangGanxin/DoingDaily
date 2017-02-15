@@ -15,11 +15,14 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.WechatContentlistBean;
+import com.ganxin.doingdaily.common.utils.SnackbarUtil;
+import com.ganxin.doingdaily.common.utils.SystemHelper;
 import com.ganxin.doingdaily.framework.BaseFragment;
 
 import butterknife.BindView;
@@ -32,6 +35,8 @@ import butterknife.BindView;
  */
 public class WechatArticleFragment extends BaseFragment<WechatArticleContract.View, WechatArticleContract.Presenter> implements WechatArticleContract.View {
 
+    @BindView(R.id.containerLayout)
+    LinearLayout containerLayout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.appBarLayout)
@@ -40,6 +45,8 @@ public class WechatArticleFragment extends BaseFragment<WechatArticleContract.Vi
     ProgressBar progressbar;
     @BindView(R.id.webView)
     WebView webView;
+
+    private WechatContentlistBean bean;
 
     /**
      * @param bean
@@ -71,7 +78,7 @@ public class WechatArticleFragment extends BaseFragment<WechatArticleContract.Vi
 
         setHasOptionsMenu(true); //处理 onOptionsItemSelected方法不被调用
 
-        WechatContentlistBean bean = (WechatContentlistBean) getArguments().getSerializable(ConstantValues.KEY_BEAN);
+        bean= (WechatContentlistBean) getArguments().getSerializable(ConstantValues.KEY_BEAN);
 
         if (bean != null) {
             mAppCompatActivity.setTitle(bean.getUserName());
@@ -125,9 +132,21 @@ public class WechatArticleFragment extends BaseFragment<WechatArticleContract.Vi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBack();
-            return false;
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBack();
+                return false;
+            case R.id.action_share:
+                break;
+            case R.id.action_copy:
+                SystemHelper.SystemCopy(getActivity(),bean.getWeixinNum());
+                SnackbarUtil.shortSnackbar(containerLayout,getString(R.string.tips_copy_success),SnackbarUtil.Info);
+                break;
+            case R.id.action_browser:
+                SystemHelper.SystemBrowser(getActivity(),bean.getUrl());
+                break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
