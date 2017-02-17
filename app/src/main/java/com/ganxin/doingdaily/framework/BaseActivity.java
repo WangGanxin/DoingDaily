@@ -9,6 +9,7 @@ import com.avos.avoscloud.AVAnalytics;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.utils.AppStatusTracker;
 import com.ganxin.doingdaily.module.MainActivity;
+import com.umeng.socialize.UMShareAPI;
 
 import butterknife.ButterKnife;
 
@@ -97,6 +98,13 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCom
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //UmengShare 回调相关配置
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

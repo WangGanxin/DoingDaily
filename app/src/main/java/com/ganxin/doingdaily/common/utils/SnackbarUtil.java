@@ -78,7 +78,7 @@ public class SnackbarUtil {
     /**
      * 短显示Snackbar，可选预设类型
      *
-     * @param view
+     * @param view 控件容器view
      * @param message
      * @param type
      * @return
@@ -92,7 +92,7 @@ public class SnackbarUtil {
     /**
      * 长显示Snackbar，可选预设类型
      *
-     * @param view
+     * @param view 控件容器view
      * @param message
      * @param type
      * @return
@@ -106,7 +106,7 @@ public class SnackbarUtil {
     /**
      * 自定义时常显示Snackbar，可选预设类型
      *
-     * @param view
+     * @param view 控件容器view
      * @param message
      * @param type
      * @return

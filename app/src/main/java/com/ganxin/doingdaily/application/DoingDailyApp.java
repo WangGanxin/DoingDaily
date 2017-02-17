@@ -20,6 +20,9 @@ import com.ganxin.doingdaily.module.MainActivity;
 import com.orhanobut.logger.Logger;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
+import com.umeng.socialize.Config;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 
 /**
  * Description : DoingDailyApp  <br/>
@@ -39,6 +42,7 @@ public class DoingDailyApp extends Application {
         initRepository();
         initLeanCloud();
         initBugly();
+        initUmengShare();
     }
 
     public static Context getAppContext() {
@@ -59,7 +63,7 @@ public class DoingDailyApp extends Application {
     }
 
     private void initLeanCloud() {
-        AVOSCloud.initialize(appContext,"lBIrjjfV0Q0xor6nzCOj7rAF-gzGzoHsz","0y6q2YwSQQxFex28L0u6pkhh");
+        AVOSCloud.initialize(appContext,ConstantValues.LEANCLOUD_ID,ConstantValues.LEANCLOUD_KEY);
         AVAnalytics.enableCrashReport(appContext, true);
         AVOSCloud.setDebugLogEnabled(BuildConfig.DEBUG);
     }
@@ -71,8 +75,19 @@ public class DoingDailyApp extends Application {
         Beta.initDelay = 8 * 1000;
         Beta.canShowUpgradeActs.add(MainActivity.class);
         Beta.smallIconId= R.drawable.ic_notification_logo;
-        Bugly.init(appContext, "ca044d3a78", BuildConfig.DEBUG);
+        Bugly.init(appContext, ConstantValues.BUGLY_ID, BuildConfig.DEBUG);
         //CrashReport.testJavaCrash();
+    }
+
+    private void initUmengShare() {
+        PlatformConfig.setWeixin(ConstantValues.WECHAT_ID, ConstantValues.WECHAT_SECRET);
+        PlatformConfig.setSinaWeibo(ConstantValues.SINA_KEY,ConstantValues.SINA_SECRET);
+        PlatformConfig.setQQZone(ConstantValues.TENCENT_ID,ConstantValues.TENCENT_SECRET);
+        UMShareAPI.get(appContext);
+        Config.REDIRECT_URL = ConstantValues.SINA_REDIRECT_URL;
+        Config.DEBUG=BuildConfig.DEBUG;
+        Config.isJumptoAppStore=true;
+        UMShareAPI.get(appContext);
     }
 
     @Override

@@ -21,9 +21,12 @@ import android.widget.ProgressBar;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.WechatContentlistBean;
+import com.ganxin.doingdaily.common.share.ShareController;
 import com.ganxin.doingdaily.common.utils.SnackbarUtil;
 import com.ganxin.doingdaily.common.utils.SystemHelper;
 import com.ganxin.doingdaily.framework.BaseFragment;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import butterknife.BindView;
 
@@ -33,7 +36,7 @@ import butterknife.BindView;
  * date : 2017/1/17 <br/>
  * email : mail@wangganxin.me <br/>
  */
-public class WechatArticleFragment extends BaseFragment<WechatArticleContract.View, WechatArticleContract.Presenter> implements WechatArticleContract.View {
+public class WechatArticleFragment extends BaseFragment<WechatArticleContract.View, WechatArticleContract.Presenter> implements WechatArticleContract.View, UMShareListener {
 
     @BindView(R.id.containerLayout)
     LinearLayout containerLayout;
@@ -78,7 +81,7 @@ public class WechatArticleFragment extends BaseFragment<WechatArticleContract.Vi
 
         setHasOptionsMenu(true); //处理 onOptionsItemSelected方法不被调用
 
-        bean= (WechatContentlistBean) getArguments().getSerializable(ConstantValues.KEY_BEAN);
+        bean = (WechatContentlistBean) getArguments().getSerializable(ConstantValues.KEY_BEAN);
 
         if (bean != null) {
             mAppCompatActivity.setTitle(bean.getUserName());
@@ -132,18 +135,19 @@ public class WechatArticleFragment extends BaseFragment<WechatArticleContract.Vi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBack();
                 return false;
             case R.id.action_share:
+                share();
                 break;
             case R.id.action_copy:
-                SystemHelper.SystemCopy(getActivity(),bean.getWeixinNum());
-                SnackbarUtil.shortSnackbar(containerLayout,getString(R.string.tips_copy_success),SnackbarUtil.Info);
+                SystemHelper.SystemCopy(getActivity(), bean.getWeixinNum());
+                SnackbarUtil.shortSnackbar(containerLayout, getString(R.string.tips_copy_success), SnackbarUtil.Info);
                 break;
             case R.id.action_browser:
-                SystemHelper.SystemBrowser(getActivity(),bean.getUrl());
+                SystemHelper.SystemBrowser(getActivity(), bean.getUrl());
                 break;
             default:
                 break;
@@ -160,6 +164,19 @@ public class WechatArticleFragment extends BaseFragment<WechatArticleContract.Vi
     @Override
     protected WechatArticleContract.Presenter setPresenter() {
         return new WechatArticlePresenter();
+    }
+
+    private void share() {
+        if (bean != null) {
+            ShareController.getInstance().shareLink(mActivity, bean.getUrl(), bean.getTitle(), this);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        webView.destroy();
+        ShareController.getInstance().release(mActivity);
     }
 
     View.OnKeyListener keyListerner = new View.OnKeyListener() {
@@ -182,4 +199,19 @@ public class WechatArticleFragment extends BaseFragment<WechatArticleContract.Vi
             return false;
         }
     };
+
+    @Override
+    public void onResult(SHARE_MEDIA share_media) {
+        SnackbarUtil.shortSnackbar(containerLayout, getString(R.string.tips_share_success), SnackbarUtil.Info);
+    }
+
+    @Override
+    public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCancel(SHARE_MEDIA share_media) {
+
+    }
 }

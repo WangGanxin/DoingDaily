@@ -3,12 +3,15 @@ package com.ganxin.doingdaily.module.about;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.avos.avoscloud.feedback.FeedbackAgent;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
+import com.ganxin.doingdaily.common.share.ShareController;
 import com.ganxin.doingdaily.common.utils.DeviceUtil;
+import com.ganxin.doingdaily.common.utils.SnackbarUtil;
 import com.ganxin.doingdaily.common.utils.SystemHelper;
 import com.ganxin.doingdaily.common.widgets.rowview.ContainerView;
 import com.ganxin.doingdaily.common.widgets.rowview.base.OnRowChangedListener;
@@ -18,6 +21,8 @@ import com.ganxin.doingdaily.common.widgets.rowview.text.TextRowDescriptor;
 import com.ganxin.doingdaily.framework.BaseFragment;
 import com.ganxin.doingdaily.framework.ITabFragment;
 import com.tencent.bugly.beta.Beta;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.ArrayList;
 
@@ -31,6 +36,8 @@ import butterknife.BindView;
  */
 public class AboutFragment extends BaseFragment<AboutContract.View, AboutContract.Presenter> implements AboutContract.View, ITabFragment, OnRowChangedListener {
 
+    @BindView(R.id.aboutLayout)
+    LinearLayout aboutLayout;
     @BindView(R.id.collapsingToolbarLayout)
     CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.appBarLayout)
@@ -98,7 +105,22 @@ public class AboutFragment extends BaseFragment<AboutContract.View, AboutContrac
     public void onRowChanged(int rowId) {
         switch (rowId) {
             case R.string.row_share:
+                ShareController.getInstance().shareApp(mActivity, new UMShareListener() {
+                    @Override
+                    public void onResult(SHARE_MEDIA share_media) {
+                        SnackbarUtil.shortSnackbar(aboutLayout, getString(R.string.tips_share_success), SnackbarUtil.Info);
+                    }
 
+                    @Override
+                    public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onCancel(SHARE_MEDIA share_media) {
+
+                    }
+                });
                 break;
             case R.string.row_feedback:
                 FeedbackAgent agent = new FeedbackAgent(getActivity());
@@ -116,5 +138,11 @@ public class AboutFragment extends BaseFragment<AboutContract.View, AboutContrac
     @Override
     public void onRowChanged(int rowId, String content) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ShareController.getInstance().release(mActivity);
     }
 }

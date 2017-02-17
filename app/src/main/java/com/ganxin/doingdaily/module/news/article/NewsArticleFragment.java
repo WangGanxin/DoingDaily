@@ -3,6 +3,7 @@ package com.ganxin.doingdaily.module.news.article;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +21,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
+import com.ganxin.doingdaily.common.share.ShareController;
+import com.ganxin.doingdaily.common.utils.SnackbarUtil;
 import com.ganxin.doingdaily.common.utils.SystemHelper;
 import com.ganxin.doingdaily.framework.BaseFragment;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import butterknife.BindView;
 
@@ -31,8 +36,10 @@ import butterknife.BindView;
  * date : 2017/1/17 <br/>
  * email : mail@wangganxin.me <br/>
  */
-public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, NewsArticleContract.Presenter> implements NewsArticleContract.View {
+public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, NewsArticleContract.Presenter> implements NewsArticleContract.View,UMShareListener {
 
+    @BindView(R.id.articalLayout)
+    CoordinatorLayout articalLayout;
     @BindView(R.id.headImage)
     ImageView headImage;
     @BindView(R.id.toolbar)
@@ -131,6 +138,7 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
                 onBack();
                 return false;
             case R.id.action_share:
+                share();
                 break;
             case R.id.action_browser:
                 SystemHelper.SystemBrowser(getActivity(),bean.getLink());
@@ -141,16 +149,46 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
         return super.onOptionsItemSelected(item);
     }
 
+    private void share() {
+        if(bean!=null){
+            if(bean.isHavePic()){
+                ShareController.getInstance().shareLink(mActivity,bean.getLink(),bean.getTitle(),bean.getImageurls().get(0).getUrl(),this);
+            }
+            else{
+                ShareController.getInstance().shareLink(mActivity,bean.getLink(),bean.getTitle(),this);
+            }
+        }
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_news_article, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ShareController.getInstance().release(mActivity);
+    }
 
     @Override
     protected NewsArticleContract.Presenter setPresenter() {
         return new NewsArticlePresenter();
+    }
+
+    @Override
+    public void onResult(SHARE_MEDIA share_media) {
+        SnackbarUtil.shortSnackbar(articalLayout, getString(R.string.tips_share_success), SnackbarUtil.Info);
+    }
+
+    @Override
+    public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCancel(SHARE_MEDIA share_media) {
+
     }
 }

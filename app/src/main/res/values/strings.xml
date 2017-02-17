@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">多元日报</string>
     <string name="app_version">当前版本: %1$s</string>
+    <string name="app_description">多元化阅读，看见更大的世界</string>
 
     <string name="tab_news">新闻频道</string>
     <string name="tab_wechat">微信热门</string>
@@ -28,4 +29,5 @@
     <string name="loading_tips">正在加载中...</string>
     <string name="tips_select_browser">请选择浏览器</string>
     <string name="tips_copy_success">已复制公众号至剪贴板</string>
+    <string name="tips_share_success">分享成功</string>
 </resources>

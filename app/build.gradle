@@ -37,7 +37,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("/app/DoingDaily_20170209.jks")
+            storeFile file("/DoingDaily_20170209.jks")
             storePassword "20170209"
             keyAlias "DoingDaily"
             keyPassword "20170209"
@@ -47,7 +47,8 @@ android {
     buildTypes {
 
         debug {
-            minifyEnabled false
+            minifyEnabled
+            signingConfig signingConfigs.release //签名配置
         }
 
         release {
@@ -95,28 +96,34 @@ dependencies {
     // ButterKnife
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-
     // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-
     // RxJava + RxAndroid
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.2.1'
-
     // Logger
     compile 'com.orhanobut:logger:1.15'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-
     // glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
     // Bugly Upgrade SDK
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
-
     //LeadCloud
-    compile ('cn.leancloud.android:avoscloud-sdk:v3.+') // 基础包
-    compile ('cn.leancloud.android:avoscloud-statistics:v3.+')// 统计包
-    compile ('cn.leancloud.android:avoscloud-feedback:v3.+@aar') // 用户反馈包
+    compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
+    // 基础包
+    compile 'cn.leancloud.android:avoscloud-statistics:v3.+'
+    // 统计包
+    compile 'cn.leancloud.android:avoscloud-feedback:v3.+@aar'
+    // 用户反馈包
+    compile files('libs/SocialSDK_QQ_Simplify.jar')
+    compile files('libs/SocialSDK_Sina_Simplify.jar')
+    compile files('libs/SocialSDK_WeChat_Simplify.jar')
+    compile files('libs/umeng_shareboard_widget.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/umeng_social_shareboard.jar')
+    compile files('libs/umeng_social_shareview.jar')
+    compile files('libs/umeng_social_tool.jar')
 }
