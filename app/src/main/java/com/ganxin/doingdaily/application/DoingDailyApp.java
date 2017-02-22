@@ -83,7 +83,6 @@ public class DoingDailyApp extends Application {
         PlatformConfig.setWeixin(ConstantValues.WECHAT_ID, ConstantValues.WECHAT_SECRET);
         PlatformConfig.setSinaWeibo(ConstantValues.SINA_KEY,ConstantValues.SINA_SECRET);
         PlatformConfig.setQQZone(ConstantValues.TENCENT_ID,ConstantValues.TENCENT_SECRET);
-        UMShareAPI.get(appContext);
         Config.REDIRECT_URL = ConstantValues.SINA_REDIRECT_URL;
         Config.DEBUG=BuildConfig.DEBUG;
         Config.isJumptoAppStore=true;

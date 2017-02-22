@@ -48,7 +48,7 @@ android {
 
         debug {
             minifyEnabled
-            signingConfig signingConfigs.release //签名配置
+            //signingConfig signingConfigs.release //签名配置
         }
 
         release {
@@ -75,12 +75,11 @@ android {
     }
 
     productFlavors {
-        official{}
+        bugly {}
+        github {}
         baidu {}
         _360mobile {}
-        wandoujia {}
-        xiaomi {}
-        tencent {}
+        coolapk {}
     }
 
     productFlavors.all { flavor ->
@@ -110,20 +109,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     // Bugly Upgrade SDK
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
-    //LeadCloud
+    //LeanCloud
     compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
-    // 基础包
     compile 'cn.leancloud.android:avoscloud-statistics:v3.+'
-    // 统计包
     compile 'cn.leancloud.android:avoscloud-feedback:v3.+@aar'
-    // 用户反馈包
-    compile files('libs/SocialSDK_QQ_Simplify.jar')
-    compile files('libs/SocialSDK_Sina_Simplify.jar')
-    compile files('libs/SocialSDK_WeChat_Simplify.jar')
-    compile files('libs/umeng_shareboard_widget.jar')
-    compile files('libs/umeng_social_api.jar')
-    compile files('libs/umeng_social_net.jar')
-    compile files('libs/umeng_social_shareboard.jar')
-    compile files('libs/umeng_social_shareview.jar')
-    compile files('libs/umeng_social_tool.jar')
 }
