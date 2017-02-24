@@ -87,10 +87,7 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 
 #Banner
 
-![ad-01](/banner/ad_01.png)
-![ad-02](/banner/ad_02.png)
-![ad-03](/banner/ad_03.png)
-![ad-04](/banner/ad_04.png)
+![ad](/banner/ad.png)
 
 #Download
 
@@ -106,11 +103,11 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 - [ ] 其他...
 
 ###V 1.0.0
-- [x] 项目框架搭建（Material Design + MVP + ButterKnife + RxJava + Retrofit + Glide）
-- [x] 主界面（新闻、微信热文） 
-- [x] 社会化分享
-- [x] 在线更新
-- [x] 埋点统计
+- [x] ~~项目框架搭建（Material Design + MVP + ButterKnife + RxJava + Retrofit + Glide）~~
+- [x] ~~主界面（新闻、微信热文）~~
+- [x] ~~社会化分享~~
+- [x] ~~在线更新~~
+- [x] ~~埋点统计~~
 
 # Contact Me
 
