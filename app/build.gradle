@@ -27,7 +27,7 @@ android {
         targetSdkVersion 22
         versionCode 100
         versionName "1.0.0"
-        manifestPlaceholders = [CHANNEL_VALUE: "Official"] // 默认是官方渠道
+        manifestPlaceholders = [CHANNEL_VALUE: "Bugly"] // 默认是Bugly渠道
 
         ndk {
             //设置支持的SO库架构
@@ -77,9 +77,7 @@ android {
     productFlavors {
         bugly {}
         github {}
-        baidu {}
         _360mobile {}
-        coolapk {}
     }
 
     productFlavors.all { flavor ->
