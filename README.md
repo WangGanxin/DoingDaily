@@ -89,21 +89,6 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 
 ![doingdaily-ad](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner.png)
 
-ewre
-
-![doingdaily-ad1](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_01.png)
-![doingdaily-ad2](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_02.png)
-![doingdaily-ad3](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_03.png)
-![doingdaily-ad4](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_04.png)
-
-21342141
-
-![doingdaily-ad1](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_01.png "多元日报")
-![doingdaily-ad2](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_02.png "多元日报")
-![doingdaily-ad3](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_03.png "多元日报")
-![doingdaily-ad4](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_04.png "多元日报")
-
-
 #Download
 
 - [Github](https://github.com/WangGanxin/DoingDaily/releases)
