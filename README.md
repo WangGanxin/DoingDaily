@@ -16,7 +16,7 @@
 
 项目结构如下所示：
 
-![package_structure](/media/2017/doingdaily_package_structure.png)
+![package_structure](/banner/package_structure.png)
 
 - application :自定义的全局application类
 - commom ：公共类库
@@ -83,14 +83,14 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 
 运行效果图：
 
-![doingdaily-demo](https://github.com/WangGanxin/DoingDaily/blob/master/banner/doingdaily.gif)
+![doingdaily-demo](/banner/doingdaily.gif)
 
 #Banner
 
-![ad-01](https://github.com/WangGanxin/DoingDaily/blob/master/banner/ad_01.png)
-![ad-02](https://github.com/WangGanxin/DoingDaily/blob/master/banner/ad_02.png)
-![ad-03](https://github.com/WangGanxin/DoingDaily/blob/master/banner/ad_03.png)
-![ad-04](https://github.com/WangGanxin/DoingDaily/blob/master/banner/ad_04.png)
+![ad-01](/banner/ad_01.png)
+![ad-02](/banner/ad_02.png)
+![ad-03](/banner/ad_03.png)
+![ad-04](/banner/ad_04.png)
 
 #Download
 
