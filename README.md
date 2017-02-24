@@ -87,7 +87,7 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 
 #Banner
 
-![ad](/banner/ad.png)
+![app_ad](/banner/ad.png)
 
 #Download
 
