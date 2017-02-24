@@ -87,14 +87,14 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 
 #Banner
 
-![doingdaily-ad](/banner/ad.png)
+![doingdaily-ad](https://github.com/WangGanxin/DoingDaily/blob/master/banner/ad.png)
 
 ewre
 
-![doingdaily-ad1](/banner/ad_01.png)
-![doingdaily-ad2](/banner/ad_02.png)
-![doingdaily-ad3](/banner/ad_03.png)
-![doingdaily-ad4](/banner/ad_04.png)
+![doingdaily-ad1](https://github.com/WangGanxin/DoingDaily/blob/master/banner/ad_01.png)
+![doingdaily-ad2](https://github.com/WangGanxin/DoingDaily/blob/master/banner/ad_02.png)
+![doingdaily-ad3](https://github.com/WangGanxin/DoingDaily/blob/master/banner/ad_03.png)
+![doingdaily-ad4](https://github.com/WangGanxin/DoingDaily/blob/master/banner/ad_04.png)
 
 
 #Download
