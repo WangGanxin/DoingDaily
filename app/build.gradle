@@ -21,6 +21,11 @@ android {
         }
     }
 
+    freeline {
+        hack true
+        productFlavor 'bugly'
+    }
+
     defaultConfig {
         applicationId "com.ganxin.doingdaily"
         minSdkVersion 14
