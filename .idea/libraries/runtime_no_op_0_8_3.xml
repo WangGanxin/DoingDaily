@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="runtime-no-op-0.8.3">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.antfortune.freeline/runtime-no-op/0.8.3/res" />
-      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.antfortune.freeline/runtime-no-op/0.8.3/jars/classes.jar!/" />
+      <root url="file://D:/AndroidDevTools/AndroidSDK/.android/build-cache/b39492d6f17bbc333a3ebd551ef7acddf89c2a02/output/res" />
+      <root url="jar://D:/AndroidDevTools/AndroidSDK/.android/build-cache/b39492d6f17bbc333a3ebd551ef7acddf89c2a02/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
