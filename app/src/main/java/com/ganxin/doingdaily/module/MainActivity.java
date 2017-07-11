@@ -20,6 +20,7 @@ import com.ganxin.doingdaily.module.about.AboutFragment;
 import com.ganxin.doingdaily.module.loading.LoadingActivity;
 import com.ganxin.doingdaily.module.news.NewsFragment;
 import com.ganxin.doingdaily.module.wechat.WechatFragment;
+import com.ganxin.doingdaily.module.zhihu.ZhihuFragment;
 
 import java.util.ArrayList;
 
@@ -63,8 +64,10 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
 
         //添加tab（因为tab里的Fragment的添加方式不是预先加入Layout容器内，无需开启Fragment的懒加载）
         ArrayList<TabLayout.Tab> tabs = new ArrayList<>();
+        tabs.add(new TabLayout.Tab(R.drawable.ic_bottomtabbar_zhihu, R.string.tab_zhihu, ZhihuFragment.class));
         tabs.add(new TabLayout.Tab(R.drawable.ic_bottomtabbar_news, R.string.tab_news, NewsFragment.class));
         tabs.add(new TabLayout.Tab(R.drawable.ic_bottomtabbar_wechat, R.string.tab_wechat, WechatFragment.class));
+        //tabs.add(new TabLayout.Tab(R.drawable.ic_bottomtabbar_picture, R.string.tab_picture, WechatFragment.class));
         tabs.add(new TabLayout.Tab(R.drawable.ic_bottomtabbar_about, R.string.tab_about, AboutFragment.class));
         mTabLayout.setUpData(tabs, this);
         mTabLayout.setCurrentTab(0);
