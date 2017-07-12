@@ -3,6 +3,7 @@ package com.ganxin.doingdaily.common.utils;
 import android.text.TextUtils;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,6 +18,12 @@ import java.util.Locale;
  * email : ganxinvip@163.com <br/>
  */
 public class DateUtils {
+
+    public static final DateFormat DEFAULT_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+    public static final DateFormat FORMAT_yyyy_MM_dd = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    public static final DateFormat FORMAT_yyyyMMdd = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+    public static final DateFormat FORMAT_ZH_yyyyMMdd = new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
+    public static final DateFormat FORMAT_ZH_yyyyMMddHHmmss = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss", Locale.getDefault());
 
     private DateUtils() {
 
@@ -83,7 +90,7 @@ public class DateUtils {
         return time;
     }
 
-    public static String getTimeStampString(){
+    public static String getTimeStampString() {
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
         return timestamp.toString();
@@ -194,4 +201,122 @@ public class DateUtils {
             return gap + type + "前";
         }
     }
+
+    /**
+     * 将时间字符串转为Date类型
+     * <p>time格式为yyyy-MM-dd HH:mm:ss</p>
+     *
+     * @param time 时间字符串
+     * @return Date类型
+     */
+    public static Date string2Date(final String time) {
+        return string2Date(time, DEFAULT_FORMAT);
+    }
+
+    /**
+     * 将时间字符串转为Date类型
+     * <p>time格式为format</p>
+     *
+     * @param time   时间字符串
+     * @param format 时间格式
+     * @return Date类型
+     */
+    public static Date string2Date(final String time, final DateFormat format) {
+        try {
+            return format.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 将时间字符串转为Date 字符串
+     * <p>time格式为format</p>
+     *
+     * @param time   时间字符串，格式为 yyyy-MM-dd HH:mm:ss
+     * @param format 时间格式 需要转换的格式
+     * @return Date类型
+     */
+    public static String string2DateString1(final String time, final DateFormat format) {
+        Date formatDate = string2Date(time, DEFAULT_FORMAT);
+        return date2String(formatDate, format);
+    }
+
+    /**
+     * 将时间字符串转为Date 字符串
+     * <p>time格式为format</p>
+     *
+     * @param time   时间字符串，格式为 yyyy-MM-dd
+     * @param format 时间格式 需要转换的格式
+     * @return Date类型
+     */
+    public static String string2DateString2(final String time, final DateFormat format) {
+        Date formatDate = string2Date(time, FORMAT_yyyy_MM_dd);
+        return date2String(formatDate, format);
+    }
+
+    /**
+     * 将时间字符串转为Date 字符串
+     * <p>time格式为format</p>
+     *
+     * @param time   时间字符串，格式为 yyyyMMdd
+     * @param format 时间格式 需要转换的格式
+     * @return Date类型
+     */
+    public static String string2DateString3(final String time, final DateFormat format) {
+        Date formatDate = string2Date(time, FORMAT_yyyyMMdd);
+        return date2String(formatDate, format);
+    }
+
+    /**
+     * 将时间字符串转为Date 字符串
+     * <p>time格式为format</p>
+     *
+     * @param time   时间字符串，格式为 yyyy年MM月dd日
+     * @param format 时间格式 需要转换的格式
+     * @return Date类型
+     */
+    public static String string2DateString4(final String time, final DateFormat format) {
+        Date formatDate = string2Date(time, FORMAT_ZH_yyyyMMdd);
+        return date2String(formatDate, format);
+    }
+
+    /**
+     * 将时间字符串转为Date 字符串
+     * <p>time格式为format</p>
+     *
+     * @param time   时间字符串，格式为 yyyy年MM月dd日 HH:mm:ss
+     * @param format 时间格式 需要转换的格式
+     * @return Date类型
+     */
+    public static String string2DateString5(final String time, final DateFormat format) {
+        Date formatDate = string2Date(time, FORMAT_ZH_yyyyMMddHHmmss);
+        return date2String(formatDate, format);
+    }
+
+    /**
+     * 将Date类型转为时间字符串
+     * <p>格式为yyyy-MM-dd HH:mm:ss</p>
+     *
+     * @param date Date类型时间
+     * @return 时间字符串
+     */
+    public static String date2String(final Date date) {
+        return date2String(date, DEFAULT_FORMAT);
+    }
+
+    /**
+     * 将Date类型转为时间字符串
+     * <p>格式为format</p>
+     *
+     * @param date   Date类型时间
+     * @param format 时间格式
+     * @return 时间字符串
+     */
+    public static String date2String(final Date date, final DateFormat format) {
+        return format.format(date);
+    }
+
+
 }

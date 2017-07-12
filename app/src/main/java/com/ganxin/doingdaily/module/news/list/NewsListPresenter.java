@@ -2,7 +2,7 @@ package com.ganxin.doingdaily.module.news.list;
 
 import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
 import com.ganxin.doingdaily.common.data.model.NewsContent;
-import com.ganxin.doingdaily.common.data.source.NewsDataSource;
+import com.ganxin.doingdaily.common.data.source.callback.NewsDataSource;
 import com.ganxin.doingdaily.common.data.source.NewsRepository;
 
 import java.util.HashMap;
@@ -44,14 +44,14 @@ public class NewsListPresenter extends NewsListContract.Presenter {
                         } else {
                             getView().addContentList(contentlistBeanList);
                         }
-                        getView().loadComplete();
                     }
                 }
+                getView().loadComplete();
             }
 
             @Override
             public void onDataNotAvailable() {
-
+                getView().loadComplete();
             }
         });
     }

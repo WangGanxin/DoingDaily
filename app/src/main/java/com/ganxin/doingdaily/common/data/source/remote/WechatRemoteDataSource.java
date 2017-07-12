@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.ganxin.doingdaily.common.data.model.WechatCategory;
 import com.ganxin.doingdaily.common.data.model.WechatContent;
-import com.ganxin.doingdaily.common.data.source.WechatDataSource;
+import com.ganxin.doingdaily.common.data.source.callback.WechatDataSource;
 import com.ganxin.doingdaily.common.network.NetworkManager;
 
 import java.util.Map;
@@ -35,7 +35,7 @@ public class WechatRemoteDataSource implements WechatDataSource {
 
     @Override
     public void getCategory(@NonNull final GetCategoryCallback callback) {
-        NetworkManager.getAPI().getWechatCategory().subscribeOn(Schedulers.newThread())//子线程访问网络
+        NetworkManager.getShowAPI().getWechatCategory().subscribeOn(Schedulers.newThread())//子线程访问网络
                 .observeOn(AndroidSchedulers.mainThread())//回调到主线程
                 .subscribe(new Action1<WechatCategory>() {
                     @Override
@@ -52,7 +52,7 @@ public class WechatRemoteDataSource implements WechatDataSource {
 
     @Override
     public void getCategoryContent(@NonNull Map<String, String> params, @NonNull final GetCategoryContentCallback callback) {
-        NetworkManager.getAPI().getWechatCategoryContent(params).subscribeOn(Schedulers.newThread())//子线程访问网络
+        NetworkManager.getShowAPI().getWechatCategoryContent(params).subscribeOn(Schedulers.newThread())//子线程访问网络
                 .observeOn(AndroidSchedulers.mainThread())//回调到主线程
                 .subscribe(new Action1<WechatContent>() {
                     @Override

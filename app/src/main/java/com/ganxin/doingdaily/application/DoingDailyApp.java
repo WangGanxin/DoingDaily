@@ -11,10 +11,13 @@ import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.source.NewsRepository;
 import com.ganxin.doingdaily.common.data.source.WechatRepository;
+import com.ganxin.doingdaily.common.data.source.ZhihuRepository;
 import com.ganxin.doingdaily.common.data.source.local.NewsLocalDataSource;
 import com.ganxin.doingdaily.common.data.source.local.WechatLocalDataSource;
+import com.ganxin.doingdaily.common.data.source.local.ZhihuLocalDataSource;
 import com.ganxin.doingdaily.common.data.source.remote.NewsRemoteDataSource;
 import com.ganxin.doingdaily.common.data.source.remote.WechatRemoteDataSource;
+import com.ganxin.doingdaily.common.data.source.remote.ZhihuRemoteDataSource;
 import com.ganxin.doingdaily.common.utils.AppStatusTracker;
 import com.ganxin.doingdaily.module.MainActivity;
 import com.orhanobut.logger.Logger;
@@ -60,6 +63,7 @@ public class DoingDailyApp extends Application {
     private void initRepository() {
         NewsRepository.initialize(NewsRemoteDataSource.getInstance(),NewsLocalDataSource.getInstance(this));
         WechatRepository.initialize(WechatRemoteDataSource.getInstance(),WechatLocalDataSource.getInstance(this));
+        ZhihuRepository.initialize(ZhihuRemoteDataSource.getInstance(), ZhihuLocalDataSource.getInstance(this));
     }
 
     private void initLeanCloud() {

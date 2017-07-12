@@ -1,7 +1,7 @@
 package com.ganxin.doingdaily.module.wechat;
 
 import com.ganxin.doingdaily.common.data.model.WechatCategory;
-import com.ganxin.doingdaily.common.data.source.WechatDataSource;
+import com.ganxin.doingdaily.common.data.source.callback.WechatDataSource;
 import com.ganxin.doingdaily.common.data.source.WechatRepository;
 
 import java.util.Collections;

@@ -15,7 +15,8 @@ public class ConstantValues {
 
     public static final String APP_ID = "29706"; // 应用ID
     public static final String APP_SECRET = "5d9f976ed7ba4ba78310ed6f4a717ee7"; // 应用密钥
-    public static final String BASE_URL = "http://route.showapi.com/"; // HOST地址:易源接口
+    public static final String BASE_URL_SHOWAPI = "http://route.showapi.com/"; // HOST地址:易源接口
+    public static final String BASE_URL_ZHIHU = "http://news-at.zhihu.com/api/4/"; // HOST地址:知乎接口
     public static final String GITHUB_URL = "https://github.com/WangGanxin/DoingDaily"; // GitHub项目地址
     public static final String BUGLY_URL = "https://beta.bugly.qq.com/doingdaily"; // Bugly下载地址
 
@@ -63,9 +64,14 @@ public class ConstantValues {
     public static final String KEY_CATEGORY_ID = "key_category_id";
     public static final String KEY_VIEW_TYPE = "key_view_type";
     public static final String KEY_BEAN = "key_bean";
+    public static final String KEY_ZHIHU_ARTICLE_ID = "key_zhihu_article_id";
 
     public static final int VIEW_TYPE_TXT = 10;
     public static final int VIEW_TYPE_IMAGE = 11;
+
+    public static final int VIEW_ZHIHU_BANNER = 20;
+    public static final int VIEW_ZHIHU_SUMMARY = 21;
+    public static final int VIEW_ZHIHU_DATE = 22;
 
     public static final String SHARE_IMAGE="share_image";
 }

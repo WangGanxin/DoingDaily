@@ -43,14 +43,16 @@
                 android:layout_height="wrap_content"
                 android:text="read"
                 android:textColor="@color/text_level_4"
-                android:textSize="@dimen/text_f3"/>
+                android:textSize="@dimen/text_f3"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/split_txt"
                 android:textColor="@color/text_level_4"
-                android:textSize="@dimen/text_f3"/>
+                android:textSize="@dimen/text_f3"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/wechat_item_likeNum"
@@ -58,14 +60,16 @@
                 android:layout_height="wrap_content"
                 android:text="like"
                 android:textColor="@color/text_level_4"
-                android:textSize="@dimen/text_f3"/>
+                android:textSize="@dimen/text_f3"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/split_txt"
                 android:textColor="@color/text_level_4"
-                android:textSize="@dimen/text_f3"/>
+                android:textSize="@dimen/text_f3"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/wechat_item_time"

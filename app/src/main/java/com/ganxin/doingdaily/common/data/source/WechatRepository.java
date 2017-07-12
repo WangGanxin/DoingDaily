@@ -2,6 +2,8 @@ package com.ganxin.doingdaily.common.data.source;
 
 import android.support.annotation.NonNull;
 
+import com.ganxin.doingdaily.common.data.source.callback.WechatDataSource;
+
 import java.util.Map;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;

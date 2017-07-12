@@ -2,6 +2,8 @@ package com.ganxin.doingdaily.common.data.source;
 
 import android.support.annotation.NonNull;
 
+import com.ganxin.doingdaily.common.data.source.callback.NewsDataSource;
+
 import java.util.Map;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
@@ -12,7 +14,7 @@ import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
  * date : 2017/1/5 <br/>
  * email : mail@wangganxin.me <br/>
  */
-public class NewsRepository implements NewsDataSource{
+public class NewsRepository implements NewsDataSource {
     private static NewsRepository INSTANCE = null;
 
     private final NewsDataSource mNewsRemoteDataSource;

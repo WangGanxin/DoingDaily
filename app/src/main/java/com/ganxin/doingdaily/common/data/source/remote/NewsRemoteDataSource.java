@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.ganxin.doingdaily.common.data.model.NewsChannel;
 import com.ganxin.doingdaily.common.data.model.NewsContent;
-import com.ganxin.doingdaily.common.data.source.NewsDataSource;
+import com.ganxin.doingdaily.common.data.source.callback.NewsDataSource;
 import com.ganxin.doingdaily.common.network.NetworkManager;
 
 import java.util.Map;
@@ -36,7 +36,7 @@ public class NewsRemoteDataSource implements NewsDataSource {
 
     @Override
     public void getChannel(@NonNull final GetChannelCallback callback) {
-        NetworkManager.getAPI().getNewsChannel().subscribeOn(Schedulers.newThread())//子线程访问网络
+        NetworkManager.getShowAPI().getNewsChannel().subscribeOn(Schedulers.newThread())//子线程访问网络
                 .observeOn(AndroidSchedulers.mainThread())//回调到主线程
                 .subscribe(new Action1<NewsChannel>() {
                     @Override
@@ -53,7 +53,7 @@ public class NewsRemoteDataSource implements NewsDataSource {
 
     @Override
     public void getChannelContent(@NonNull Map<String, String> params, @NonNull final GetNewsContentCallback callback) {
-        NetworkManager.getAPI().getNewsContent(params).subscribeOn(Schedulers.newThread())
+        NetworkManager.getShowAPI().getNewsContent(params).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<NewsContent>() {
                     @Override

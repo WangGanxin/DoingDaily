@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.common.network;
+package com.ganxin.doingdaily.common.network.api;
 
 import com.ganxin.doingdaily.common.data.model.NewsChannel;
 import com.ganxin.doingdaily.common.data.model.NewsContent;
@@ -17,9 +17,10 @@ import rx.Observable;
  * date : 2016/10/31 <br/>
  * email : ganxinvip@163.com <br/>
  */
-public interface Api {
+public interface ShowApi {
     /**
      * 获取新闻频道
+     *
      * @return
      */
     @GET("109-34")
@@ -27,14 +28,16 @@ public interface Api {
 
     /**
      * 获取新闻内容
+     *
      * @param options
      * @return
      */
     @GET("109-35")
-    Observable<NewsContent> getNewsContent(@QueryMap Map<String,String> options);
+    Observable<NewsContent> getNewsContent(@QueryMap Map<String, String> options);
 
     /**
      * 获取微信精选文章类别
+     *
      * @return
      */
     @GET("582-1")
@@ -42,8 +45,9 @@ public interface Api {
 
     /**
      * 获取微信精选文章列表
+     *
      * @return
      */
     @GET("582-2")
-    Observable<WechatContent> getWechatCategoryContent(@QueryMap Map<String,String> options);
+    Observable<WechatContent> getWechatCategoryContent(@QueryMap Map<String, String> options);
 }

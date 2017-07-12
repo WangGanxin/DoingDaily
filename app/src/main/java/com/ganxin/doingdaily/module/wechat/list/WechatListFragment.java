@@ -63,9 +63,7 @@ public class WechatListFragment extends BaseListFragment<WechatListContract.View
 
     @Override
     public void onRefresh(int action) {
-        if (mDataList == null) {
-            mDataList = new ArrayList<>();
-        }
+
         if (action == PullRecycler.ACTION_PULL_TO_REFRESH) {
             pageIndex = 1;
         } else {

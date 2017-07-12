@@ -31,7 +31,7 @@ public abstract class BaseListFragment<V extends BaseView,T extends BasePresente
     protected PullRecycler pullRecycler;
 
     protected BaseListAdapter adapter;
-    protected ArrayList<D> mDataList;
+    protected ArrayList<D> mDataList=new ArrayList<>();
 
     @Override
     public int setContentLayout() {

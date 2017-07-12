@@ -3,7 +3,7 @@ package com.ganxin.doingdaily.common.data.source.local;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.ganxin.doingdaily.common.data.source.NewsDataSource;
+import com.ganxin.doingdaily.common.data.source.callback.NewsDataSource;
 
 import java.util.Map;
 

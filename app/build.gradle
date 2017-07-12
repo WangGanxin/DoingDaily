@@ -116,4 +116,7 @@ dependencies {
     compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
     compile 'cn.leancloud.android:avoscloud-statistics:v3.+'
     compile 'cn.leancloud.android:avoscloud-feedback:v3.+@aar'
+
+    // https://github.com/youth5201314/banner
+    compile 'com.youth.banner:banner:1.4.9'
 }

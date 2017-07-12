@@ -1,7 +1,7 @@
 package com.ganxin.doingdaily.module.news;
 
 import com.ganxin.doingdaily.common.data.model.NewsChannel;
-import com.ganxin.doingdaily.common.data.source.NewsDataSource;
+import com.ganxin.doingdaily.common.data.source.callback.NewsDataSource;
 import com.ganxin.doingdaily.common.data.source.NewsRepository;
 
 import java.util.List;

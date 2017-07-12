@@ -2,7 +2,7 @@ package com.ganxin.doingdaily.module.wechat.list;
 
 import com.ganxin.doingdaily.common.data.model.WechatContent;
 import com.ganxin.doingdaily.common.data.model.WechatContentlistBean;
-import com.ganxin.doingdaily.common.data.source.WechatDataSource;
+import com.ganxin.doingdaily.common.data.source.callback.WechatDataSource;
 import com.ganxin.doingdaily.common.data.source.WechatRepository;
 
 import java.util.HashMap;
@@ -39,14 +39,14 @@ public class WechatListPresenter extends WechatListContract.Presenter {
                         } else {
                             getView().addContentList(list);
                         }
-                        getView().loadComplete();
                     }
                 }
+                getView().loadComplete();
             }
 
             @Override
             public void onDataNotAvailable() {
-
+                getView().loadComplete();
             }
         });
     }

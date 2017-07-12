@@ -21,7 +21,6 @@ import com.ganxin.doingdaily.common.widgets.pullrecycler.PullRecycler;
 import com.ganxin.doingdaily.framework.BaseListFragment;
 import com.ganxin.doingdaily.module.news.article.NewsArticleFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -84,9 +83,6 @@ public class NewsListFragment extends BaseListFragment<NewsListContract.View, Ne
     @Override
     public void onRefresh(int action) {
 
-        if (mDataList == null) {
-            mDataList = new ArrayList<>();
-        }
         if (action == PullRecycler.ACTION_PULL_TO_REFRESH) {
             pageIndex = 1;
         } else {

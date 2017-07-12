@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.common.data.source;
+package com.ganxin.doingdaily.common.data.source.callback;
 
 import android.support.annotation.NonNull;
 
