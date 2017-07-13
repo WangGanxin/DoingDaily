@@ -1,6 +1,6 @@
 package com.ganxin.doingdaily.module.zhihu.article;
 
-import com.ganxin.doingdaily.common.data.model.ZhihuBeforeNewsBean;
+import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
 import com.ganxin.doingdaily.framework.BasePresenter;
 import com.ganxin.doingdaily.framework.BaseView;
 
@@ -13,12 +13,15 @@ import com.ganxin.doingdaily.framework.BaseView;
 public interface ZhihuArticleContract {
 
     interface View extends BaseView {
-        void setArticle(ZhihuBeforeNewsBean beforeNewsBean);
+        String getArticleId();
+        void setArticle(ZhihuArticleBean articleBean);
+        void loading();
         void loadComplete();
         void loadError();
+        void backAction();
     }
 
     abstract class Presenter extends BasePresenter<View> {
-        protected abstract void getArticle();
+        protected abstract void getArticle(String articleId);
     }
 }

@@ -1,8 +1,5 @@
 package com.ganxin.doingdaily.module.zhihu.list;
 
-import android.os.Build;
-import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,11 +168,15 @@ public class ZhihuListFragment extends BaseListFragment<ZhihuListContract.View, 
             banner.setOnBannerListener(new OnBannerListener() {
                 @Override
                 public void OnBannerClick(int position) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), banner, ConstantValues.SHARE_IMAGE).toBundle();
-                        ActivityUtils.startActivityByAnimation(getActivity(), ZhihuArticleFragment.newInstance(1234, ""), bundle);
-                    } else {
-                        ActivityUtils.startActivity(mActivity, ZhihuArticleFragment.newInstance(1234, ""));
+
+                    try {
+                        String title=topStories.get(position).getTitle();
+                        String url=topStories.get(position).getImage();
+                        int id=topStories.get(position).getId();
+
+                        ActivityUtils.startActivity(mActivity, ZhihuArticleFragment.newInstance(title,id, url));
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             });
@@ -240,23 +241,27 @@ public class ZhihuListFragment extends BaseListFragment<ZhihuListContract.View, 
                             .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                             .into(mItemImg);
                 } else {
+                    Glide.with(getContext())
+                            .load(bean.getImages().get(0))
+                            .placeholder(R.drawable.placeholder_img_loading)
+                            .crossFade()
+                            .centerCrop()
+                            .into(mItemImg);
                 }
-                Glide.with(getContext())
-                        .load(bean.getImages().get(0))
-                        .placeholder(R.drawable.placeholder_img_loading)
-                        .crossFade()
-                        .centerCrop()
-                        .into(mItemImg);
             }
         }
 
         @Override
         public void onItemClick(View view, int position) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), mItemImg, ConstantValues.SHARE_IMAGE).toBundle();
-                ActivityUtils.startActivityByAnimation(getActivity(), ZhihuArticleFragment.newInstance(1234, ""), bundle);
-            } else {
-                ActivityUtils.startActivity(mActivity, ZhihuArticleFragment.newInstance(1234, ""));
+
+            try {
+                String title=mDataList.get(position).getTitle();
+                String url=mDataList.get(position).getImages().get(0);
+                int id=mDataList.get(position).getId();
+
+                ActivityUtils.startActivity(mActivity, ZhihuArticleFragment.newInstance(title,id,url));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

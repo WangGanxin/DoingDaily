@@ -64,7 +64,9 @@ public class ConstantValues {
     public static final String KEY_CATEGORY_ID = "key_category_id";
     public static final String KEY_VIEW_TYPE = "key_view_type";
     public static final String KEY_BEAN = "key_bean";
+    public static final String KEY_ZHIHU_ARTICLE_TITLE = "key_zhihu_article_title";
     public static final String KEY_ZHIHU_ARTICLE_ID = "key_zhihu_article_id";
+    public static final String KEY_ZHIHU_ARTICLE_IMAGE = "key_zhihu_article_image";
 
     public static final int VIEW_TYPE_TXT = 10;
     public static final int VIEW_TYPE_IMAGE = 11;

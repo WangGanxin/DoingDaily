@@ -1,32 +1,38 @@
 package com.ganxin.doingdaily.module.zhihu.article;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebBackForwardList;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
-import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
-import com.ganxin.doingdaily.common.data.model.ZhihuBeforeNewsBean;
+import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
 import com.ganxin.doingdaily.common.share.ShareController;
 import com.ganxin.doingdaily.common.utils.SnackbarUtil;
+import com.ganxin.doingdaily.common.utils.SystemHelper;
 import com.ganxin.doingdaily.framework.BaseFragment;
+import com.ganxin.library.SwipeLoadDataLayout;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 
 import butterknife.BindView;
 
@@ -50,17 +56,24 @@ public class ZhihuArticleFragment extends BaseFragment<ZhihuArticleContract.View
     AppBarLayout appBarLayout;
     @BindView(R.id.webView)
     WebView webView;
+    @BindView(R.id.swipeLoadDataLayout)
+    SwipeLoadDataLayout swipeLoadDataLayout;
+
+    private ZhihuArticleBean articleBean;
+    private String articleId;
 
     /**
-     * @param articleId 文章Id
-     * @param imageUrl  图片地址
+     * @param articleTitle 文章标题
+     * @param articleId    文章Id
+     * @param imageUrl     图片地址
      * @return
      */
-    public static ZhihuArticleFragment newInstance(int articleId,String imageUrl) {
+    public static ZhihuArticleFragment newInstance(String articleTitle, int articleId, String imageUrl) {
         ZhihuArticleFragment fragment = new ZhihuArticleFragment();
         Bundle bundle = new Bundle();
+        bundle.putString(ConstantValues.KEY_ZHIHU_ARTICLE_TITLE, articleTitle);
         bundle.putInt(ConstantValues.KEY_ZHIHU_ARTICLE_ID, articleId);
-      //  bundle.putInt(ConstantValues.KEY_ZHIHU_ARTICLE_ID, imageUrl);
+        bundle.putString(ConstantValues.KEY_ZHIHU_ARTICLE_IMAGE, imageUrl);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -83,50 +96,62 @@ public class ZhihuArticleFragment extends BaseFragment<ZhihuArticleContract.View
 
         setHasOptionsMenu(true); //处理 onOptionsItemSelected方法不被调用
 
-        NewsContentlistBean bean = (NewsContentlistBean) getArguments().getSerializable(ConstantValues.KEY_BEAN);
-        int type = getArguments().getInt(ConstantValues.KEY_VIEW_TYPE);
 
-        if (bean != null) {
-            switch (type) {
-                case ConstantValues.VIEW_TYPE_TXT:
-                    headImage.setVisibility(View.GONE);
-                    break;
-                case ConstantValues.VIEW_TYPE_IMAGE:
-                    if (bean.getImageurls().get(0).getUrl().endsWith(".gif")) {
-                        Glide.with(getContext())
-                                .load(bean.getImageurls().get(0).getUrl())
-                                .asGif()
-                                .placeholder(R.drawable.placeholder_img_loading)
-                                .dontAnimate()
-                                .centerCrop()
-                                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                                .into(headImage);
-                    } else {
-                        Glide.with(getContext())
-                                .load(bean.getImageurls().get(0).getUrl())
-                                .placeholder(R.drawable.placeholder_img_loading)
-                                .crossFade()
-                                .centerCrop()
-                                .into(headImage);
-                    }
+        final String articleTitle = getArguments().getString(ConstantValues.KEY_ZHIHU_ARTICLE_TITLE);
+        String imageUrl = getArguments().getString(ConstantValues.KEY_ZHIHU_ARTICLE_IMAGE);
+        this.articleId = String.valueOf(getArguments().getInt(ConstantValues.KEY_ZHIHU_ARTICLE_ID));
 
-                    headImage.setVisibility(View.VISIBLE);
-                    ViewCompat.setTransitionName(headImage, ConstantValues.SHARE_IMAGE);
-                    break;
-            }
-
-
-            collapsingToolbarLayout.setTitle(bean.getTitle());
-
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-            webView.getSettings().setDomStorageEnabled(true);// 开启DOM storage API 功能
-            webView.getSettings().setDatabaseEnabled(true);// 开启database storage API功能
-            webView.getSettings().setAppCacheEnabled(true); // 开启Application Cache功能
-
-            String html = bean.getHtml().replaceFirst("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>", ""); //去除第一张IMG标签图片
-            webView.loadDataWithBaseURL("x-data://base", html, "text/html", "UTF-8", null);
+        if (!TextUtils.isEmpty(articleTitle)) {
+            collapsingToolbarLayout.setTitle(articleTitle);
         }
+
+        if (!TextUtils.isEmpty(imageUrl)) {
+
+            if (imageUrl.endsWith(".gif")) {
+                Glide.with(getContext())
+                        .load(imageUrl)
+                        .asGif()
+                        .placeholder(R.drawable.placeholder_img_loading2)
+                        .dontAnimate()
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(headImage);
+            } else {
+                Glide.with(getContext())
+                        .load(imageUrl)
+                        .placeholder(R.drawable.placeholder_img_loading2)
+                        .crossFade()
+                        .centerCrop()
+                        .into(headImage);
+            }
+        }
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webView.getSettings().setDomStorageEnabled(true);// 开启DOM storage API 功能
+        webView.getSettings().setDatabaseEnabled(true);// 开启database storage API功能
+        webView.getSettings().setAppCacheEnabled(true); // 开启Application Cache功能
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
+
+        swipeLoadDataLayout.setColorSchemeResources(
+                R.color.colorPrimary,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeLoadDataLayout.setOnReloadListener(new SwipeLoadDataLayout.OnReloadListener() {
+            @Override
+            public void onReload(View v, int status) {
+                if (status != SwipeLoadDataLayout.LOADING) {
+                    mPresenter.getArticle(getArticleId());
+                }
+            }
+        });
     }
 
     @Override
@@ -141,10 +166,10 @@ public class ZhihuArticleFragment extends BaseFragment<ZhihuArticleContract.View
                 onBack();
                 return false;
             case R.id.action_share:
-                //share();
+                share();
                 break;
             case R.id.action_browser:
-                //SystemHelper.SystemBrowser(getActivity(), bean.getLink());
+                SystemHelper.SystemBrowser(getActivity(), articleBean.getShare_url());
                 break;
             default:
                 break;
@@ -152,15 +177,15 @@ public class ZhihuArticleFragment extends BaseFragment<ZhihuArticleContract.View
         return super.onOptionsItemSelected(item);
     }
 
-//    private void share() {
-//        if (bean != null) {
-//            if (bean.isHavePic()) {
-//                ShareController.getInstance().shareLink(mActivity, bean.getLink(), bean.getTitle(), bean.getImageurls().get(0).getUrl(), this);
-//            } else {
-//                ShareController.getInstance().shareLink(mActivity, bean.getLink(), bean.getTitle(), this);
-//            }
-//        }
-//    }
+    private void share() {
+        if (articleBean != null) {
+            if (!TextUtils.isEmpty(articleBean.getImage())) {
+                ShareController.getInstance().shareLink(mActivity, articleBean.getShare_url(), articleBean.getTitle(), articleBean.getImage(), this);
+            } else {
+                ShareController.getInstance().shareLink(mActivity, articleBean.getShare_url(), articleBean.getTitle(), this);
+            }
+        }
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -190,18 +215,79 @@ public class ZhihuArticleFragment extends BaseFragment<ZhihuArticleContract.View
 
     }
 
-    @Override
-    public void setArticle(ZhihuBeforeNewsBean beforeNewsBean) {
 
+    @Override
+    public String getArticleId() {
+        return this.articleId;
+    }
+
+    @Override
+    public void setArticle(ZhihuArticleBean articleBean) {
+        this.articleBean = articleBean;
+        loadLocalHtml(articleBean.getBody());
+    }
+
+    @Override
+    public void loading() {
+        webView.setVisibility(View.GONE);
+        swipeLoadDataLayout.setVisibility(View.VISIBLE);
+        swipeLoadDataLayout.setStatus(SwipeLoadDataLayout.LOADING);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPresenter.getArticle(getArticleId());
+            }
+        }, 300);
     }
 
     @Override
     public void loadComplete() {
-
+        swipeLoadDataLayout.setStatus(SwipeLoadDataLayout.SUCCESS);
+        swipeLoadDataLayout.setVisibility(View.GONE);
+        webView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void loadError() {
+        swipeLoadDataLayout.setVisibility(View.VISIBLE);
+        swipeLoadDataLayout.setStatus(SwipeLoadDataLayout.ERROR);
+        webView.setVisibility(View.GONE);
+    }
 
+    @Override
+    protected void onKeyDown(int keyCode, KeyEvent event) {
+        super.onKeyDown(keyCode, event);
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            backAction();
+        }
+    }
+
+    private void loadLocalHtml(String bodyHtml) {
+        String css = "<link rel=\"stylesheet\" href=\"file:///android_asset/css/zhihu.css\" type=\"text/css\">";
+        String html = "<html><head>" + css + "</head><body>" + bodyHtml + "</body></html>";
+        html = html.replace("<div class=\"img-place-holder\">", "");
+        webView.loadDataWithBaseURL("x-data://base", html, "text/html", "UTF-8", null);
+    }
+
+    @Override
+    public void backAction() {
+        String curUrl = webView.getUrl();
+        boolean isExit = true;
+        if (!TextUtils.isEmpty(curUrl)) {
+            if (webView.canGoBack()) {
+                WebBackForwardList backList = webView.copyBackForwardList();
+
+                if (backList != null && backList.getCurrentIndex() == 1) {
+                    isExit = false;
+                    loadLocalHtml(articleBean.getBody());
+                }
+            }
+        }
+
+        if (isExit) {
+            mActivity.finish();
+        }
     }
 }

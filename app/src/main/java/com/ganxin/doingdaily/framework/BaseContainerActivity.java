@@ -2,6 +2,7 @@ package com.ganxin.doingdaily.framework;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.utils.ActivityUtils;
@@ -43,12 +44,20 @@ public class BaseContainerActivity extends BaseActivity {
 
     }
 
-    public static void setFragment(BaseFragment fragment){
-        baseFragment=fragment;
+    public static void setFragment(BaseFragment fragment) {
+        baseFragment = fragment;
     }
 
     public void addFragment(Fragment fragment) {
         ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.contentFrame);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (baseFragment != null) {
+            baseFragment.onKeyDown(keyCode,event);
+        }
+        return false;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.ganxin.doingdaily.common.data.source.remote;
 
 import android.support.annotation.NonNull;
 
+import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
 import com.ganxin.doingdaily.common.data.model.ZhihuBeforeNewsBean;
 import com.ganxin.doingdaily.common.data.model.ZhihuLatestNewsBean;
 import com.ganxin.doingdaily.common.data.source.callback.ZhihuDataSource;
@@ -69,10 +70,10 @@ public class ZhihuRemoteDataSource implements ZhihuDataSource {
     public void getArticle(@NonNull String articleId, @NonNull final GetArticleCallback callback) {
         NetworkManager.getZhihuAPI().getZhihuArticle(articleId).subscribeOn(Schedulers.newThread())//子线程访问网络
                 .observeOn(AndroidSchedulers.mainThread())//回调到主线程
-                .subscribe(new Action1<String>() {
+                .subscribe(new Action1<ZhihuArticleBean>() {
                     @Override
-                    public void call(String zhihuLatestNewsBean) {
-                       // callback.onLatestNewsLoaded(zhihuLatestNewsBean);
+                    public void call(ZhihuArticleBean articleBean) {
+                        callback.onLatestNewsLoaded(articleBean);
                     }
                 }, new Action1<Throwable>() {
                     @Override

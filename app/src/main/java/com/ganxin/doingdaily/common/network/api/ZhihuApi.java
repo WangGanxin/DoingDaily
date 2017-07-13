@@ -1,5 +1,6 @@
 package com.ganxin.doingdaily.common.network.api;
 
+import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
 import com.ganxin.doingdaily.common.data.model.ZhihuBeforeNewsBean;
 import com.ganxin.doingdaily.common.data.model.ZhihuLatestNewsBean;
 
@@ -39,5 +40,5 @@ public interface ZhihuApi {
      * @return
      */
     @GET("news/{articleId}")
-    Observable<String> getZhihuArticle(@Path("articleId") String articleId);
+    Observable<ZhihuArticleBean> getZhihuArticle(@Path("articleId") String articleId);
 }

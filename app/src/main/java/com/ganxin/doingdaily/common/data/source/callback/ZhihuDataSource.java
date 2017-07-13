@@ -2,6 +2,7 @@ package com.ganxin.doingdaily.common.data.source.callback;
 
 import android.support.annotation.NonNull;
 
+import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
 import com.ganxin.doingdaily.common.data.model.ZhihuBeforeNewsBean;
 import com.ganxin.doingdaily.common.data.model.ZhihuLatestNewsBean;
 
@@ -29,7 +30,7 @@ public interface ZhihuDataSource {
 
     interface GetArticleCallback {
 
-        void onLatestNewsLoaded(ZhihuLatestNewsBean zhihuLatestNewsBean);
+        void onLatestNewsLoaded(ZhihuArticleBean zhihuArticleBean);
 
         void onDataNotAvailable();
     }
