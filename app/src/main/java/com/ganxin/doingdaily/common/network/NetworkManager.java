@@ -4,6 +4,7 @@ import com.ganxin.doingdaily.application.DoingDailyApp;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.network.Interceptor.HttpCacheInterceptor;
 import com.ganxin.doingdaily.common.network.Interceptor.HttpEncryptInterceptor;
+import com.ganxin.doingdaily.common.network.api.GankApi;
 import com.ganxin.doingdaily.common.network.api.ShowApi;
 import com.ganxin.doingdaily.common.network.api.ZhihuApi;
 import com.ganxin.doingdaily.common.utils.LogUtil;
@@ -26,6 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkManager {
     private static ShowApi showApi;
     private static ZhihuApi zhihuApi;
+    private static GankApi gankApi;
 
     private NetworkManager() {
 
@@ -65,6 +67,23 @@ public class NetworkManager {
             zhihuApi = retrofit.create(ZhihuApi.class);
         }
         return zhihuApi;
+    }
+
+    /**
+     * 干货集中营api
+     * @return
+     */
+    public static GankApi getGankAPI() {
+        if (gankApi == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .client(createOkHttp2(ConstantValues.HTTP_CACHE_ENABLE))
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .baseUrl(ConstantValues.BASE_URL_GANK)
+                    .build();
+            gankApi = retrofit.create(GankApi.class);
+        }
+        return gankApi;
     }
 
     /**

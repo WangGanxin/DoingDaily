@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.picture;
+package com.ganxin.doingdaily.module.picture.browser;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,12 +14,12 @@ import com.ganxin.doingdaily.module.news.list.NewsListFragment;
 import butterknife.BindView;
 
 /**
- * Description : 美图界面  <br/>
+ * Description : 图片浏览界面  <br/>
  * author : WangGanxin <br/>
- * date : 2017/07/10 <br/>
+ * date : 2017/07/17 <br/>
  * email : mail@wangganxin.me <br/>
  */
-public class PictureFragment extends BaseFragment<PictureContract.View, PictureContract.Presenter> implements PictureContract.View, ITabFragment {
+public class PictureBrowserFragment extends BaseFragment<PictureBrowserContract.View, PictureBrowserContract.Presenter> implements PictureBrowserContract.View, ITabFragment {
 
     @BindView(R.id.mTopTabLayout)
     TabLayout mTopTabLayout;
@@ -63,7 +63,7 @@ public class PictureFragment extends BaseFragment<PictureContract.View, PictureC
     }
 
     @Override
-    protected PictureContract.Presenter setPresenter() {
-        return new PicturePresenter();
+    protected PictureBrowserContract.Presenter setPresenter() {
+        return new PictureBrowserPresenter();
     }
 }

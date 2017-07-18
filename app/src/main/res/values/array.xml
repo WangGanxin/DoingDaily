@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tab_pictures">
+        <item>频道A</item>
+        <item>频道B</item>
+    </string-array>
+</resources>

@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
 
+import java.util.Map;
+
 /**
  * Description : 公共数据源接口  <br/>
  * author : WangGanxin <br/>
@@ -12,12 +14,46 @@ import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
  */
 public interface CommonDataSource {
 
-    interface GetArticleCallback {
+    interface GankPictureCallback {
 
         void onLatestNewsLoaded(ZhihuArticleBean zhihuArticleBean);
 
         void onDataNotAvailable();
     }
 
-    void getArticle(@NonNull String articleId, @NonNull GetArticleCallback callback);
+    interface ShowPictureCallback {
+
+        void onLatestNewsLoaded(ZhihuArticleBean zhihuArticleBean);
+
+        void onDataNotAvailable();
+    }
+
+    interface GetVideoCallback {
+
+        void onLatestNewsLoaded(ZhihuArticleBean zhihuArticleBean);
+
+        void onDataNotAvailable();
+    }
+
+    /**
+     * gank福利图片
+     *
+     * @param pageIndex
+     * @param callback
+     */
+    void getGankPictures(int pageIndex, @NonNull GankPictureCallback callback);
+
+    /**
+     * 易源图片数据
+     *
+     * @param callback
+     */
+    void getShowPictures(Map<String, String> options, @NonNull ShowPictureCallback callback);
+
+    /**
+     * 获取视频数据
+     *
+     * @param callback
+     */
+    void getVideos(@NonNull GetVideoCallback callback);
 }

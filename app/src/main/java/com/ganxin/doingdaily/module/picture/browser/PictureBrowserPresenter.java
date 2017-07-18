@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.picture;
+package com.ganxin.doingdaily.module.picture.browser;
 
 import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
 import com.ganxin.doingdaily.common.data.source.CommonRepository;
@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description : PicturePresenter  <br/>
+ * Description : PictureBrowserPresenter  <br/>
  * author : WangGanxin <br/>
- * date : 2017/07/14 <br/>
+ * date : 2017/07/17 <br/>
  * email : mail@wangganxin.me <br/>
  */
-public class PicturePresenter extends PictureContract.Presenter{
+public class PictureBrowserPresenter extends PictureBrowserContract.Presenter{
 
     @Override
     public void onStart() {

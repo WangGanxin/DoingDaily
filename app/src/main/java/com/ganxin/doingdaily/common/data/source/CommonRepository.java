@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.ganxin.doingdaily.common.data.source.callback.CommonDataSource;
 
+import java.util.Map;
+
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 /**
@@ -44,8 +46,18 @@ public class CommonRepository implements CommonDataSource {
     }
 
     @Override
-    public void getArticle(@NonNull String articleId, @NonNull GetArticleCallback callback) {
-        mCommonRemoteDataSource.getArticle(articleId, callback);
+    public void getGankPictures(int pageIndex, @NonNull GankPictureCallback callback) {
+        mCommonRemoteDataSource.getGankPictures(pageIndex, callback);
+    }
+
+    @Override
+    public void getShowPictures(Map<String, String> options, @NonNull ShowPictureCallback callback) {
+        mCommonRemoteDataSource.getShowPictures(options, callback);
+    }
+
+    @Override
+    public void getVideos(@NonNull GetVideoCallback callback) {
+        mCommonRemoteDataSource.getVideos(callback);
     }
 
 }

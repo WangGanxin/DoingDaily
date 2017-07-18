@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_page">
 
-    <include layout="@layout/main_titlebar"/>
+    <include layout="@layout/view_toolbar_main"/>
 
     <FrameLayout
         android:id="@+id/mFragmentContainerLayout"

@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 
 import com.ganxin.doingdaily.common.data.source.callback.CommonDataSource;
 
+import java.util.Map;
+
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 /**
@@ -28,8 +30,17 @@ public class CommonLocalDataSource implements CommonDataSource {
     }
 
     @Override
-    public void getArticle(@NonNull String articleId, @NonNull GetArticleCallback callback) {
+    public void getGankPictures(int pageIndex, @NonNull GankPictureCallback callback) {
 
     }
 
+    @Override
+    public void getShowPictures(Map<String, String> options, @NonNull ShowPictureCallback callback) {
+
+    }
+
+    @Override
+    public void getVideos(@NonNull GetVideoCallback callback) {
+
+    }
 }

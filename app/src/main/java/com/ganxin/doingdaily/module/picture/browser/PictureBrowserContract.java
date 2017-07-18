@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.module.picture;
+package com.ganxin.doingdaily.module.picture.browser;
 
 import com.ganxin.doingdaily.framework.BasePresenter;
 import com.ganxin.doingdaily.framework.BaseView;
@@ -6,10 +6,10 @@ import com.ganxin.doingdaily.framework.BaseView;
 /**
  * Description : 契约类  <br/>
  * author : WangGanxin <br/>
- * date : 2017/07/14 <br/>
+ * date : 2017/07/17 <br/>
  * email : mail@wangganxin.me <br/>
  */
-interface PictureContract {
+interface PictureBrowserContract {
     interface View extends BaseView {
 
     }

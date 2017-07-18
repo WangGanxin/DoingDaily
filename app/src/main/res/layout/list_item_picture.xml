@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/md_selector_transparent"
+        android:orientation="horizontal"
+        android:padding="@dimen/common_padding">
+
+        <com.ganxin.doingdaily.common.widgets.RatioImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:imageRatio="0.7"
+            app:imageRatioType="widthHeight"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

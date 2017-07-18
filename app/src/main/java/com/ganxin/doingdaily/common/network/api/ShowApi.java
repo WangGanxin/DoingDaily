@@ -50,4 +50,20 @@ public interface ShowApi {
      */
     @GET("582-2")
     Observable<WechatContent> getWechatCategoryContent(@QueryMap Map<String, String> options);
+
+    /**
+     * 美女图片
+     * @param options
+     * @return
+     */
+    @GET("197-1")
+    Observable<String> getPictures(@QueryMap Map<String, String> options);
+
+    /**
+     * 百思不得姐
+     * @param options
+     * @return
+     */
+    @GET("255-1")
+    Observable<String> getVideos(@QueryMap Map<String, String> options);
 }

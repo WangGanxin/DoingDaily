@@ -84,7 +84,6 @@ android {
         github {}
         _360mobile {}
         baidu {}
-        tencent {}
     }
 
     productFlavors.all { flavor ->
