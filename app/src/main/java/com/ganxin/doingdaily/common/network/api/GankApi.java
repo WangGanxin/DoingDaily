@@ -1,5 +1,7 @@
 package com.ganxin.doingdaily.common.network.api;
 
+import com.ganxin.doingdaily.common.data.model.PictureGankBean;
+
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import rx.Observable;
@@ -18,6 +20,6 @@ public interface GankApi {
      * @param pageIndex 第几页，大于0
      * @return
      */
-    @GET("福利/10/{pageIndex}")
-    Observable<String> getPictures(@Path("pageIndex") int pageIndex);
+    @GET("福利/15/{pageIndex}")
+    Observable<PictureGankBean> getPictures(@Path("pageIndex") int pageIndex);
 }

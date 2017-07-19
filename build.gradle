@@ -24,6 +24,10 @@ allprojects {
             //LeanCloud 的包仓库
             url "http://mvn.leancloud.cn/nexus/content/repositories/public"
         }
+
+        maven {
+            url "https://jitpack.io"
+        }
     }
 }
 

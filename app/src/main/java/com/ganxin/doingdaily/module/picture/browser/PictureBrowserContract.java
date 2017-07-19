@@ -15,7 +15,6 @@ interface PictureBrowserContract {
     }
 
     abstract class Presenter extends BasePresenter<View> {
-        protected abstract void getGankPictures();
-        protected abstract void getShowPictures();
+
     }
 }

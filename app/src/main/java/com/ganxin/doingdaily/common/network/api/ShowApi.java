@@ -2,6 +2,7 @@ package com.ganxin.doingdaily.common.network.api;
 
 import com.ganxin.doingdaily.common.data.model.NewsChannel;
 import com.ganxin.doingdaily.common.data.model.NewsContent;
+import com.ganxin.doingdaily.common.data.model.PictureShowBean;
 import com.ganxin.doingdaily.common.data.model.WechatCategory;
 import com.ganxin.doingdaily.common.data.model.WechatContent;
 
@@ -57,7 +58,7 @@ public interface ShowApi {
      * @return
      */
     @GET("197-1")
-    Observable<String> getPictures(@QueryMap Map<String, String> options);
+    Observable<PictureShowBean> getPictures(@QueryMap Map<String, String> options);
 
     /**
      * 百思不得姐

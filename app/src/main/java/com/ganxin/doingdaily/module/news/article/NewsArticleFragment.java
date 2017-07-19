@@ -16,12 +16,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
 import com.ganxin.doingdaily.common.share.ShareController;
+import com.ganxin.doingdaily.common.utils.GlideUtils;
 import com.ganxin.doingdaily.common.utils.SnackbarUtil;
 import com.ganxin.doingdaily.common.utils.SystemHelper;
 import com.ganxin.doingdaily.framework.BaseFragment;
@@ -94,23 +93,8 @@ public class NewsArticleFragment extends BaseFragment<NewsArticleContract.View, 
                     headImage.setVisibility(View.GONE);
                     break;
                 case ConstantValues.VIEW_TYPE_IMAGE:
-                    if (bean.getImageurls().get(0).getUrl().endsWith(".gif")) {
-                        Glide.with(getContext())
-                                .load(bean.getImageurls().get(0).getUrl())
-                                .asGif()
-                                .placeholder(R.drawable.placeholder_img_loading)
-                                .dontAnimate()
-                                .centerCrop()
-                                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                                .into(headImage);
-                    } else {
-                        Glide.with(getContext())
-                                .load(bean.getImageurls().get(0).getUrl())
-                                .placeholder(R.drawable.placeholder_img_loading)
-                                .crossFade()
-                                .centerCrop()
-                                .into(headImage);
-                    }
+
+                    GlideUtils.display(headImage,bean.getImageurls().get(0).getUrl());
 
                     headImage.setVisibility(View.VISIBLE);
                     ViewCompat.setTransitionName(headImage, ConstantValues.SHARE_IMAGE);

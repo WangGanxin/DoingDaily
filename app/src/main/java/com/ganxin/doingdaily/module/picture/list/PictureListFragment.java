@@ -3,23 +3,26 @@ package com.ganxin.doingdaily.module.picture.list;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
-import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
+import com.ganxin.doingdaily.common.data.model.PictureBean;
 import com.ganxin.doingdaily.common.utils.ActivityUtils;
-import com.ganxin.doingdaily.common.utils.DateUtils;
+import com.ganxin.doingdaily.common.utils.GlideUtils;
+import com.ganxin.doingdaily.common.widgets.RatioImageView;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseViewHolder;
+import com.ganxin.doingdaily.common.widgets.pullrecycler.ItemDecoration.StaggeredDividerItemDecoration;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.PullRecycler;
+import com.ganxin.doingdaily.common.widgets.pullrecycler.layoutmanager.ILayoutManager;
+import com.ganxin.doingdaily.common.widgets.pullrecycler.layoutmanager.MyStaggeredGridLayoutManager;
 import com.ganxin.doingdaily.framework.BaseListFragment;
-import com.ganxin.doingdaily.module.news.article.NewsArticleFragment;
+import com.ganxin.doingdaily.module.picture.browser.PictureBrowserFragment;
 
 import java.util.List;
 
@@ -30,9 +33,9 @@ import butterknife.ButterKnife;
  * Description : 图片列表界面  <br/>
  * author : WangGanxin <br/>
  * date : 2017/07/17 <br/>
- * email : ganxinvip@163.com <br/>
+ * email : mail@wangganxin.me <br/>
  */
-public class PictureListFragment extends BaseListFragment<PictureListContract.View, PictureListContract.Presenter, NewsContentlistBean> implements PictureListContract.View {
+public class PictureListFragment extends BaseListFragment<PictureListContract.View, PictureListContract.Presenter, PictureBean> implements PictureListContract.View {
 
     private int pageIndex = 1;
     private int tab;
@@ -52,6 +55,20 @@ public class PictureListFragment extends BaseListFragment<PictureListContract.Vi
     @Override
     protected PictureListContract.Presenter setPresenter() {
         return new PictureListPresenter();
+    }
+
+    @Override
+    protected ILayoutManager getLayoutManager() {
+        MyStaggeredGridLayoutManager layoutManager = new MyStaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE); //防止item 交换位置
+        return layoutManager;
+    }
+
+    @Override
+    protected RecyclerView.ItemDecoration getItemDecoration() {
+        int vertical = getResources().getDimensionPixelOffset(R.dimen.staggered_vertical_spacing);
+        int horizontal = getResources().getDimensionPixelOffset(R.dimen.staggered_horizontal_spacing);
+        return new StaggeredDividerItemDecoration(vertical, horizontal);
     }
 
     @Override
@@ -77,20 +94,30 @@ public class PictureListFragment extends BaseListFragment<PictureListContract.Vi
         } else {
             pageIndex++;
         }
-        //  mPresenter.getListContent(tab, pageIndex);
+
+        switch (tab) {
+            case ConstantValues.PICTURE_TAB_GANK:
+                mPresenter.getGankPictures(pageIndex);
+                break;
+            case ConstantValues.PICTURE_TAB_SHOW:
+                mPresenter.getShowPictures(pageIndex);
+                break;
+        }
     }
 
     @Override
-    public void refreshContentList(List<NewsContentlistBean> contentlistBeanList) {
+    public void refreshContentList(List<PictureBean> pictureBeanList) {
         mDataList.clear();
-        mDataList.addAll(contentlistBeanList);
+        mDataList.addAll(pictureBeanList);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void addContentList(List<NewsContentlistBean> contentlistBeanList) {
-        mDataList.addAll(contentlistBeanList);
-        adapter.notifyDataSetChanged();
+    public void addContentList(List<PictureBean> pictureBeanList) {
+        int poistionStart = mDataList.size() - 1;
+        mDataList.addAll(pictureBeanList);
+        //adapter.notifyDataSetChanged();
+        adapter.notifyItemRangeChanged(poistionStart, pictureBeanList.size());
     }
 
     @Override
@@ -100,14 +127,10 @@ public class PictureListFragment extends BaseListFragment<PictureListContract.Vi
 
     class ImageViewHolder extends BaseViewHolder {
 
-        @BindView(R.id.news_item_title)
-        TextView newsItemTitle;
-        @BindView(R.id.news_item_source)
-        TextView newsItemSource;
-        @BindView(R.id.news_item_time)
-        TextView newsItemTime;
-        @BindView(R.id.news_item_img)
-        ImageView newsItemImg;
+        @BindView(R.id.picture_desc_tv)
+        TextView descTv;
+        @BindView(R.id.picture_iv)
+        RatioImageView ratioImageView;
 
         public ImageViewHolder(View itemView) {
             super(itemView);
@@ -116,41 +139,30 @@ public class PictureListFragment extends BaseListFragment<PictureListContract.Vi
 
         @Override
         public void onBindViewHolder(int position) {
-            NewsContentlistBean bean = mDataList.get(position);
-            if (bean != null) {
-                newsItemTitle.setText(bean.getTitle());
-                newsItemSource.setText(getString(R.string.news_item_source, bean.getSource()));
-                newsItemTime.setText(DateUtils.getOnTime(bean.getPubDate()));
+            PictureBean bean = mDataList.get(position);
 
-                if (bean.getImageurls().get(0).getUrl().endsWith(".gif")) {
-                    Glide.with(getContext())
-                            .load(bean.getImageurls().get(0).getUrl())
-                            .asGif()
-                            .placeholder(R.drawable.placeholder_img_loading)
-                            .dontAnimate()
-                            .centerCrop()
-                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                            .into(newsItemImg);
-                } else {
-                    Glide.with(getContext())
-                            .load(bean.getImageurls().get(0).getUrl())
-                            .placeholder(R.drawable.placeholder_img_loading)
-                            .crossFade()
-                            .centerCrop()
-                            .into(newsItemImg);
-                }
+            if (position % 2 == 0) {
+                ratioImageView.setImageRatio(0.7f);
+            } else {
+                ratioImageView.setImageRatio(0.6f);
+            }
+
+            if (bean != null) {
+                GlideUtils.display(ratioImageView, bean.getUrl());
+                descTv.setText(bean.getDate());
             }
         }
 
         @Override
         public void onItemClick(View view, int position) {
-            NewsContentlistBean bean = mDataList.get(position);
+
+            PictureBean bean = mDataList.get(position);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), newsItemImg, ConstantValues.SHARE_IMAGE).toBundle();
-                ActivityUtils.startActivityByAnimation(getActivity(), NewsArticleFragment.newInstance(ConstantValues.VIEW_TYPE_IMAGE, bean), bundle);
+                Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), ratioImageView, ConstantValues.SHARE_IMAGE).toBundle();
+                ActivityUtils.startActivityByAnimation(getActivity(), PictureBrowserFragment.newInstance(bean), bundle);
             } else {
-                ActivityUtils.startActivity(mActivity, NewsArticleFragment.newInstance(ConstantValues.VIEW_TYPE_IMAGE, bean));
+                ActivityUtils.startActivity(mActivity, PictureBrowserFragment.newInstance(bean));
             }
         }
     }

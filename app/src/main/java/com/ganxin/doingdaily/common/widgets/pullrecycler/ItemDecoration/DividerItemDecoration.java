@@ -1,4 +1,4 @@
-package com.ganxin.doingdaily.common.widgets.pullrecycler;
+package com.ganxin.doingdaily.common.widgets.pullrecycler.ItemDecoration;
 
 import android.content.Context;
 import android.graphics.Canvas;

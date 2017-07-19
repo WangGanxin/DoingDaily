@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseListAdapter;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseViewHolder;
-import com.ganxin.doingdaily.common.widgets.pullrecycler.DividerItemDecoration;
+import com.ganxin.doingdaily.common.widgets.pullrecycler.ItemDecoration.DividerItemDecoration;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.PullRecycler;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.layoutmanager.ILayoutManager;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.layoutmanager.MyLinearLayoutManager;

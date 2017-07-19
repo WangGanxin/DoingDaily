@@ -6,8 +6,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.StoriesBean;
@@ -16,6 +14,7 @@ import com.ganxin.doingdaily.common.data.model.ZhihuBeforeNewsBean;
 import com.ganxin.doingdaily.common.data.model.ZhihuLatestNewsBean;
 import com.ganxin.doingdaily.common.utils.ActivityUtils;
 import com.ganxin.doingdaily.common.utils.DateUtils;
+import com.ganxin.doingdaily.common.utils.GlideUtils;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseViewHolder;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.PullRecycler;
 import com.ganxin.doingdaily.framework.BaseListFragment;
@@ -230,24 +229,7 @@ public class ZhihuListFragment extends BaseListFragment<ZhihuListContract.View, 
             StoriesBean bean = mDataList.get(position);
             if (bean != null) {
                 mItemTitle.setText(bean.getTitle());
-
-                if (bean.getImages().get(0).endsWith(".gif")) {
-                    Glide.with(getContext())
-                            .load(bean.getImages().get(0))
-                            .asGif()
-                            .placeholder(R.drawable.placeholder_img_loading)
-                            .dontAnimate()
-                            .centerCrop()
-                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                            .into(mItemImg);
-                } else {
-                    Glide.with(getContext())
-                            .load(bean.getImages().get(0))
-                            .placeholder(R.drawable.placeholder_img_loading)
-                            .crossFade()
-                            .centerCrop()
-                            .into(mItemImg);
-                }
+                GlideUtils.display(mItemImg,bean.getImages().get(0));
             }
         }
 

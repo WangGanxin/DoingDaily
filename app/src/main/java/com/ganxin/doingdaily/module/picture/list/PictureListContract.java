@@ -1,6 +1,6 @@
 package com.ganxin.doingdaily.module.picture.list;
 
-import com.ganxin.doingdaily.common.data.model.NewsContentlistBean;
+import com.ganxin.doingdaily.common.data.model.PictureBean;
 import com.ganxin.doingdaily.framework.BasePresenter;
 import com.ganxin.doingdaily.framework.BaseView;
 
@@ -15,14 +15,13 @@ import java.util.List;
 interface PictureListContract {
 
     interface View extends BaseView {
-        void refreshContentList(List<NewsContentlistBean> contentlistBeanList);
-        void addContentList(List<NewsContentlistBean> contentlistBeanList);
+        void refreshContentList(List<PictureBean> pictureBeanList);
+        void addContentList(List<PictureBean> pictureBeanList);
         void loadComplete();
     }
 
     abstract class Presenter extends BasePresenter<PictureListContract.View> {
-        protected abstract void getListContent(String channelId, int pageIndex);
-        protected abstract void getGankPictures();
-        protected abstract void getShowPictures();
+        protected abstract void getGankPictures(int pageIndex);
+        protected abstract void getShowPictures(int pageIndex);
     }
 }

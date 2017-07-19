@@ -126,4 +126,7 @@ dependencies {
 
     // https://github.com/WangGanxin/LoadDataLayout
     compile 'com.ganxin.library:loaddatalayout:1.0.1'
+
+    // https://github.com/chrisbanes/PhotoView
+    compile 'com.github.chrisbanes:PhotoView:2.1.2'
 }

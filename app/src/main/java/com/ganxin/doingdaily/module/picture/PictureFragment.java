@@ -7,9 +7,10 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.ganxin.doingdaily.R;
+import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.framework.BaseFragment;
 import com.ganxin.doingdaily.framework.ITabFragment;
-import com.ganxin.doingdaily.module.news.list.NewsListFragment;
+import com.ganxin.doingdaily.module.picture.list.PictureListFragment;
 
 import butterknife.BindView;
 
@@ -42,7 +43,14 @@ public class PictureFragment extends BaseFragment<PictureContract.View, PictureC
         viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return NewsListFragment.newInstance("123");
+                switch (position) {
+                    case 0:
+                        return PictureListFragment.newInstance(ConstantValues.PICTURE_TAB_SHOW);
+                    case 1:
+                        return PictureListFragment.newInstance(ConstantValues.PICTURE_TAB_GANK);
+                    default:
+                        return null;
+                }
             }
 
             @Override

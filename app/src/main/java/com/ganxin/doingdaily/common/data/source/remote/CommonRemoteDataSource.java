@@ -2,6 +2,8 @@ package com.ganxin.doingdaily.common.data.source.remote;
 
 import android.support.annotation.NonNull;
 
+import com.ganxin.doingdaily.common.data.model.PictureGankBean;
+import com.ganxin.doingdaily.common.data.model.PictureShowBean;
 import com.ganxin.doingdaily.common.data.source.callback.CommonDataSource;
 import com.ganxin.doingdaily.common.network.NetworkManager;
 
@@ -36,10 +38,10 @@ public class CommonRemoteDataSource implements CommonDataSource {
 
         NetworkManager.getGankAPI().getPictures(pageIndex).subscribeOn(Schedulers.newThread())//子线程访问网络
                 .observeOn(AndroidSchedulers.mainThread())//回调到主线程
-                .subscribe(new Action1<String>() {
+                .subscribe(new Action1<PictureGankBean>() {
                     @Override
-                    public void call(String str) {
-                        //callback.onLatestNewsLoaded(articleBean);
+                    public void call(PictureGankBean bean) {
+                        callback.onPicturesLoaded(bean);
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -53,10 +55,10 @@ public class CommonRemoteDataSource implements CommonDataSource {
     public void getShowPictures(Map<String, String> options, @NonNull final ShowPictureCallback callback) {
         NetworkManager.getShowAPI().getPictures(options).subscribeOn(Schedulers.newThread())//子线程访问网络
                 .observeOn(AndroidSchedulers.mainThread())//回调到主线程
-                .subscribe(new Action1<String>() {
+                .subscribe(new Action1<PictureShowBean>() {
                     @Override
-                    public void call(String str) {
-                        //callback.onLatestNewsLoaded(articleBean);
+                    public void call(PictureShowBean bean) {
+                        callback.onPicturesLoaded(bean);
                     }
                 }, new Action1<Throwable>() {
                     @Override

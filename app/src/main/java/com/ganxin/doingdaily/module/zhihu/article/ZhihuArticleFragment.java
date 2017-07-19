@@ -19,12 +19,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.constants.ConstantValues;
 import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
 import com.ganxin.doingdaily.common.share.ShareController;
+import com.ganxin.doingdaily.common.utils.GlideUtils;
 import com.ganxin.doingdaily.common.utils.SnackbarUtil;
 import com.ganxin.doingdaily.common.utils.SystemHelper;
 import com.ganxin.doingdaily.framework.BaseFragment;
@@ -106,24 +105,7 @@ public class ZhihuArticleFragment extends BaseFragment<ZhihuArticleContract.View
         }
 
         if (!TextUtils.isEmpty(imageUrl)) {
-
-            if (imageUrl.endsWith(".gif")) {
-                Glide.with(getContext())
-                        .load(imageUrl)
-                        .asGif()
-                        .placeholder(R.drawable.placeholder_img_loading2)
-                        .dontAnimate()
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .into(headImage);
-            } else {
-                Glide.with(getContext())
-                        .load(imageUrl)
-                        .placeholder(R.drawable.placeholder_img_loading2)
-                        .crossFade()
-                        .centerCrop()
-                        .into(headImage);
-            }
+            GlideUtils.display(headImage,imageUrl,R.drawable.placeholder_img_loading2);
         }
 
         webView.getSettings().setJavaScriptEnabled(true);

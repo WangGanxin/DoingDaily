@@ -3,6 +3,7 @@ package com.ganxin.doingdaily.common.widgets.pullrecycler;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -63,6 +64,10 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                if (mLayoutManager != null && mLayoutManager instanceof StaggeredGridLayoutManager) {
+                    StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager) mLayoutManager;
+                    staggeredGridLayoutManager.invalidateSpanAssignments();//防止第一行到顶部有空白区域
+                }
                 if (mCurrentState == ACTION_IDLE && isLoadMoreEnabled && checkIfLoadMore() && dy > 0) {
                     mCurrentState = ACTION_LOAD_MORE_REFRESH;
                     adapter.onLoadMoreStateChanged(true);

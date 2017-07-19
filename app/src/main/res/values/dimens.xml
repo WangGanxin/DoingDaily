@@ -22,4 +22,7 @@
     <dimen name="m4">8dp</dimen>
     <dimen name="m5">6dp</dimen>
     <dimen name="m6">4dp</dimen>
+
+    <dimen name="staggered_vertical_spacing">6dp</dimen>
+    <dimen name="staggered_horizontal_spacing">3dp</dimen>
 </resources>

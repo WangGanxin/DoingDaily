@@ -2,6 +2,8 @@ package com.ganxin.doingdaily.common.data.source.callback;
 
 import android.support.annotation.NonNull;
 
+import com.ganxin.doingdaily.common.data.model.PictureGankBean;
+import com.ganxin.doingdaily.common.data.model.PictureShowBean;
 import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
 
 import java.util.Map;
@@ -16,21 +18,21 @@ public interface CommonDataSource {
 
     interface GankPictureCallback {
 
-        void onLatestNewsLoaded(ZhihuArticleBean zhihuArticleBean);
+        void onPicturesLoaded(PictureGankBean pictureGankBean);
 
         void onDataNotAvailable();
     }
 
     interface ShowPictureCallback {
 
-        void onLatestNewsLoaded(ZhihuArticleBean zhihuArticleBean);
+        void onPicturesLoaded(PictureShowBean pictureShowBean);
 
         void onDataNotAvailable();
     }
 
     interface GetVideoCallback {
 
-        void onLatestNewsLoaded(ZhihuArticleBean zhihuArticleBean);
+        void onVideosLoaded(ZhihuArticleBean zhihuArticleBean);
 
         void onDataNotAvailable();
     }
