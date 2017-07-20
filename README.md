@@ -81,7 +81,13 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 
 # Demo
 
-运行效果图：
+运行截图图：
+
+#### V1.1.0
+
+![doingdaily-ad](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_new.png)
+
+#### V1.0.0
 
 ![doingdaily-demo](/banner/doingdaily.gif)
 
@@ -94,12 +100,18 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 - [Github](https://github.com/WangGanxin/DoingDaily/releases)
 - [Bugly](http://beta.bugly.qq.com/doingdaily)
 - [360Market](http://zhushou.360.cn/detail/index/soft_id/3709747)
+- [Baidu](http://shouji.baidu.com/software/21832960.html)
 
 
 # Changes
 
-### V 1.1.0 (update 2017-07-13)
-- [x] 新增知乎频道
+### V 1.2.0 (update 2017-07-20)
+- [x] ~~新增美图精选，支持查看大图及保存本地~~
+- [x] ~~Application的一些初始化操作改为工厂模式~~
+
+### V 1.1.0 
+- [x] ~~新增知乎频道，以WebView形式展示~~
+- [x] ~~首页Banner栏展示~~
 
 ### V 1.0.0
 - [x] ~~项目框架搭建（Material Design + MVP + ButterKnife + RxJava + Retrofit + Glide）~~
