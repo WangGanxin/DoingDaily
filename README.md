@@ -83,11 +83,11 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 
 运行截图图：
 
-#### V1.1.0
+#### 现在的
 
 ![doingdaily-ad](https://github.com/WangGanxin/DoingDaily/blob/master/banner/banner_new.png)
 
-#### V1.0.0
+#### 以前的
 
 ![doingdaily-demo](/banner/doingdaily.gif)
 
