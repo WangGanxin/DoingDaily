@@ -126,7 +126,7 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 - Email：mail@wangganxin.me
 
 # License
-   		Copyright 2016 DoingDaily of copyright 守望君
+   		Copyright 2017 DoingDaily of copyright 守望君
 
    		Licensed under the Apache License, Version 2.0 (the "License");
    		you may not use this file except in compliance with the License.
