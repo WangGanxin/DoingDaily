@@ -2,6 +2,8 @@ package com.ganxin.doingdaily.common.constants;
 
 import com.ganxin.doingdaily.BuildConfig;
 
+import java.io.File;
+
 /**
  * Description : 常量类  <br/>
  * author : WangGanxin <br/>
@@ -21,28 +23,31 @@ public class ConstantValues {
     public static final String GITHUB_URL = "https://github.com/WangGanxin/DoingDaily"; // GitHub项目地址
     public static final String BUGLY_URL = "https://beta.bugly.qq.com/doingdaily"; // Bugly下载地址
 
+    public static final String DIR_ROOT = "DoingDaily";
+    public static final String DIR_PICTURE = DIR_ROOT + File.separator + "pictures";
+
     //Leancloud
-    public static final String LEANCLOUD_ID ="lBIrjjfV0Q0xor6nzCOj7rAF-gzGzoHsz";
-    public static final String LEANCLOUD_KEY ="0y6q2YwSQQxFex28L0u6pkhh";
+    public static final String LEANCLOUD_ID = "lBIrjjfV0Q0xor6nzCOj7rAF-gzGzoHsz";
+    public static final String LEANCLOUD_KEY = "0y6q2YwSQQxFex28L0u6pkhh";
 
     //Bugly
-    public static final String BUGLY_ID ="ca044d3a78";
+    public static final String BUGLY_ID = "ca044d3a78";
 
     //wechat
-    public static final String WECHAT_ID ="wxc120184ca7a52698";
-    public static final String WECHAT_SECRET ="22fbbb573949d6fd1196033f2f65beb2";
+    public static final String WECHAT_ID = "wxc120184ca7a52698";
+    public static final String WECHAT_SECRET = "22fbbb573949d6fd1196033f2f65beb2";
 
     //sina
-    public static final String SINA_KEY ="3856921794";
-    public static final String SINA_SECRET ="f4969e4a465f23a011457d66d9fe9016";
-    public static final String SINA_REDIRECT_URL ="http://sns.whalecloud.com/sina2/callback";
+    public static final String SINA_KEY = "3856921794";
+    public static final String SINA_SECRET = "f4969e4a465f23a011457d66d9fe9016";
+    public static final String SINA_REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
 
     //QQ Qzone
-    public static final String TENCENT_ID ="1105991688";
-    public static final String TENCENT_SECRET ="Y5HoDstgwerey0MJ";
+    public static final String TENCENT_ID = "1105991688";
+    public static final String TENCENT_SECRET = "Y5HoDstgwerey0MJ";
 
     //http请求配置
-    public static final boolean HTTP_CACHE_ENABLE =!BuildConfig.DEBUG; // 是否开启OkHTTP缓存
+    public static final boolean HTTP_CACHE_ENABLE = !BuildConfig.DEBUG; // 是否开启OkHTTP缓存
     public static final String HTTP_CACHE_DIR = "httpcache"; // OkHTTP请求缓存目录名称
     public static final int HTTP_CACHE_TIME = 60 * 60 * 72; // OkHTTP请求缓存时间：72小时
     public static final int HTTP_CACHE_MAXSIZE = 1024 * 1024 * 10; // OkHTTP请求缓存大小：10MB
@@ -81,5 +86,5 @@ public class ConstantValues {
     public static final int PICTURE_TAB_SHOW = 30;
     public static final int PICTURE_TAB_GANK = 31;
 
-    public static final String SHARE_IMAGE="share_image";
+    public static final String SHARE_IMAGE = "share_image";
 }

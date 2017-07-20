@@ -129,4 +129,7 @@ dependencies {
 
     // https://github.com/chrisbanes/PhotoView
     compile 'com.github.chrisbanes:PhotoView:2.1.2'
+
+    // https://github.com/lingochamp/FileDownloader
+    compile 'com.liulishuo.filedownloader:library:1.6.2'
 }

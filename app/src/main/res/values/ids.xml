@@ -11,5 +11,6 @@
     <item name="pullRecycler" type="id"/>
     <item name="viewPager" type="id"/>
     <item name="webView" type="id"/>
+    <item name="swipeLoadDataLayout" type="id"/>
 
 </resources>

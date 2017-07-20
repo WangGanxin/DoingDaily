@@ -45,9 +45,9 @@ public class PictureFragment extends BaseFragment<PictureContract.View, PictureC
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return PictureListFragment.newInstance(ConstantValues.PICTURE_TAB_SHOW);
-                    case 1:
                         return PictureListFragment.newInstance(ConstantValues.PICTURE_TAB_GANK);
+                    case 1:
+                        return PictureListFragment.newInstance(ConstantValues.PICTURE_TAB_SHOW);
                     default:
                         return null;
                 }

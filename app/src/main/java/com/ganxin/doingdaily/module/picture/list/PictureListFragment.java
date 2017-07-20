@@ -160,7 +160,7 @@ public class PictureListFragment extends BaseListFragment<PictureListContract.Vi
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), ratioImageView, ConstantValues.SHARE_IMAGE).toBundle();
-                ActivityUtils.startActivityByAnimation(getActivity(), PictureBrowserFragment.newInstance(bean), bundle);
+                ActivityUtils.startActivityByAnimation(mActivity, PictureBrowserFragment.newInstance(bean), bundle);
             } else {
                 ActivityUtils.startActivity(mActivity, PictureBrowserFragment.newInstance(bean));
             }

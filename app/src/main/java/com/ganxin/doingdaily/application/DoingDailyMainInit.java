@@ -20,6 +20,7 @@ import com.ganxin.doingdaily.common.data.source.remote.CommonRemoteDataSource;
 import com.ganxin.doingdaily.common.data.source.remote.NewsRemoteDataSource;
 import com.ganxin.doingdaily.common.data.source.remote.WechatRemoteDataSource;
 import com.ganxin.doingdaily.common.data.source.remote.ZhihuRemoteDataSource;
+import com.ganxin.doingdaily.common.utils.StorageManager;
 import com.ganxin.doingdaily.framework.IAppInitialization;
 import com.ganxin.doingdaily.module.MainActivity;
 import com.orhanobut.logger.Logger;
@@ -45,6 +46,7 @@ public class DoingDailyMainInit implements IAppInitialization {
         appContext = application.getApplicationContext();
 
         initLog();
+        initStorage();
         initRepository();
         initLeanCloud();
         initBugly();
@@ -53,6 +55,12 @@ public class DoingDailyMainInit implements IAppInitialization {
 
     private void initLog() {
         Logger.init(ConstantValues.DEBUG_TAG);
+    }
+
+    private void initStorage() {
+        StorageManager.getInstance().setAppContext(appContext);
+        StorageManager.getInstance().setRootDir(ConstantValues.DIR_ROOT);
+        StorageManager.getInstance().setImageDir(ConstantValues.DIR_PICTURE);
     }
 
     private void initRepository() {

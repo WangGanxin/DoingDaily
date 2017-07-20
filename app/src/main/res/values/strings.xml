@@ -22,6 +22,7 @@
     <string name="menu_browser">在浏览器打开</string>
     <string name="menu_copy">复制公众号</string>
     <string name="menu_share">分享</string>
+    <string name="menu_save">保存</string>
 
     <string name="split_txt">&#160;·&#160;</string>
     <string name="news_item_source">来自%1$s</string>
@@ -33,4 +34,6 @@
     <string name="tips_select_browser">请选择浏览器</string>
     <string name="tips_copy_success">已复制公众号至剪贴板</string>
     <string name="tips_share_success">分享成功</string>
+    <string name="tips_save_pending">正在下载...</string>
+    <string name="tips_save_success">下载成功，请到相册查看</string>
 </resources>

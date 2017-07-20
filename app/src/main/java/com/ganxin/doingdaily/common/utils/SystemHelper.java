@@ -19,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- *
  * Description : 系统跳转帮助类  <br/>
  * author : WangGanxin <br/>
  * date : 2016/9/5 <br/>
@@ -27,7 +26,8 @@ import java.util.Date;
  */
 public class SystemHelper {
 
-    private SystemHelper() {}
+    private SystemHelper() {
+    }
 
     /**
      * 调用系统拔号
@@ -65,11 +65,11 @@ public class SystemHelper {
      */
     public static void SystemBrowser(Context context, String url) {
 
-        if(context==null){
+        if (context == null) {
             return;
         }
 
-        if(TextUtils.isEmpty(url)){
+        if (TextUtils.isEmpty(url)) {
             return;
         }
 
@@ -79,7 +79,7 @@ public class SystemHelper {
         intent.setData(content_url);
 
         if (intent.resolveActivity(context.getPackageManager()) != null) {
-            context.startActivity(Intent.createChooser(intent,context.getString(R.string.tips_select_browser)));
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.tips_select_browser)));
         }
     }
 
@@ -159,17 +159,34 @@ public class SystemHelper {
 
     /**
      * 调用系统剪贴板复制
+     *
      * @param context
      * @param text
      */
     public static void SystemCopy(Context context, String text) {
 
-        if(TextUtils.isEmpty(text)){
+        if (TextUtils.isEmpty(text)) {
             return;
         }
 
-        ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clipData=ClipData.newPlainText("text",text);
+        ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text", text);
         clipboardManager.setPrimaryClip(clipData);
+    }
+
+    /**
+     * 更新系统图库
+     *
+     * @param context
+     * @param uri
+     */
+    public static void UpdateMedia(Context context, Uri uri) {
+
+        if (uri == null || context == null) {
+            return;
+        }
+
+        Intent scannerIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+        context.sendBroadcast(scannerIntent);
     }
 }

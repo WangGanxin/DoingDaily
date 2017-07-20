@@ -8,10 +8,16 @@
 
     <include layout="@layout/view_toolbar_main"/>
 
-    <ImageView
-        android:id="@+id/picture_big_iv"
+    <com.ganxin.library.SwipeLoadDataLayout
+        android:id="@id/swipeLoadDataLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:scaleType="fitCenter"/>
+        android:layout_height="match_parent">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/photoview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"/>
+    </com.ganxin.library.SwipeLoadDataLayout>
 </LinearLayout>
