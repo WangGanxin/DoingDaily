@@ -56,8 +56,8 @@ public class CommonRepository implements CommonDataSource {
     }
 
     @Override
-    public void getVideos(@NonNull GetVideoCallback callback) {
-        mCommonRemoteDataSource.getVideos(callback);
+    public void getVideos(Map<String, String> options,@NonNull GetVideoCallback callback) {
+        mCommonRemoteDataSource.getVideos(options,callback);
     }
 
 }

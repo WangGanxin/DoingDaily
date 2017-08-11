@@ -69,24 +69,20 @@ public class CommonRemoteDataSource implements CommonDataSource {
     }
 
     @Override
-    public void getVideos(@NonNull final GetVideoCallback callback) {
+    public void getVideos(Map<String, String> options,@NonNull final GetVideoCallback callback) {
 
-//        Map<String, String> options = new HashMap<>();
-//        options.put("type", "41");
-//        options.put("page", "1");
-//
-//        NetworkManager.getShowAPI().getVideos(options).subscribeOn(Schedulers.newThread())//子线程访问网络
-//                .observeOn(AndroidSchedulers.mainThread())//回调到主线程
-//                .subscribe(new Action1<String>() {
-//                    @Override
-//                    public void call(String str) {
-//                        //callback.onLatestNewsLoaded(articleBean);
-//                    }
-//                }, new Action1<Throwable>() {
-//                    @Override
-//                    public void call(Throwable throwable) {
-//                        callback.onDataNotAvailable();
-//                    }
-//                });
+        NetworkManager.getShowAPI().getVideos(options).subscribeOn(Schedulers.newThread())//子线程访问网络
+                .observeOn(AndroidSchedulers.mainThread())//回调到主线程
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String str) {
+                        //callback.onVideosLoaded();
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        callback.onDataNotAvailable();
+                    }
+                });
     }
 }

@@ -40,7 +40,7 @@ public class CommonLocalDataSource implements CommonDataSource {
     }
 
     @Override
-    public void getVideos(@NonNull GetVideoCallback callback) {
+    public void getVideos(Map<String, String> options,@NonNull GetVideoCallback callback) {
 
     }
 }

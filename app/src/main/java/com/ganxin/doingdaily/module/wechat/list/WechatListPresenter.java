@@ -34,10 +34,14 @@ public class WechatListPresenter extends WechatListContract.Presenter {
                 if (wechatContent != null) {
                     List<WechatContentlistBean> list =wechatContent.getShowapi_res_body().getPagebean().getContentlist();
                     if (list != null && list.size() > 0) {
-                        if (pageIndex == 1) {
-                            getView().refreshContentList(list);
-                        } else {
-                            getView().addContentList(list);
+                        try {
+                            if (pageIndex == 1) {
+                                getView().refreshContentList(list);
+                            } else {
+                                getView().addContentList(list);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
                 }

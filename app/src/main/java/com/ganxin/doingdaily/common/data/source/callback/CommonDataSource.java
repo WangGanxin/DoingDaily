@@ -57,5 +57,5 @@ public interface CommonDataSource {
      *
      * @param callback
      */
-    void getVideos(@NonNull GetVideoCallback callback);
+    void getVideos(Map<String, String> options,@NonNull GetVideoCallback callback);
 }
