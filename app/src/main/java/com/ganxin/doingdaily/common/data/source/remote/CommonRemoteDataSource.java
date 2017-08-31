@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.ganxin.doingdaily.common.data.model.PictureGankBean;
 import com.ganxin.doingdaily.common.data.model.PictureShowBean;
+import com.ganxin.doingdaily.common.data.model.VideoListBean;
 import com.ganxin.doingdaily.common.data.source.callback.CommonDataSource;
 import com.ganxin.doingdaily.common.network.NetworkManager;
 
@@ -69,14 +70,20 @@ public class CommonRemoteDataSource implements CommonDataSource {
     }
 
     @Override
-    public void getVideos(Map<String, String> options,@NonNull final GetVideoCallback callback) {
+    public void getVideos(Map<String, String> options, @NonNull final GetVideoCallback callback) {
 
         NetworkManager.getShowAPI().getVideos(options).subscribeOn(Schedulers.newThread())//子线程访问网络
                 .observeOn(AndroidSchedulers.mainThread())//回调到主线程
-                .subscribe(new Action1<String>() {
+                .subscribe(new Action1<VideoListBean>() {
                     @Override
-                    public void call(String str) {
-                        //callback.onVideosLoaded();
+                    public void call(VideoListBean bean) {
+                        if (bean != null) {
+                            if (bean.getShowapi_res_body() != null) {
+                                if (bean.getShowapi_res_body().getPagebean() != null) {
+                                    callback.onVideosLoaded(bean.getShowapi_res_body().getPagebean());
+                                }
+                            }
+                        }
                     }
                 }, new Action1<Throwable>() {
                     @Override

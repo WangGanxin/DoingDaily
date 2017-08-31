@@ -33,6 +33,11 @@ public class MyLinearLayoutManager extends LinearLayoutManager implements ILayou
     }
 
     @Override
+    public int findFirstVisiblePosition() {
+        return findFirstVisibleItemPosition();
+    }
+
+    @Override
     public int findLastVisiblePosition() {
         return findLastVisibleItemPosition();
     }

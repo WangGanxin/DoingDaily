@@ -13,6 +13,7 @@ import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseListAdapter;
  */
 public interface ILayoutManager {
     RecyclerView.LayoutManager getLayoutManager();
+    int findFirstVisiblePosition();
     int findLastVisiblePosition();
     void setUpAdapter(BaseListAdapter adapter);
 }

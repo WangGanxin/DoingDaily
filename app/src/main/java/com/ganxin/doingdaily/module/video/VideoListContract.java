@@ -1,6 +1,6 @@
 package com.ganxin.doingdaily.module.video;
 
-import com.ganxin.doingdaily.common.data.model.WechatContentlistBean;
+import com.ganxin.doingdaily.common.data.model.VideoBean;
 import com.ganxin.doingdaily.framework.BasePresenter;
 import com.ganxin.doingdaily.framework.BaseView;
 
@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface VideoListContract {
     interface View extends BaseView {
-        void refreshContentList(List<WechatContentlistBean> contentlist);
+        void refreshContentList(List<VideoBean> contentlist);
 
-        void addContentList(List<WechatContentlistBean> contentlist);
+        void addContentList(List<VideoBean> contentlist);
 
         void loadComplete();
     }

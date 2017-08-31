@@ -29,6 +29,11 @@ public class MyStaggeredGridLayoutManager extends StaggeredGridLayoutManager imp
     }
 
     @Override
+    public int findFirstVisiblePosition() {
+        return 0;
+    }
+
+    @Override
     public int findLastVisiblePosition() {
 
         // 由于是StaggeredGridLayoutManager 取最底部数据可能有两个item，所以判断这之中有一个正好是 最后一条数据的index就OK

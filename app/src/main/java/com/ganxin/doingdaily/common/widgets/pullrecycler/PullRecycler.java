@@ -24,6 +24,7 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
     public static final int ACTION_LOAD_MORE_REFRESH = 2;
     public static final int ACTION_IDLE = 0;
     private OnRecyclerRefreshListener listener;
+    private OnRecyclerScrollListener scrollListener;
     private int mCurrentState = ACTION_IDLE;
     private boolean isLoadMoreEnabled = false;
     private boolean isPullToRefreshEnabled = true;
@@ -59,6 +60,9 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                if (scrollListener != null) {
+                    scrollListener.onScrollStateChanged(recyclerView,newState);
+                }
             }
 
             @Override
@@ -73,6 +77,10 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
                     adapter.onLoadMoreStateChanged(true);
                     mSwipeRefreshLayout.setEnabled(false);
                     listener.onRefresh(ACTION_LOAD_MORE_REFRESH);
+                }
+
+                if (scrollListener != null) {
+                    scrollListener.onScrolled(recyclerView,dx,dy);
                 }
             }
         });
@@ -130,6 +138,10 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
         this.listener = listener;
     }
 
+    public void setOnScrollListener(OnRecyclerScrollListener listener){
+        this.scrollListener=listener;
+    }
+
     @Override
     public void onRefresh() {
         mCurrentState = ACTION_PULL_TO_REFRESH;
@@ -157,5 +169,10 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
 
     public interface OnRecyclerRefreshListener {
         void onRefresh(int action);
+    }
+
+    public interface OnRecyclerScrollListener{
+        void onScrollStateChanged(RecyclerView recyclerView, int newState);
+        void onScrolled(RecyclerView recyclerView, int dx, int dy);
     }
 }

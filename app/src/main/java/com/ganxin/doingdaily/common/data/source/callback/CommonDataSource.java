@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.ganxin.doingdaily.common.data.model.PictureGankBean;
 import com.ganxin.doingdaily.common.data.model.PictureShowBean;
-import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
+import com.ganxin.doingdaily.common.data.model.VideoPageBean;
 
 import java.util.Map;
 
@@ -32,7 +32,7 @@ public interface CommonDataSource {
 
     interface GetVideoCallback {
 
-        void onVideosLoaded(ZhihuArticleBean zhihuArticleBean);
+        void onVideosLoaded(VideoPageBean videoPageBean);
 
         void onDataNotAvailable();
     }
@@ -57,5 +57,5 @@ public interface CommonDataSource {
      *
      * @param callback
      */
-    void getVideos(Map<String, String> options,@NonNull GetVideoCallback callback);
+    void getVideos(Map<String, String> options, @NonNull GetVideoCallback callback);
 }

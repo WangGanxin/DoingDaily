@@ -28,7 +28,7 @@ android {
 
     defaultConfig {
         applicationId "com.ganxin.doingdaily"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 22
         versionCode 120
         versionName "1.2.0"
@@ -132,4 +132,7 @@ dependencies {
 
     // https://github.com/lingochamp/FileDownloader
     compile 'com.liulishuo.filedownloader:library:1.6.2'
+
+    // https://github.com/CarGuo/GSYVideoPlayer
+    compile 'com.shuyu:GSYVideoPlayer:2.0.4'
 }

@@ -1,10 +1,12 @@
 package com.ganxin.doingdaily.module.video;
 
-import com.ganxin.doingdaily.common.data.model.ZhihuArticleBean;
+import com.ganxin.doingdaily.common.data.model.VideoBean;
+import com.ganxin.doingdaily.common.data.model.VideoPageBean;
 import com.ganxin.doingdaily.common.data.source.CommonRepository;
 import com.ganxin.doingdaily.common.data.source.callback.CommonDataSource;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,7 +18,7 @@ import java.util.Map;
 public class VideoListPresenter extends VideoListContract.Presenter {
     @Override
     public void onStart() {
-        getVideoList(1);
+
     }
 
     @Override
@@ -27,22 +29,27 @@ public class VideoListPresenter extends VideoListContract.Presenter {
 
         CommonRepository.getInstance().getVideos(options, new CommonDataSource.GetVideoCallback() {
             @Override
-            public void onVideosLoaded(ZhihuArticleBean zhihuArticleBean) {
-//                if (wechatContent != null) {
-//                    List<WechatContentlistBean> list =wechatContent.getShowapi_res_body().getPagebean().getContentlist();
-//                    if (list != null && list.size() > 0) {
-//                        if (pageIndex == 1) {
-//                            getView().refreshContentList(list);
-//                        } else {
-//                            getView().addContentList(list);
-//                        }
-//                    }
-//                }
+            public void onVideosLoaded(VideoPageBean videoPageBean) {
+                if (videoPageBean != null) {
+                    List<VideoBean> list =videoPageBean.getContentlist();
+                    if (list != null && list.size() > 0) {
+                        try {
+                            if (pageIndex == 1) {
+                                getView().refreshContentList(list);
+                            } else {
+                                getView().addContentList(list);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
                 getView().loadComplete();
             }
 
             @Override
             public void onDataNotAvailable() {
+
                 getView().loadComplete();
             }
         });
