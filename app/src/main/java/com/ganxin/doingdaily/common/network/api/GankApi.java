@@ -15,11 +15,20 @@ import rx.Observable;
 public interface GankApi {
 
     /**
-     * 获取知乎指定日期文章列表
+     * 获取随机图片列表
      *
      * @param pageIndex 第几页，大于0
      * @return
      */
     @GET("福利/15/{pageIndex}")
     Observable<PictureGankBean> getPictures(@Path("pageIndex") int pageIndex);
+
+    /**
+     * 获取随机休息视频列表
+     *
+     * @param pageIndex 第几页，大于0
+     * @return
+     */
+    @GET("休息视频/15/{pageIndex}")
+    Observable<String> getVideos(@Path("pageIndex") int pageIndex);
 }

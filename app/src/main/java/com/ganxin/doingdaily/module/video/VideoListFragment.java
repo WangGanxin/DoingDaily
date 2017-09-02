@@ -11,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ganxin.doingdaily.R;
 import com.ganxin.doingdaily.common.data.model.VideoBean;
+import com.ganxin.doingdaily.common.share.ShareController;
+import com.ganxin.doingdaily.common.utils.GlideUtils;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.BaseViewHolder;
 import com.ganxin.doingdaily.common.widgets.pullrecycler.PullRecycler;
 import com.ganxin.doingdaily.framework.BaseListFragment;
@@ -21,6 +24,8 @@ import com.ganxin.doingdaily.framework.ITabFragment;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.List;
 
@@ -50,7 +55,6 @@ public class VideoListFragment extends BaseListFragment<VideoListContract.View, 
         pullRecycler.setOnScrollListener(new PullRecycler.OnRecyclerScrollListener() {
 
             private int firstVisibleItem, lastVisibleItem;
-            ;
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -96,7 +100,7 @@ public class VideoListFragment extends BaseListFragment<VideoListContract.View, 
     @Override
     protected BaseViewHolder getViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_video, parent, false);
-        VideoViewHolder videoViewHolder = new VideoViewHolder(getContext(),itemView);
+        VideoViewHolder videoViewHolder = new VideoViewHolder(getContext(), itemView);
         return videoViewHolder;
     }
 
@@ -169,33 +173,39 @@ public class VideoListFragment extends BaseListFragment<VideoListContract.View, 
         TextView videoTitle;
         @BindView(R.id.video_item_hot)
         TextView videoHot;
-        @BindView(R.id.video_item_avatar)
-        ImageView videoUserAvatar;
         @BindView(R.id.video_item_name)
         TextView videoUserName;
-        @BindView(R.id.video_item_date)
-        TextView videoDate;
+        @BindView(R.id.video_item_share)
+        ImageView videoShareIv;
         @BindView(R.id.video_item_player)
         StandardGSYVideoPlayer videoPlayer;
 
         private Context mContext;
         private ImageView imageView;
 
-        public VideoViewHolder(Context context,View itemView) {
+        public VideoViewHolder(Context context, View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            mContext=context;
+            mContext = context;
             imageView = new ImageView(context);
         }
 
         @Override
         public void onBindViewHolder(final int position) {
-            VideoBean bean = mDataList.get(position);
+            final VideoBean bean = mDataList.get(position);
             if (bean != null) {
                 videoTitle.setText(Html.fromHtml(bean.getText()));
                 videoHot.setText(getResources().getString(R.string.video_hot_num, bean.getLove()));
-                videoUserName.setText(bean.getName());
-                videoDate.setText(bean.getCreate_time());
+                videoUserName.setText(getResources().getString(R.string.video_user, bean.getName()));
+                videoShareIv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareController.getInstance().shareLink(mActivity, bean.getWeixin_url(), bean.getText(), bean.getProfile_image(), new UhareListener());
+                    }
+                });
+
+                //设置封面
+                GlideUtils.display(imageView, bean.getProfile_image());
 
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 if (imageView.getParent() != null) {
@@ -203,17 +213,11 @@ public class VideoListFragment extends BaseListFragment<VideoListContract.View, 
                     viewGroup.removeView(imageView);
                 }
 
-                //设置封面
-                //imageView.setImageResource(R.mipmap.xxx1);
-
                 videoPlayer.setIsTouchWiget(false);
-
                 videoPlayer.setThumbImageView(imageView);
 
-                final String url = "http://baobab.wdjcdn.com/14564977406580.mp4";
-
                 //默认缓存路径
-                videoPlayer.setUp(url, true, null, "这是title");
+                videoPlayer.setUp(bean.getVideo_uri(), true, null, bean.getText());
 
                 //增加title
                 videoPlayer.getTitleTextView().setVisibility(View.GONE);
@@ -221,13 +225,6 @@ public class VideoListFragment extends BaseListFragment<VideoListContract.View, 
                 //设置返回键
                 videoPlayer.getBackButton().setVisibility(View.GONE);
 
-                //设置全屏按键功能
-                videoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        resolveFullBtn(videoPlayer);
-                    }
-                });
                 videoPlayer.setRotateViewAuto(true);
                 videoPlayer.setLockLand(true);
                 videoPlayer.setPlayTag(TAG);
@@ -239,6 +236,13 @@ public class VideoListFragment extends BaseListFragment<VideoListContract.View, 
                 //gsyVideoPlayer.setSpeed(2);
 
                 videoPlayer.setPlayPosition(position);
+                //设置全屏按键功能
+                videoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        resolveFullBtn(videoPlayer);
+                    }
+                });
 
                 videoPlayer.setStandardVideoAllCallBack(new SampleListener() {
                     @Override
@@ -248,7 +252,6 @@ public class VideoListFragment extends BaseListFragment<VideoListContract.View, 
                             //静音
                             GSYVideoManager.instance().setNeedMute(true);
                         }
-
                     }
 
                     @Override
@@ -277,6 +280,27 @@ public class VideoListFragment extends BaseListFragment<VideoListContract.View, 
          */
         private void resolveFullBtn(final StandardGSYVideoPlayer standardGSYVideoPlayer) {
             standardGSYVideoPlayer.startWindowFullscreen(mContext, true, true);
+        }
+
+        /**
+         * 分享回调
+         */
+        private class UhareListener implements UMShareListener {
+
+            @Override
+            public void onResult(SHARE_MEDIA share_media) {
+                Toast.makeText(mContext, getString(R.string.tips_share_success), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media) {
+
+            }
         }
     }
 }
