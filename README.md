@@ -108,7 +108,7 @@ public class TabBehavior extends  CoordinatorLayout.Behavior<View> {
 ### V 1.3.0 (update 2017-09-02)
 - [x] ~~新增视频模块，更多搞笑视频~~
 
-### V 1.2.0 (update 2017-07-20)
+### V 1.2.0
 - [x] ~~新增美图精选，支持查看大图及保存本地~~
 - [x] ~~Application的一些初始化操作改为工厂模式~~
 
