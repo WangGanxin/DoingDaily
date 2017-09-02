@@ -30,8 +30,8 @@ android {
         applicationId "com.ganxin.doingdaily"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 120
-        versionName "1.2.0"
+        versionCode 130
+        versionName "1.3.0"
         manifestPlaceholders = [CHANNEL_VALUE: "Bugly"] // 默认是Bugly渠道
 
         ndk {
