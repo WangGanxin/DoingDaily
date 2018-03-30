@@ -111,31 +111,41 @@ public class MainActivity extends BaseActivity<MainContract.View, MainContract.P
             setElevation(tab.labelResId);
 
             ITabFragment tmpFragment = (ITabFragment) getSupportFragmentManager().findFragmentByTag(tab.targetFragmentClz.getSimpleName());
-            if (tmpFragment == null) {
-                tmpFragment = tab.targetFragmentClz.newInstance();
-                if (currentFragment == null) {
+
+            if (currentFragment == null) {
+
+                if (tmpFragment == null) {
+                    tmpFragment = tab.targetFragmentClz.newInstance();
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.mFragmentContainerLayout, tmpFragment.getFragment(), tab.targetFragmentClz.getSimpleName())
-                            .commit();
+                            .commitNowAllowingStateLoss();
+
+                    currentFragment = tmpFragment;
                 } else {
-                    getSupportFragmentManager().beginTransaction()
-                            .hide(currentFragment.getFragment())
-                            .add(R.id.mFragmentContainerLayout, tmpFragment.getFragment(), tab.targetFragmentClz.getSimpleName())
-                            .commit();
+
+                    ITabFragment newTmpFragment = tab.targetFragmentClz.newInstance();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mFragmentContainerLayout, newTmpFragment.getFragment(), tab.targetFragmentClz.getSimpleName())
+                            .commitNowAllowingStateLoss();
+
+                    currentFragment = newTmpFragment;
                 }
             } else {
-                if (currentFragment == null) {
+
+                if (tmpFragment == null) {
+                    tmpFragment = tab.targetFragmentClz.newInstance();
+
                     getSupportFragmentManager().beginTransaction()
-                            .show(tmpFragment.getFragment())
-                            .commit();
+                            .hide(currentFragment.getFragment())
+                            .add(R.id.mFragmentContainerLayout, tmpFragment.getFragment(), tab.targetFragmentClz.getSimpleName())
+                            .commitNowAllowingStateLoss();
                 } else {
                     getSupportFragmentManager().beginTransaction()
                             .hide(currentFragment.getFragment())
                             .show(tmpFragment.getFragment())
-                            .commit();
+                            .commitNowAllowingStateLoss();
                 }
+                currentFragment = tmpFragment;
             }
-            currentFragment = tmpFragment;
 
         } catch (InstantiationException e) {
             e.printStackTrace();

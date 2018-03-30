@@ -26,6 +26,10 @@ android {
         productFlavor 'bugly'
     }
 
+    dexOptions {
+        jumboMode true
+    }
+
     defaultConfig {
         applicationId "com.ganxin.doingdaily"
         minSdkVersion 16
